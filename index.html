@@ -355,7 +355,7 @@
             color: var(--primary);
         }
 
-        /* ===== HEADER & NAVIGATION - CORRIGIDO ===== */
+        /* ===== HEADER & NAVIGATION - SEM PONTOS/BULLETS ===== */
         header {
             position: fixed;
             top: 0;
@@ -411,7 +411,7 @@
         .nav-desktop {
             display: flex;
             align-items: center;
-            gap: 0; /* Removido gap geral */
+            gap: 0;
             flex: 1;
             justify-content: center;
             margin: 0 var(--spacing-md);
@@ -419,28 +419,23 @@
 
         .nav-desktop > li {
             position: relative;
-            white-space: nowrap; /* Evita quebra de palavras */
+            white-space: nowrap;
         }
 
         .nav-desktop > li > a {
-            padding: 15px 20px; /* Aumentado padding vertical */
+            padding: 15px 20px;
             font-weight: 600;
             color: var(--secondary);
             position: relative;
             font-family: var(--font-ui);
-            font-size: 0.9rem; /* Reduzido ligeiramente */
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            min-height: 50px; /* Altura mínima para consistência */
-        }
-
-        /* Especificamente para os itens com dropdown */
-        .nav-desktop > .dropdown > a {
-            padding: 15px 15px 15px 20px; /* Ajuste específico */
+            min-height: 50px;
         }
 
         .nav-desktop > li > a:hover {
@@ -505,10 +500,10 @@
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 15px; /* Reduzido o gap */
+            gap: 15px;
             min-width: 220px;
             justify-content: flex-end;
-            margin-left: 10px; /* Espaço extra antes dos botões */
+            margin-left: 10px;
         }
 
         .mobile-toggle {
@@ -673,50 +668,33 @@
             flex-wrap: wrap;
         }
 
-        /* ===== MISSION SECTION ===== */
-        .mission-item {
-            text-align: center;
+        /* ===== THE BIG PICTURE SECTION ===== */
+        .big-picture-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .big-picture-content h2 {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .big-picture-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .quote-box {
+            background-color: var(--light);
+            border-left: 4px solid var(--primary);
             padding: var(--spacing-lg);
-            background: var(--white);
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--gray-light);
-            transition: var(--transition-normal);
-            height: 100%;
-        }
-
-        .mission-item:hover {
-            transform: translateY(-8px);
-            border-color: var(--primary);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .mission-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto var(--spacing-md);
-            background-color: var(--secondary);
-            border-radius: var(--radius-sm);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--shadow-md);
-        }
-
-        .mission-icon i {
-            font-size: 32px;
-            color: var(--primary);
-        }
-
-        .mission-item h3 {
-            margin-bottom: var(--spacing-sm);
+            margin: var(--spacing-xl) 0;
+            font-style: italic;
+            font-size: 1.2rem;
             color: var(--secondary);
         }
 
-        .mission-item p {
-            color: var(--gray);
-        }
-
-        /* ===== PROGRAMS SECTION - CORRIGIDO ===== */
+        /* ===== PROGRAMS SECTION ===== */
         .programs-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -727,7 +705,7 @@
             position: relative;
             overflow: hidden;
             border-radius: var(--radius-lg);
-            height: 400px; /* Aumentado para dar mais espaço */
+            height: 400px;
             box-shadow: var(--shadow-md);
             border: 1px solid var(--gray-light);
         }
@@ -743,7 +721,6 @@
             transform: scale(1.05);
         }
 
-        /* Overlay corrigido - muito mais escuro e legível */
         .program-card-overlay {
             position: absolute;
             bottom: 0;
@@ -764,7 +741,6 @@
             justify-content: flex-end;
         }
 
-        /* Texto dos programas - muito mais legível */
         .program-card h3 {
             color: var(--white);
             margin-bottom: var(--spacing-sm);
@@ -783,23 +759,18 @@
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
         }
 
-        .program-card .btn {
-            align-self: flex-start;
-            margin-top: auto;
-        }
-
-        /* ===== RESEARCH SECTION ===== */
-        .research {
+        /* ===== AREAS OF STUDY SECTION ===== */
+        .study-areas {
             background-color: var(--light);
         }
 
-        .research-grid {
+        .study-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: var(--spacing-lg);
         }
 
-        .research-card {
+        .study-item {
             background-color: var(--white);
             border-radius: var(--radius-lg);
             padding: var(--spacing-lg);
@@ -809,189 +780,129 @@
             height: 100%;
         }
 
-        .research-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--primary);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .research-icon {
-            margin-bottom: var(--spacing-md);
-        }
-
-        .research-icon i {
-            font-size: 42px;
-            color: var(--primary);
-        }
-
-        .research-card h3 {
-            margin-bottom: var(--spacing-sm);
-            color: var(--secondary);
-        }
-
-        .research-card p {
-            color: var(--gray);
-            margin-bottom: var(--spacing-md);
-        }
-
-        /* ===== IMPACT SECTION ===== */
-        .impact-stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: var(--spacing-lg);
-            margin-bottom: var(--spacing-xl);
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: var(--spacing-lg);
-            background-color: var(--white);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--gray-light);
-            transition: var(--transition-normal);
-        }
-
-        .stat-item:hover {
+        .study-item:hover {
             transform: translateY(-5px);
             border-color: var(--primary);
             box-shadow: var(--shadow-lg);
         }
 
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
+        .study-item h4 {
             color: var(--primary);
-            margin-bottom: var(--spacing-xs);
-            font-family: var(--font-heading);
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.2rem;
         }
 
-        .stat-label {
-            font-size: 1rem;
+        .study-item p {
+            font-size: 0.95rem;
+            color: var(--gray);
+            margin-bottom: 0;
+        }
+
+        /* ===== PEACE DEPARTMENT STRUCTURE SECTION ===== */
+        .structure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .structure-item {
+            padding: var(--spacing-lg);
+            border-left: 3px solid var(--primary);
+            background-color: var(--light);
+        }
+
+        .structure-item h4 {
             color: var(--secondary);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-bottom: var(--spacing-sm);
         }
 
-        .impact-map {
-            width: 100%;
-            height: 400px;
+        /* ===== EXECUTIVE TEAM SECTION ===== */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .team-member {
+            text-align: center;
+            padding: var(--spacing-lg);
             background-color: var(--white);
             border-radius: var(--radius-lg);
-            overflow: hidden;
-            position: relative;
-            border: 1px solid var(--gray-light);
             box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-light);
+            transition: var(--transition-normal);
         }
 
-        .map-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(45deg, var(--light), var(--white));
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
         }
 
-        .map-placeholder i {
-            font-size: 64px;
-            color: var(--primary);
-            opacity: 0.3;
-        }
-
-        /* ===== TESTIMONIALS SECTION ===== */
-        .testimonials {
-            background-color: var(--secondary);
-            color: var(--white);
-        }
-
-        .testimonials .section-header h2 {
-            color: var(--white);
-        }
-
-        .testimonials .section-header h2::after {
-            background-color: var(--primary);
-        }
-
-        .testimonials .section-header p {
-            color: rgba(255, 255, 255, 0.85);
-        }
-
-        .testimonials-slider {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .testimonial-item {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: var(--radius-lg);
-            padding: var(--spacing-xl);
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .testimonial-text {
-            font-size: 1.3rem;
-            font-style: italic;
-            margin-bottom: var(--spacing-lg);
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.95);
-            font-weight: 300;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--spacing-md);
-        }
-
-        .author-img {
-            width: 70px;
-            height: 70px;
+        .member-img {
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             object-fit: cover;
+            margin: 0 auto var(--spacing-md);
             border: 3px solid var(--primary);
         }
 
-        .author-info h4 {
-            margin-bottom: 5px;
-            color: var(--white);
+        .member-info h4 {
+            color: var(--secondary);
+            margin-bottom: var(--spacing-xs);
         }
 
-        .author-info p {
-            margin-bottom: 0;
-            opacity: 0.8;
+        .member-title {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            font-size: 0.9rem;
+        }
+
+        .member-bio {
+            color: var(--gray);
             font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
         }
 
-        .slider-controls {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--spacing-md);
-            margin-top: var(--spacing-lg);
+        /* ===== PAYMENT/PROGRAMS SECTION ===== */
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-lg);
         }
 
-        .slider-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
+        .payment-card {
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-light);
+            text-align: center;
             transition: var(--transition-normal);
-            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .slider-btn:hover {
-            background-color: var(--primary);
+        .payment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
             border-color: var(--primary);
+        }
+
+        .payment-card h3 {
+            color: var(--secondary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .payment-card p {
+            color: var(--gray);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--spacing-lg);
         }
 
         /* ===== CONTACT SECTION ===== */
@@ -1008,11 +919,6 @@
         .contact-info h3 {
             margin-bottom: var(--spacing-md);
             color: var(--secondary);
-        }
-
-        .contact-info p {
-            color: var(--gray);
-            line-height: 1.8;
         }
 
         .contact-details {
@@ -1041,16 +947,6 @@
             color: var(--primary);
             font-size: 20px;
             flex-shrink: 0;
-        }
-
-        .contact-item-content h4 {
-            margin-bottom: 5px;
-            color: var(--secondary);
-        }
-
-        .contact-item-content p {
-            margin-bottom: 0;
-            color: var(--gray);
         }
 
         .contact-form .form-group {
@@ -1088,6 +984,35 @@
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(201, 164, 65, 0.1);
+        }
+
+        /* ===== 1000 POINTS OF LIGHT SECTION ===== */
+        .points-light-section {
+            background-color: var(--light);
+        }
+
+        .points-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .points-content h3 {
+            color: var(--secondary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .points-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-container {
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-light);
         }
 
         /* ===== FOOTER ===== */
@@ -1314,10 +1239,6 @@
                 font-size: 2.1rem;
             }
             
-            .impact-stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
             .footer-content {
                 grid-template-columns: repeat(2, 1fr);
                 gap: var(--spacing-lg);
@@ -1395,11 +1316,6 @@
             .program-card {
                 height: 380px;
             }
-            
-            .testimonial-author {
-                flex-direction: column;
-                text-align: center;
-            }
         }
 
         @media (max-width: 576px) {
@@ -1431,14 +1347,6 @@
                 flex-direction: column;
             }
             
-            .impact-stats {
-                grid-template-columns: 1fr;
-            }
-            
-            .stat-number {
-                font-size: 2.5rem;
-            }
-            
             .program-card {
                 height: 350px;
             }
@@ -1458,28 +1366,36 @@
             <nav class="nav-desktop">
                 <li><a href="#home">Home</a></li>
                 <li class="dropdown">
-                    <a href="#about">What We Do <i class="fas fa-chevron-down"></i></a>
+                    <a href="#big-picture">The Big Picture <i class="fas fa-chevron-down"></i></a>
                     <ul class="dropdown-content">
+                        <li><a href="#big-picture">Our Philosophy</a></li>
                         <li><a href="#mission">Our Mission</a></li>
-                        <li><a href="#research">Research</a></li>
-                        <li><a href="#peace">Peace Building</a></li>
+                        <li><a href="#structure">Department Structure</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#programs">Programs <i class="fas fa-chevron-down"></i></a>
                     <ul class="dropdown-content">
                         <li><a href="#1000-points">1000 Points of Light</a></li>
-                        <li><a href="#corporate-governance">Corporate Governance</a></li>
-                        <li><a href="#leadership-training">Leadership Training</a></li>
+                        <li><a href="#areas-study">Areas of Study</a></li>
+                        <li><a href="#certifications">Certifications</a></li>
                     </ul>
                 </li>
-                <li><a href="#research">Research</a></li>
+                <li class="dropdown">
+                    <a href="#governance">Governance <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-content">
+                        <li><a href="#corporate-governance">Corporate Governance</a></li>
+                        <li><a href="#leadership">Strategic Leadership</a></li>
+                        <li><a href="#peace-department">Peace Department Concept</a></li>
+                    </ul>
+                </li>
+                <li><a href="#team">Executive Team</a></li>
                 <li><a href="#contact">Contact</a></li>
             </nav>
             
             <div class="header-actions">
-                <a href="#contact" class="btn btn-outline">Contact Us</a>
-                <a href="#programs" class="btn btn-primary">Explore Programs</a>
+                <a href="#payment" class="btn btn-outline">Registration</a>
+                <a href="#contact" class="btn btn-primary">Contact Us</a>
             </div>
             
             <div class="mobile-toggle" id="mobileToggle">
@@ -1506,28 +1422,36 @@
         <ul>
             <li><a href="#home">Home</a></li>
             <li>
-                <a href="#about">What We Do</a>
+                <a href="#big-picture">The Big Picture</a>
                 <ul class="mobile-dropdown">
+                    <li><a href="#big-picture">Our Philosophy</a></li>
                     <li><a href="#mission">Our Mission</a></li>
-                    <li><a href="#research">Research</a></li>
-                    <li><a href="#peace">Peace Building</a></li>
+                    <li><a href="#structure">Department Structure</a></li>
                 </ul>
             </li>
             <li>
                 <a href="#programs">Programs</a>
                 <ul class="mobile-dropdown">
                     <li><a href="#1000-points">1000 Points of Light</a></li>
-                    <li><a href="#corporate-governance">Corporate Governance</a></li>
-                    <li><a href="#leadership-training">Leadership Training</a></li>
+                    <li><a href="#areas-study">Areas of Study</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
                 </ul>
             </li>
-            <li><a href="#research">Research</a></li>
+            <li>
+                <a href="#governance">Governance</a>
+                <ul class="mobile-dropdown">
+                    <li><a href="#corporate-governance">Corporate Governance</a></li>
+                    <li><a href="#leadership">Strategic Leadership</a></li>
+                    <li><a href="#peace-department">Peace Department</a></li>
+                </ul>
+            </li>
+            <li><a href="#team">Executive Team</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
         
         <div class="mobile-actions" style="margin-top: 30px; display: flex; flex-direction: column; gap: 15px;">
-            <a href="#contact" class="btn btn-outline">Contact Us</a>
-            <a href="#programs" class="btn btn-primary">Explore Programs</a>
+            <a href="#payment" class="btn btn-outline">Registration</a>
+            <a href="#contact" class="btn btn-primary">Contact Us</a>
         </div>
     </nav>
     
@@ -1553,44 +1477,64 @@
         </div>
     </section>
 
-    <!-- Mission Section -->
-    <section class="section" id="mission">
+    <!-- The Big Picture Section -->
+    <section class="section" id="big-picture">
         <div class="container">
             <div class="section-header">
-                <h2>Our Mission & Vision</h2>
-                <p>Guiding peace engagement through research, training, and strategic partnership</p>
+                <h2>The Big Picture</h2>
+                <p>A guidance to peace engagement through expanded consciousness</p>
             </div>
             
-            <div class="mission-grid grid-3">
-                <div class="mission-item">
-                    <div class="mission-icon">
-                        <i class="fas fa-globe-americas"></i>
-                    </div>
-                    <h3>Global Peace Building</h3>
-                    <p>Developing frameworks for sustainable peace and conflict resolution across nations and communities.</p>
+            <div class="big-picture-content">
+                <p>The big picture thinking is simply the expansion of consciousness, and the usage of that expanded consciousness for strategic growth and development. Every society today faces both unique and challenging circumstances that inhibit the level of growth and development needed to match the era we are living in.</p>
+                
+                <p>While the world is moving fast, and we see the global population increasing at a fast rate the rifts between individuals and groups have only widened. At the center of it all is inequality. Other factors like the global pandemic, food shortage and security will always highlight the shortcomings of each society.</p>
+                
+                <div class="quote-box">
+                    "At this juncture, a matching type of leadership is required to take on these modern day inefficiencies, taking into consideration at the same time, the local, regional and global geopolitical ramifications. Bold leaders, giving more, dignifying others, showing empathy and being courageous."
                 </div>
                 
-                <div class="mission-item">
-                    <div class="mission-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Strategic Research</h3>
-                    <p>Conducting in-depth analysis on governance, development, and peace-building methodologies.</p>
+                <p>Over twenty years, U.S. Global Peace Department monitored, conducted in-depth study and research strategies that can be used to steer societies through these times. Sustained progress is only achievable with leaders who learn, understand and demonstrate the audacity to see the Big Picture.</p>
+                
+                <p>This Big Picture skill-set includes a range of areas like peace building, reasonable governance, conflict resolution, emotional intelligence, geopolitical clarity, strategic out-sight, accountability and people cohesion.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="section bg-light" id="mission">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Mission</h2>
+                <p>Promoting the peace department concept globally</p>
+            </div>
+            
+            <div class="structure-grid">
+                <div class="structure-item">
+                    <h4>Leadership and Authority</h4>
+                    <p>The head of this department would be a secretary or cabinet level appointment whose sole role would be to provide to the President and government a peace path for all engagements locally, regionally and internationally.</p>
                 </div>
                 
-                <div class="mission-item">
-                    <div class="mission-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Leadership Development</h3>
-                    <p>Training tomorrow's leaders with the skills to navigate complex geopolitical landscapes.</p>
+                <div class="structure-item">
+                    <h4>Department Structure</h4>
+                    <p>Built out like a foreign service with a local bureau for domestic issues. This department would have a corresponding unit to engage along with its foreign service counterpart.</p>
+                </div>
+                
+                <div class="structure-item">
+                    <h4>Funding</h4>
+                    <p>The department would receive direct annual funding from the national budget for all its activity domestic and abroad.</p>
+                </div>
+                
+                <div class="structure-item">
+                    <h4>Expanded Sub Units</h4>
+                    <p>The Peace Department shall establish units within every department and agency, including entities of the government i.e schools, and use these units as satellite for intervention and continuous training.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Programs Section -->
-    <section class="section bg-light" id="programs">
+    <section class="section" id="programs">
         <div class="container">
             <div class="section-header">
                 <h2>Our Programs</h2>
@@ -1603,8 +1547,8 @@
                          alt="1000 Points of Light Program">
                     <div class="program-card-overlay">
                         <h3>1000 Points of Light</h3>
-                        <p>Empowering grassroots leaders to become agents of change in their communities.</p>
-                        <a href="#1000-points" class="btn btn-primary">Learn More</a>
+                        <p>Free training in Conflict Resolution Intervention, Emotional Intelligence Introspection and Strategic Leadership Techniques.</p>
+                        <a href="#1000-points" class="btn btn-primary">Register Now</a>
                     </div>
                 </div>
                 
@@ -1612,9 +1556,9 @@
                     <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                          alt="Corporate Governance Program">
                     <div class="program-card-overlay">
-                        <h3>Corporate Governance</h3>
-                        <p>Enhancing ethical leadership and governance frameworks for organizational excellence.</p>
-                        <a href="#corporate-governance" class="btn btn-primary">Learn More</a>
+                        <h3>Corporate Governance USGPD®</h3>
+                        <p>Specialized Certification delivering cutting edge curriculum content on the discipline of corporate governance.</p>
+                        <a href="#certifications" class="btn btn-primary">Learn More</a>
                     </div>
                 </div>
                 
@@ -1622,126 +1566,206 @@
                     <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                          alt="Peace Building Program">
                     <div class="program-card-overlay">
-                        <h3>Peace Building Framework</h3>
-                        <p>Comprehensive strategies for conflict resolution and sustainable peace development.</p>
-                        <a href="#peace-building" class="btn btn-primary">Learn More</a>
+                        <h3>Strategic Project Management</h3>
+                        <p>USGPD® Specialized Certification for project management and leadership training.</p>
+                        <a href="#certifications" class="btn btn-primary">View Programs</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Research Section -->
-    <section class="section" id="research">
+    <!-- Areas of Study Section -->
+    <section class="section study-areas" id="areas-study">
         <div class="container">
             <div class="section-header">
-                <h2>Research & Expertise</h2>
-                <p>Evidence-based insights for informed decision-making and policy development</p>
+                <h2>Areas of Study</h2>
+                <p>Comprehensive training programs for modern leadership</p>
             </div>
             
-            <div class="research-grid grid-3">
-                <div class="research-card">
-                    <div class="research-icon">
-                        <i class="fas fa-chess-board"></i>
-                    </div>
-                    <h3>Geopolitical Analysis</h3>
-                    <p>Comprehensive studies on global power dynamics and regional stability factors.</p>
-                    <a href="#geopolitical" class="btn btn-outline">View Research</a>
+            <div class="study-grid">
+                <div class="study-item">
+                    <h4>Global Strategic Leadership</h4>
+                    <p>Developing frameworks for sustainable peace and conflict resolution across nations and communities.</p>
                 </div>
                 
-                <div class="research-card">
-                    <div class="research-icon">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <h3>Conflict Resolution</h3>
+                <div class="study-item">
+                    <h4>Negotiation and Conflict Resolution</h4>
                     <p>Methodologies for mediation, negotiation, and sustainable peace agreements.</p>
-                    <a href="#conflict-resolution" class="btn btn-outline">View Research</a>
                 </div>
                 
-                <div class="research-card">
-                    <div class="research-icon">
-                        <i class="fas fa-balance-scale"></i>
-                    </div>
-                    <h3>Governance Models</h3>
-                    <p>Analysis of effective governance structures for stability and development.</p>
-                    <a href="#governance" class="btn btn-outline">View Research</a>
+                <div class="study-item">
+                    <h4>Psychology of Emotional Intelligence</h4>
+                    <p>Understanding and applying emotional intelligence in leadership and conflict resolution.</p>
+                </div>
+                
+                <div class="study-item">
+                    <h4>Human Behavior & Mental Process</h4>
+                    <p>Analysis of human behavior patterns and mental processes in organizational settings.</p>
+                </div>
+                
+                <div class="study-item">
+                    <h4>Analytical Thinking & Innovation</h4>
+                    <p>Developing critical thinking skills and innovative approaches to complex problems.</p>
+                </div>
+                
+                <div class="study-item">
+                    <h4>Peace & Policy Implementation</h4>
+                    <p>Strategies for implementing peace policies and governance frameworks.</p>
+                </div>
+                
+                <div class="study-item">
+                    <h4>Peace & Diplomacy</h4>
+                    <p>Diplomatic approaches to conflict resolution and international peace building.</p>
+                </div>
+                
+                <div class="study-item">
+                    <h4>Project Management</h4>
+                    <p>Comprehensive project management methodologies for organizational excellence.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Impact Section -->
-    <section class="section bg-light">
+    <!-- 1000 Points of Light Section -->
+    <section class="section points-light-section" id="1000-points">
         <div class="container">
             <div class="section-header">
-                <h2>Global Impact</h2>
-                <p>Transforming societies through strategic partnership and capacity building</p>
+                <h2>1000 Points of Light</h2>
+                <p>Empowering grassroots leaders as agents of change</p>
             </div>
             
-            <div class="impact-stats">
-                <div class="stat-item">
-                    <div class="stat-number">20+</div>
-                    <div class="stat-label">Years of Research</div>
-                </div>
+            <div class="points-content">
+                <p>The USGPD will be conducting free training in the following areas as part of our 1000 Points of Light initiative: Conflict Resolution Intervention, Emotional Intelligence Introspection and Strategic Leadership Techniques.</p>
                 
-                <div class="stat-item">
-                    <div class="stat-number">60+</div>
-                    <div class="stat-label">Countries Reached</div>
-                </div>
-                
-                <div class="stat-item">
-                    <div class="stat-number">500+</div>
-                    <div class="stat-label">Leaders Trained</div>
-                </div>
-                
-                <div class="stat-item">
-                    <div class="stat-number">100+</div>
-                    <div class="stat-label">Research Papers</div>
-                </div>
-            </div>
-            
-            <div class="impact-map">
-                <div class="map-placeholder">
-                    <i class="fas fa-globe-americas"></i>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="section testimonials">
-        <div class="container">
-            <div class="section-header">
-                <h2>Leadership Voices</h2>
-                <p>What global leaders say about our strategic guidance and training programs</p>
-            </div>
-            
-            <div class="testimonials-slider">
-                <div class="testimonial-item">
-                    <div class="testimonial-text">
-                        "The Big Picture framework transformed our approach to governance. USGPD's research provided the strategic clarity we needed during critical decision-making periods."
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
-                             alt="Dr. James Wilson" class="author-img">
-                        <div class="author-info">
-                            <h4>Dr. James Wilson</h4>
-                            <p>Former Ambassador, Strategic Advisor</p>
+                <div class="form-container">
+                    <h3>Application Form</h3>
+                    <p><strong>NOTE:</strong> Participants will be notified by email about the start date and program details.</p>
+                    
+                    <form id="pointsForm" style="margin-top: var(--spacing-lg);">
+                        <div class="form-group">
+                            <label for="full-name">Full Name</label>
+                            <input type="text" id="full-name" name="full-name" required>
                         </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="organization">Organization (if applicable)</label>
+                            <input type="text" id="organization" name="organization">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="interest">Area of Interest</label>
+                            <select id="interest" name="interest">
+                                <option value="">Select an option</option>
+                                <option value="conflict-resolution">Conflict Resolution Intervention</option>
+                                <option value="emotional-intelligence">Emotional Intelligence Introspection</option>
+                                <option value="strategic-leadership">Strategic Leadership Techniques</option>
+                                <option value="all">All Areas</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="experience">Briefly describe your experience or interest in peace building</label>
+                            <textarea id="experience" name="experience" rows="4"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-large">
+                            Submit Application
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="section" id="certifications">
+        <div class="container">
+            <div class="section-header">
+                <h2>USGPD® Specialized Certifications</h2>
+                <p>Position yourself with critical knowledge engagement at the board or executive level</p>
+            </div>
+            
+            <div class="payment-grid">
+                <div class="payment-card">
+                    <h3>Corporate Governance USGPD®</h3>
+                    <p>Next Generation Corporate Governance Training</p>
+                    <div class="price">Specialized Certification</div>
+                    <p>12 contact hours program with cutting edge curriculum content on corporate governance discipline.</p>
+                    <a href="https://buy.stripe.com/4gM14o2bjeJXdAAeeHdQQ02" target="_blank" class="btn btn-primary">Register Now</a>
+                </div>
+                
+                <div class="payment-card">
+                    <h3>Strategic Project Management USGPD®</h3>
+                    <p>Strategic Project Management and Leadership Training</p>
+                    <div class="price">Specialized Certification</div>
+                    <p>Comprehensive project management methodologies for organizational excellence and leadership development.</p>
+                    <a href="https://buy.stripe.com/5kQ4gA2bj1Xb0NO0nRdQQ00" target="_blank" class="btn btn-primary">Register Now</a>
+                </div>
+                
+                <div class="payment-card">
+                    <h3>Certificate in Project Management</h3>
+                    <p>Project Management and Execution</p>
+                    <div class="price">Professional Certification</div>
+                    <p>Fundamental to advanced project management skills for effective execution and delivery.</p>
+                    <a href="https://buy.stripe.com/9B6eVe8zH9pDeEEc6zdQQ01" target="_blank" class="btn btn-primary">Register Now</a>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: var(--spacing-xl);">
+                <p><strong>NOTE:</strong> An in-person version of the program is also available. Programs can be custom designed for corporate clients.</p>
+                <a href="#contact" class="btn btn-outline">Contact for Custom Programs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Executive Team Section -->
+    <section class="section bg-light" id="team">
+        <div class="container">
+            <div class="section-header">
+                <h2>Executive Team</h2>
+                <p>Leadership with deep experience in research, peace studies, and strategic development</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://i.postimg.cc/v8WKRWCb/1765820721894-019b231d-2be1-791c-b3b2-d84243787f09.png" 
+                         alt="Dr. Eton Simon" class="member-img">
+                    <div class="member-info">
+                        <h4>Dr. Eton Simon</h4>
+                        <div class="member-title">President, U.S. Global Peace Department</div>
+                        <p class="member-bio">Serving as the President of The U.S. Global Peace Department based in New York, Dr. Eton Simon brings a deep range of experience from Research Analytics to Peace Studies and development. Simon served as a Research Analyst for a micro conglomerate and also coordinated strategic political campaigns in the State of California.</p>
                     </div>
                 </div>
                 
-                <div class="slider-controls">
-                    <div class="slider-btn prev-btn">
-                        <i class="fas fa-chevron-left"></i>
+                <div class="team-member">
+                    <img src="https://i.postimg.cc/vm6P0bGR/1765815788196-019b22d1-8280-7cb2-9c1d-a398de6b83bb.png" 
+                         alt="Rayonne D. Pile" class="member-img">
+                    <div class="member-info">
+                        <h4>Rayonne D. Pile</h4>
+                        <div class="member-title">Project Manager & Conflict Resolution Expert</div>
+                        <p class="member-bio">Mr. Pile is a seasoned project manager and conflict resolution expert with deep knowledge of global peace and diplomacy interventions from both an academic and corporate perspective. Having served as a Project Manager on both domestic and international projects, Mr. Pile brings a unique business acumen and experience to his functions.</p>
                     </div>
-                    <div class="slider-dots">
-                        <span class="dot active"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                    </div>
-                    <div class="slider-btn next-btn">
-                        <i class="fas fa-chevron-right"></i>
+                </div>
+                
+                <div class="team-member">
+                    <img src="https://i.postimg.cc/3rsDGGwj/1765820984678-019b2321-0ff4-7b44-b6a1-253e8fe43559.png" 
+                         alt="Leilia Ramson" class="member-img">
+                    <div class="member-info">
+                        <h4>Leilia Ramson</h4>
+                        <div class="member-title">Veteran Educator & Peace Leader</div>
+                        <p class="member-bio">Mrs. Leilia Ramson, a veteran in education and leader for peace, is a member of Guyana Public Service Commission. She also served as both Commissioner and Chairperson of the Teaching Service Commission. She was also involved with the Children Needy Children's Funds and contributed significantly to children development.</p>
                     </div>
                 </div>
             </div>
@@ -1764,7 +1788,7 @@
                     <div class="contact-details">
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            <div class="contact-item-content">
+                            <div>
                                 <h4>Location</h4>
                                 <p>Global Headquarters<br>Research & Strategy Division</p>
                             </div>
@@ -1772,7 +1796,7 @@
                         
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
-                            <div class="contact-item-content">
+                            <div>
                                 <h4>Email</h4>
                                 <p>info@usgpd.org<br>research@usgpd.org</p>
                             </div>
@@ -1780,7 +1804,7 @@
                         
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
-                            <div class="contact-item-content">
+                            <div>
                                 <h4>Phone</h4>
                                 <p>+1 (555) 123-4567<br>Office Hours: 9AM-5PM EST</p>
                             </div>
@@ -1855,9 +1879,9 @@
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="#home">Home</a></li>
-                        <li><a href="#mission">Our Mission</a></li>
-                        <li><a href="#research">Research</a></li>
+                        <li><a href="#big-picture">The Big Picture</a></li>
                         <li><a href="#programs">Programs</a></li>
+                        <li><a href="#governance">Governance</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
@@ -1866,4 +1890,228 @@
                     <h4>Programs</h4>
                     <ul>
                         <li><a href="#1000-points">1000 Points of Light</a></li>
-                        <li><a href="#corporate-governance">
+                        <li><a href="#certifications">Certifications</a></li>
+                        <li><a href="#areas-study">Areas of Study</a></li>
+                        <li><a href="#corporate-governance">Corporate Governance</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h4>Stay Updated</h4>
+                    <p>Subscribe to our newsletter for research insights and program updates.</p>
+                    
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 U.S. Global Peace Department. All Rights Reserved. | <a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#home" class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Navigation Toggle
+            const mobileToggle = document.getElementById('mobileToggle');
+            const mobileNav = document.getElementById('mobileNav');
+            const mobileNavClose = document.getElementById('mobileNavClose');
+            const overlay = document.getElementById('overlay');
+            
+            mobileToggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                mobileNav.classList.toggle('active');
+                overlay.classList.toggle('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            mobileNavClose.addEventListener('click', function() {
+                mobileToggle.classList.remove('active');
+                mobileNav.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            
+            overlay.addEventListener('click', function() {
+                mobileToggle.classList.remove('active');
+                mobileNav.classList.remove('active');
+                this.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = document.querySelectorAll('.mobile-nav a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileToggle.classList.remove('active');
+                    mobileNav.classList.remove('active');
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+            
+            // Header scroll effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Back to Top Button
+            const backToTop = document.getElementById('backToTop');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('active');
+                } else {
+                    backToTop.classList.remove('active');
+                }
+            });
+            
+            backToTop.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 90,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Form Submissions
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const formData = new FormData(this);
+                    const name = formData.get('name');
+                    const email = formData.get('email');
+                    
+                    if (!name || !email) {
+                        alert('Please fill in all required fields.');
+                        return;
+                    }
+                    
+                    alert('Thank you for your message, ' + name + '! We will contact you at ' + email + ' within 24-48 hours.');
+                    this.reset();
+                });
+            }
+            
+            const pointsForm = document.getElementById('pointsForm');
+            if (pointsForm) {
+                pointsForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const formData = new FormData(this);
+                    const name = formData.get('full-name');
+                    const email = formData.get('email');
+                    
+                    if (!name || !email) {
+                        alert('Please fill in all required fields.');
+                        return;
+                    }
+                    
+                    alert('Thank you for your application, ' + name + '! We will contact you at ' + email + ' with program details.');
+                    this.reset();
+                });
+            }
+            
+            // Newsletter Form Submission
+            const newsletterForm = document.querySelector('.newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const emailInput = this.querySelector('input[type="email"]');
+                    const email = emailInput.value;
+                    
+                    if (!email || !email.includes('@')) {
+                        alert('Please enter a valid email address.');
+                        return;
+                    }
+                    
+                    alert('Thank you for subscribing to our newsletter!');
+                    emailInput.value = '';
+                });
+            }
+            
+            // Dropdown functionality for mobile
+            const dropdownTriggers = document.querySelectorAll('.mobile-nav > ul > li > a');
+            dropdownTriggers.forEach(trigger => {
+                trigger.addEventListener('click', function(e) {
+                    if (this.nextElementSibling && this.nextElementSibling.classList.contains('mobile-dropdown')) {
+                        e.preventDefault();
+                        const dropdown = this.nextElementSibling;
+                        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+                    }
+                });
+            });
+            
+            // Initialize all dropdowns as hidden
+            document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+                dropdown.style.display = 'none';
+            });
+        });
+        
+        // Add animation on scroll
+        window.addEventListener('scroll', function() {
+            const elements = document.querySelectorAll('.program-card, .study-item, .structure-item, .team-member, .payment-card');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        });
+        
+        // Initialize elements with animation styles
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.program-card, .study-item, .structure-item, .team-member, .payment-card');
+            
+            animatedElements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(30px)';
+                element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
+            
+            // Trigger initial animation check
+            setTimeout(() => {
+                window.dispatchEvent(new Event('scroll'));
+            }, 100);
+        });
+    </script>
+</body>
+</html>

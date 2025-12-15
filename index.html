@@ -355,7 +355,7 @@
             color: var(--primary);
         }
 
-        /* ===== HEADER & NAVIGATION ===== */
+        /* ===== HEADER & NAVIGATION - CORRIGIDO ===== */
         header {
             position: fixed;
             top: 0;
@@ -384,8 +384,8 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: var(--spacing-md); /* Aumentado o espaço aqui */
-            min-width: 200px;
+            gap: var(--spacing-md);
+            min-width: 180px;
         }
 
         .logo-img {
@@ -411,7 +411,7 @@
         .nav-desktop {
             display: flex;
             align-items: center;
-            gap: var(--spacing-md);
+            gap: 0; /* Removido gap geral */
             flex: 1;
             justify-content: center;
             margin: 0 var(--spacing-md);
@@ -419,17 +419,28 @@
 
         .nav-desktop > li {
             position: relative;
+            white-space: nowrap; /* Evita quebra de palavras */
         }
 
         .nav-desktop > li > a {
-            padding: 10px 20px;
+            padding: 15px 20px; /* Aumentado padding vertical */
             font-weight: 600;
             color: var(--secondary);
             position: relative;
             font-family: var(--font-ui);
-            font-size: 0.95rem;
+            font-size: 0.9rem; /* Reduzido ligeiramente */
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 50px; /* Altura mínima para consistência */
+        }
+
+        /* Especificamente para os itens com dropdown */
+        .nav-desktop > .dropdown > a {
+            padding: 15px 15px 15px 20px; /* Ajuste específico */
         }
 
         .nav-desktop > li > a:hover {
@@ -439,7 +450,7 @@
         .nav-desktop > li > a::after {
             content: '';
             position: absolute;
-            bottom: -2px;
+            bottom: -1px;
             left: 20px;
             width: 0;
             height: 2px;
@@ -494,9 +505,10 @@
         .header-actions {
             display: flex;
             align-items: center;
-            gap: var(--spacing-sm);
-            min-width: 200px;
+            gap: 15px; /* Reduzido o gap */
+            min-width: 220px;
             justify-content: flex-end;
+            margin-left: 10px; /* Espaço extra antes dos botões */
         }
 
         .mobile-toggle {
@@ -704,10 +716,10 @@
             color: var(--gray);
         }
 
-        /* ===== PROGRAMS SECTION ===== */
+        /* ===== PROGRAMS SECTION - CORRIGIDO ===== */
         .programs-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: var(--spacing-lg);
         }
 
@@ -715,7 +727,7 @@
             position: relative;
             overflow: hidden;
             border-radius: var(--radius-lg);
-            height: 380px;
+            height: 400px; /* Aumentado para dar mais espaço */
             box-shadow: var(--shadow-md);
             border: 1px solid var(--gray-light);
         }
@@ -731,26 +743,49 @@
             transform: scale(1.05);
         }
 
+        /* Overlay corrigido - muito mais escuro e legível */
         .program-card-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
+            height: 100%;
             padding: var(--spacing-lg);
-            background: linear-gradient(transparent, rgba(31, 42, 68, 0.95));
+            background: linear-gradient(
+                to top, 
+                rgba(31, 42, 68, 0.95) 0%, 
+                rgba(31, 42, 68, 0.85) 30%, 
+                rgba(31, 42, 68, 0.7) 60%, 
+                rgba(31, 42, 68, 0.4) 100%
+            );
             color: var(--white);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
         }
 
+        /* Texto dos programas - muito mais legível */
         .program-card h3 {
             color: var(--white);
-            margin-bottom: var(--spacing-xs);
-            font-size: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1.3;
         }
 
         .program-card p {
-            opacity: 0.9;
-            margin-bottom: var(--spacing-md);
-            color: rgba(255, 255, 255, 0.85);
+            opacity: 0.95;
+            margin-bottom: var(--spacing-lg);
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .program-card .btn {
+            align-self: flex-start;
+            margin-top: auto;
         }
 
         /* ===== RESEARCH SECTION ===== */
@@ -1288,16 +1323,13 @@
                 gap: var(--spacing-lg);
             }
             
-            .nav-desktop {
-                gap: var(--spacing-sm);
-            }
-            
             .nav-desktop > li > a {
-                padding: 10px 15px;
+                padding: 15px 16px;
+                font-size: 0.85rem;
             }
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 950px) {
             .header-actions {
                 display: none;
             }
@@ -1360,6 +1392,10 @@
                 grid-template-columns: 1fr;
             }
             
+            .program-card {
+                height: 380px;
+            }
+            
             .testimonial-author {
                 flex-direction: column;
                 text-align: center;
@@ -1401,6 +1437,10 @@
             
             .stat-number {
                 font-size: 2.5rem;
+            }
+            
+            .program-card {
+                height: 350px;
             }
         }
     </style>
@@ -1826,269 +1866,4 @@
                     <h4>Programs</h4>
                     <ul>
                         <li><a href="#1000-points">1000 Points of Light</a></li>
-                        <li><a href="#corporate-governance">Corporate Governance</a></li>
-                        <li><a href="#leadership-training">Leadership Training</a></li>
-                        <li><a href="#peace-building">Peace Building</a></li>
-                        <li><a href="#strategic-research">Strategic Research</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-newsletter">
-                    <h4>Stay Updated</h4>
-                    <p>Subscribe to our newsletter for research insights and program updates.</p>
-                    
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Your email address" required>
-                        <button type="submit">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 U.S. Global Peace Department. All Rights Reserved. | <a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Service</a></p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Back to Top Button -->
-    <a href="#home" class="back-to-top" id="backToTop">
-        <i class="fas fa-chevron-up"></i>
-    </a>
-
-    <!-- JavaScript -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile Navigation Toggle
-            const mobileToggle = document.getElementById('mobileToggle');
-            const mobileNav = document.getElementById('mobileNav');
-            const mobileNavClose = document.getElementById('mobileNavClose');
-            const overlay = document.getElementById('overlay');
-            
-            mobileToggle.addEventListener('click', function() {
-                this.classList.toggle('active');
-                mobileNav.classList.toggle('active');
-                overlay.classList.toggle('active');
-                document.body.style.overflow = 'hidden';
-            });
-            
-            mobileNavClose.addEventListener('click', function() {
-                mobileToggle.classList.remove('active');
-                mobileNav.classList.remove('active');
-                overlay.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-            
-            overlay.addEventListener('click', function() {
-                mobileToggle.classList.remove('active');
-                mobileNav.classList.remove('active');
-                this.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-            
-            // Close mobile menu when clicking on a link
-            const mobileLinks = document.querySelectorAll('.mobile-nav a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    mobileToggle.classList.remove('active');
-                    mobileNav.classList.remove('active');
-                    overlay.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-            });
-            
-            // Header scroll effect
-            const header = document.getElementById('header');
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
-            
-            // Back to Top Button
-            const backToTop = document.getElementById('backToTop');
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 300) {
-                    backToTop.classList.add('active');
-                } else {
-                    backToTop.classList.remove('active');
-                }
-            });
-            
-            backToTop.addEventListener('click', function(e) {
-                e.preventDefault();
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-            
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        e.preventDefault();
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 90,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-            
-            // Testimonial Slider
-            const testimonialItems = document.querySelectorAll('.testimonial-item');
-            const prevBtn = document.querySelector('.prev-btn');
-            const nextBtn = document.querySelector('.next-btn');
-            const dots = document.querySelectorAll('.dot');
-            let currentSlide = 0;
-            
-            function showSlide(index) {
-                testimonialItems.forEach(item => item.style.display = 'none');
-                dots.forEach(dot => dot.classList.remove('active'));
-                
-                testimonialItems[index].style.display = 'block';
-                dots[index].classList.add('active');
-                currentSlide = index;
-            }
-            
-            // Initialize first slide
-            if (testimonialItems.length > 0) {
-                showSlide(0);
-                
-                // Previous button
-                if (prevBtn) {
-                    prevBtn.addEventListener('click', function() {
-                        let newIndex = currentSlide - 1;
-                        if (newIndex < 0) newIndex = testimonialItems.length - 1;
-                        showSlide(newIndex);
-                    });
-                }
-                
-                // Next button
-                if (nextBtn) {
-                    nextBtn.addEventListener('click', function() {
-                        let newIndex = currentSlide + 1;
-                        if (newIndex >= testimonialItems.length) newIndex = 0;
-                        showSlide(newIndex);
-                    });
-                }
-                
-                // Dot navigation
-                dots.forEach((dot, index) => {
-                    dot.addEventListener('click', function() {
-                        showSlide(index);
-                    });
-                });
-                
-                // Auto slide every 5 seconds
-                setInterval(function() {
-                    let newIndex = currentSlide + 1;
-                    if (newIndex >= testimonialItems.length) newIndex = 0;
-                    showSlide(newIndex);
-                }, 5000);
-            }
-            
-            // Contact Form Submission
-            const contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    // Get form data
-                    const formData = new FormData(this);
-                    const name = formData.get('name');
-                    const email = formData.get('email');
-                    
-                    // Simple validation
-                    if (!name || !email) {
-                        alert('Please fill in all required fields.');
-                        return;
-                    }
-                    
-                    // In a real application, you would send this data to a server
-                    // For now, we'll just show a success message
-                    alert('Thank you for your message, ' + name + '! We will contact you at ' + email + ' within 24-48 hours.');
-                    
-                    // Reset form
-                    this.reset();
-                });
-            }
-            
-            // Newsletter Form Submission
-            const newsletterForm = document.querySelector('.newsletter-form');
-            if (newsletterForm) {
-                newsletterForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    const emailInput = this.querySelector('input[type="email"]');
-                    const email = emailInput.value;
-                    
-                    if (!email || !email.includes('@')) {
-                        alert('Please enter a valid email address.');
-                        return;
-                    }
-                    
-                    alert('Thank you for subscribing to our newsletter!');
-                    emailInput.value = '';
-                });
-            }
-            
-            // Dropdown functionality for mobile
-            const dropdownTriggers = document.querySelectorAll('.mobile-nav > ul > li > a');
-            dropdownTriggers.forEach(trigger => {
-                trigger.addEventListener('click', function(e) {
-                    if (this.nextElementSibling && this.nextElementSibling.classList.contains('mobile-dropdown')) {
-                        e.preventDefault();
-                        const dropdown = this.nextElementSibling;
-                        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-                    }
-                });
-            });
-            
-            // Initialize all dropdowns as hidden
-            document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
-                dropdown.style.display = 'none';
-            });
-        });
-        
-        // Add animation on scroll
-        window.addEventListener('scroll', function() {
-            const elements = document.querySelectorAll('.mission-item, .research-card, .program-card, .stat-item');
-            
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementTop < windowHeight - 100) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
-                }
-            });
-        });
-        
-        // Initialize elements with animation styles
-        document.addEventListener('DOMContentLoaded', function() {
-            const animatedElements = document.querySelectorAll('.mission-item, .research-card, .program-card, .stat-item');
-            
-            animatedElements.forEach(element => {
-                element.style.opacity = '0';
-                element.style.transform = 'translateY(30px)';
-                element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            });
-            
-            // Trigger initial animation check
-            setTimeout(() => {
-                window.dispatchEvent(new Event('scroll'));
-            }, 100);
-        });
-    </script>
-</body>
-</html>
+                        <li><a href="#corporate-governance">

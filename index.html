@@ -1435,6 +1435,125 @@ document.addEventListener('DOMContentLoaded', function() {
     outline-offset: 3px;
 }
 
+        /* ===== FIX MOBILE TITLES (H2) ===== */
+@media (max-width: 768px) {
+
+  .section-header {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .section-header h2 {
+    font-size: 1.8rem;          /* reduz tamanho */
+    line-height: 1.25;
+    word-break: break-word;    /* evita corte */
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .section-header h2::after {
+    width: 40px;               /* linha menor no mobile */
+    height: 3px;
+    bottom: -10px;
+  }
+
+  .section-header p {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+}
+
+/* ===== EXTRA SAFETY (mobile very small screens) ===== */
+@media (max-width: 480px) {
+  .section-header h2 {
+    font-size: 1.6rem;
+  }
+}
+
+        /* ================================
+   FIX MOBILE – TITLES (H2)
+   ================================ */
+@media (max-width: 768px) {
+
+  .section-header {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .section-header h2 {
+    font-size: 1.8rem;
+    line-height: 1.25;
+    word-break: break-word;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .section-header h2::after {
+    width: 40px;
+    height: 3px;
+    bottom: -10px;
+  }
+
+  .section-header p {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+}
+
+/* EXTRA SAFETY – TELAS MUITO PEQUENAS */
+@media (max-width: 480px) {
+  .section-header h2 {
+    font-size: 1.6rem;
+  }
+}
+
+/* ================================
+   HERO – MELHORIA MOBILE
+   ================================ */
+@media (max-width: 768px) {
+
+  .hero {
+    background-attachment: scroll;
+    padding-top: 120px;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+    line-height: 1.2;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+  }
+}
+
+/* ================================
+   PROGRAM CARDS – MOBILE
+   ================================ */
+@media (max-width: 768px) {
+
+  .program-card {
+    height: auto;
+    min-height: 340px;
+  }
+
+  .program-card h3 {
+    font-size: 1.5rem;
+  }
+
+  .program-card p {
+    font-size: 1rem;
+  }
+}
+
+/* ================================
+   MENU MOBILE – ÁREA DE TOQUE
+   ================================ */
+.mobile-nav > ul > li > a {
+  padding: 18px 0;
+  font-size: 1.05rem;
+}
+
         
     </style>
 </head>

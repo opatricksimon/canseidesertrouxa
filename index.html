@@ -2381,98 +2381,16 @@ isolation: isolate;
     }
 }
 
-/* Container do Vídeo com Thumbnail */
+/* ========================================
+   FAIXA SUPERIOR DO VIMEO - REGULÁVEL
+======================================== */
+
 .video-wrapper {
     position: relative;
     padding-top: 177.78%;
     background: linear-gradient(135deg, var(--bordo-dark) 0%, var(--bordo) 100%);
-    cursor: pointer;
     overflow: hidden;
-}
-
-/* Fallback antes da thumbnail carregar */
-.video-wrapper::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, var(--bordo-dark) 0%, var(--bordo) 100%);
-    z-index: 0;
-}
-
-/* Thumbnail do Vídeo - CORRIGIDO */
-.video-thumbnail {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
-    z-index: 1;
-    transition: transform 0.5s ease, opacity 0.3s ease;
-}
-
-.video-wrapper:hover .video-thumbnail {
-    transform: translate(-50%, -50%) scale(1.05);
-}
-
-/* Overlay escuro sobre a thumbnail */
-.video-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.35);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
-    transition: background 0.3s ease;
-}
-
-.video-wrapper:hover .video-overlay {
-    background: rgba(0, 0, 0, 0.45);
-}
-
-/* Botão de Play */
-.video-play-btn {
-    width: 80px;
-    height: 80px;
-    background: var(--branco);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-    transition: var(--transition-normal);
-    border: none;
-    cursor: pointer;
-    z-index: 3;
-}
-
-.video-play-btn svg {
-    width: 32px;
-    height: 32px;
-    color: var(--bordo);
-    margin-left: 4px;
-}
-
-.video-wrapper:hover .video-play-btn {
-    transform: scale(1.1);
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
-}
-
-/* Quando o vídeo está tocando */
-.video-wrapper.playing .video-thumbnail,
-.video-wrapper.playing .video-overlay,
-.video-wrapper.playing::before {
-    opacity: 0;
-    pointer-events: none;
+    border-radius: 20px 20px 0 0; /* 👈 NOVO */
 }
 
 .video-wrapper iframe {
@@ -2482,13 +2400,47 @@ isolation: isolate;
     width: 100%;
     height: 100%;
     border: none;
-    opacity: 0;
-    z-index: 4;
-    transition: opacity 0.3s ease;
+    z-index: 1;
 }
 
-.video-wrapper.playing iframe {
-    opacity: 1;
+/* 👇 ESSA É A FAIXA NOVA */
+.video-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 65px;        /* 👈 REGULA ALTURA AQUI */
+    background: #f7f7f7; /* 👈 COR DO FUNDO DA SEÇÃO */
+    z-index: 20;
+    pointer-events: none;
+    border-radius: 20px 20px 0 0;
+}
+
+/* ========================================
+   FAIXA DO VIMEO - AJUSTE MOBILE
+======================================== */
+
+@media (max-width: 768px) {
+    .video-wrapper::before {
+        height: 65px;        /* 👈 ALTURA NO MOBILE */
+        border-radius: 16px 16px 0 0;
+    }
+    
+    .video-wrapper {
+        border-radius: 16px 16px 0 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .video-wrapper::before {
+        height: 65px;        /* 👈 ALTURA EM CELULAR PEQUENO */
+        border-radius: 12px 12px 0 0;
+    }
+    
+    .video-wrapper {
+        border-radius: 12px 12px 0 0;
+    }
 }
 
 /* Info do Depoimento */
@@ -2570,16 +2522,6 @@ isolation: isolate;
     .carrossel-btn-next {
         right: 5px;
     }
-    
-    .video-play-btn {
-        width: 60px;
-        height: 60px;
-    }
-    
-    .video-play-btn svg {
-        width: 24px;
-        height: 24px;
-    }
 }
 
 /* Indicadores (Dots) */
@@ -2640,8 +2582,49 @@ isolation: isolate;
     .carrossel-instrucao {
         display: none;
     }
+    
 }    
-    </style>
+
+/* ========================================
+   CTA HERO - EFEITO GLOW PULSANTE
+======================================== */
+
+.hero-cta .btn {
+    position: relative;
+    box-shadow: 
+        0 0 20px rgba(230, 166, 178, 0.5),
+        0 0 40px rgba(230, 166, 178, 0.3),
+        0 0 60px rgba(230, 166, 178, 0.2);
+    animation: glow-pulse 2s ease-in-out infinite, bounce-button 2s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+    0%, 100% {
+        box-shadow: 
+            0 0 20px rgba(230, 166, 178, 0.5),
+            0 0 40px rgba(230, 166, 178, 0.3),
+            0 0 60px rgba(230, 166, 178, 0.2);
+    }
+    50% {
+        box-shadow: 
+            0 0 30px rgba(230, 166, 178, 0.8),
+            0 0 60px rgba(230, 166, 178, 0.5),
+            0 0 90px rgba(230, 166, 178, 0.3),
+            0 0 120px rgba(155, 44, 84, 0.2);
+    }
+}
+
+/* Hover ainda mais intenso */
+.hero-cta .btn:hover {
+    animation: none;
+    box-shadow: 
+        0 0 40px rgba(230, 166, 178, 1),
+        0 0 80px rgba(230, 166, 178, 0.6),
+        0 0 120px rgba(155, 44, 84, 0.4);
+    transform: translateY(-5px) scale(1.03);
+}
+
+</style>
 </head>
 <body>
 
@@ -3111,20 +3094,14 @@ isolation: isolate;
             
             <!-- Vídeo 1 - Jenifer Silva -->
             <div class="video-slide">
-                <div class="video-wrapper" data-video-id="1151782299">
-                    <img 
-                        src="https://vumbnail.com/1151782299_large.jpg"" 
-                        alt="Depoimento de Jenifer Silva" 
-                        class="video-thumbnail"
-                        loading="lazy"
-                    >
-                    <div class="video-overlay">
-                        <button class="video-play-btn" aria-label="Reproduzir vídeo">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z"/>
-                            </svg>
-                        </button>
-                    </div>
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://player.vimeo.com/video/1151782299?badge=0&autopause=0&player_id=0&app_id=58479" 
+                        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        title="Depoimento Jenifer Silva"
+                        loading="lazy">
+                    </iframe>
                 </div>
                 <div class="video-info">
                     <h4 class="video-nome">Jenifer Silva</h4>
@@ -3136,20 +3113,14 @@ isolation: isolate;
             
             <!-- Vídeo 2 - Mariana Pereira -->
             <div class="video-slide">
-                <div class="video-wrapper" data-video-id="1151782018">
-                    <img 
-                        src="https://vumbnail.com/1151782018.jpg" 
-                        alt="Depoimento de Mariana Pereira" 
-                        class="video-thumbnail"
-                        loading="lazy"
-                    >
-                    <div class="video-overlay">
-                        <button class="video-play-btn" aria-label="Reproduzir vídeo">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z"/>
-                            </svg>
-                        </button>
-                    </div>
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://player.vimeo.com/video/1151782018?badge=0&autopause=0&player_id=0&app_id=58479" 
+                        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        title="Depoimento Mariana Pereira"
+                        loading="lazy">
+                    </iframe>
                 </div>
                 <div class="video-info">
                     <h4 class="video-nome">Mariana Pereira</h4>
@@ -3161,20 +3132,14 @@ isolation: isolate;
             
             <!-- Vídeo 3 - Caroline Martins -->
             <div class="video-slide">
-                <div class="video-wrapper" data-video-id="1151785785">
-                    <img 
-                        src="https://vumbnail.com/1151785785.jpg" 
-                        alt="Depoimento de Caroline Martins" 
-                        class="video-thumbnail"
-                        loading="lazy"
-                    >
-                    <div class="video-overlay">
-                        <button class="video-play-btn" aria-label="Reproduzir vídeo">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z"/>
-                            </svg>
-                        </button>
-                    </div>
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://player.vimeo.com/video/1151785785?badge=0&autopause=0&player_id=0&app_id=58479" 
+                        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        title="Depoimento Caroline Martins"
+                        loading="lazy">
+                    </iframe>
                 </div>
                 <div class="video-info">
                     <h4 class="video-nome">Caroline Martins</h4>
@@ -3186,20 +3151,14 @@ isolation: isolate;
             
             <!-- Vídeo 4 - Pamela -->
             <div class="video-slide">
-                <div class="video-wrapper" data-video-id="1151785968">
-                    <img 
-                        src="https://vumbnail.com/1151785968.jpg" 
-                        alt="Depoimento de Pamela" 
-                        class="video-thumbnail"
-                        loading="lazy"
-                    >
-                    <div class="video-overlay">
-                        <button class="video-play-btn" aria-label="Reproduzir vídeo">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z"/>
-                            </svg>
-                        </button>
-                    </div>
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://player.vimeo.com/video/1151785968?badge=0&autopause=0&player_id=0&app_id=58479" 
+                        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        title="Depoimento Pamela"
+                        loading="lazy">
+                    </iframe>
                 </div>
                 <div class="video-info">
                     <h4 class="video-nome">Pamela</h4>
@@ -3211,20 +3170,14 @@ isolation: isolate;
             
             <!-- Vídeo 5 - Gabriele -->
             <div class="video-slide">
-                <div class="video-wrapper" data-video-id="1151786138">
-                    <img 
-                        src="https://vumbnail.com/1151786138.jpg" 
-                        alt="Depoimento de Gabriele" 
-                        class="video-thumbnail"
-                        loading="lazy"
-                    >
-                    <div class="video-overlay">
-                        <button class="video-play-btn" aria-label="Reproduzir vídeo">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z"/>
-                            </svg>
-                        </button>
-                    </div>
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://player.vimeo.com/video/1151786138?badge=0&autopause=0&player_id=0&app_id=58479" 
+                        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        title="Depoimento Gabriele"
+                        loading="lazy">
+                    </iframe>
                 </div>
                 <div class="video-info">
                     <h4 class="video-nome">Gabriele</h4>

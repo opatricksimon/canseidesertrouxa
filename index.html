@@ -312,6 +312,174 @@ isolation: isolate;
             justify-content: space-between;
         }
 
+        /* ========================================
+   MENU DE NAVEGAÇÃO HEADER
+======================================== */
+
+/* Container do menu */
+.header-nav {
+    margin-left: 40px;
+    position: relative;
+}
+
+/* Lista de links - DESKTOP */
+.nav-links {
+    display: flex;
+    gap: 6px;
+}
+
+@media (max-width: 1024px) {
+    .nav-links {
+        display: none;
+    }
+}
+
+/* Cada link do menu */
+.nav-link {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 50px;
+    transition: var(--transition-normal);
+    color: rgba(255, 255, 255, 0.85);
+    white-space: nowrap;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: var(--branco);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Link ativo */
+.nav-link.active {
+    color: var(--branco);
+    background: rgba(255, 255, 255, 0.15);
+    font-weight: 600;
+}
+
+/* Indicador de scroll suave */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 16px;
+    right: 16px;
+    height: 2px;
+    background: var(--rosa);
+    border-radius: 2px;
+    opacity: 0;
+    transform: scaleX(0);
+    transition: var(--transition-normal);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+/* ========================================
+   MENU MOBILE (HAMBURGUER)
+======================================== */
+
+/* Botão hamburguer */
+.menu-toggle {
+    display: none;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: var(--transition-normal);
+}
+
+.menu-toggle:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.menu-toggle-line {
+    width: 20px;
+    height: 2px;
+    background: var(--branco);
+    border-radius: 2px;
+    transition: var(--transition-normal);
+}
+
+/* Mostra hamburguer apenas no mobile */
+@media (max-width: 1024px) {
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .header-nav {
+        margin-left: 20px;
+    }
+}
+
+/* Menu Mobile Expandido */
+.nav-links.mobile-open {
+    display: flex;
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    background: rgba(155, 44, 84, 0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    padding: 30px;
+    gap: 0;
+    z-index: 999;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.nav-links.mobile-open .nav-link {
+    padding: 18px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 1.1rem;
+    border-radius: 0;
+}
+
+.nav-links.mobile-open .nav-link:last-child {
+    border-bottom: none;
+}
+
+.nav-links.mobile-open .nav-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    padding-left: 25px;
+}
+
+/* Animação do hamburguer para X */
+.menu-toggle.active .menu-toggle-line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.active .menu-toggle-line:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active .menu-toggle-line:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
         .header-logo {
             display: flex;
             align-items: center;
@@ -2585,45 +2753,6 @@ isolation: isolate;
     
 }    
 
-/* ========================================
-   CTA HERO - EFEITO GLOW PULSANTE
-======================================== */
-
-.hero-cta .btn {
-    position: relative;
-    box-shadow: 
-        0 0 20px rgba(230, 166, 178, 0.5),
-        0 0 40px rgba(230, 166, 178, 0.3),
-        0 0 60px rgba(230, 166, 178, 0.2);
-    animation: glow-pulse 2s ease-in-out infinite, bounce-button 2s ease-in-out infinite;
-}
-
-@keyframes glow-pulse {
-    0%, 100% {
-        box-shadow: 
-            0 0 20px rgba(230, 166, 178, 0.5),
-            0 0 40px rgba(230, 166, 178, 0.3),
-            0 0 60px rgba(230, 166, 178, 0.2);
-    }
-    50% {
-        box-shadow: 
-            0 0 30px rgba(230, 166, 178, 0.8),
-            0 0 60px rgba(230, 166, 178, 0.5),
-            0 0 90px rgba(230, 166, 178, 0.3),
-            0 0 120px rgba(155, 44, 84, 0.2);
-    }
-}
-
-/* Hover ainda mais intenso */
-.hero-cta .btn:hover {
-    animation: none;
-    box-shadow: 
-        0 0 40px rgba(230, 166, 178, 1),
-        0 0 80px rgba(230, 166, 178, 0.6),
-        0 0 120px rgba(155, 44, 84, 0.4);
-    transform: translateY(-5px) scale(1.03);
-}
-
 </style>
 </head>
 <body>
@@ -2637,6 +2766,25 @@ isolation: isolate;
 <a href="#" class="header-logo">
     <img src="https://i.postimg.cc/X7Pc94CW/Captura-de-tela-2026-01-06-001253-removebg-preview.png" alt="Márcia Castro - Logo">
 </a>
+<!-- Menu de Navegação -->
+<nav class="header-nav">
+    <ul class="nav-links">
+        <li><a href="#inicio" class="nav-link">Início</a></li>
+        <li><a href="#historia" class="nav-link">Minha História</a></li>
+        <li><a href="#dores" class="nav-link">Você se Identifica?</a></li>
+        <li><a href="#sessao" class="nav-link">Sessão Raio-X</a></li>
+        <li><a href="#sobre" class="nav-link">Sobre Mim</a></li>
+        <li><a href="#para-quem" class="nav-link">Pra Quem É</a></li>
+        <li><a href="#videos" class="nav-link">Depoimentos</a></li>
+    </ul>
+    
+    <!-- Menu Hamburguer (Mobile) -->
+    <button class="menu-toggle" aria-label="Abrir menu">
+        <span class="menu-toggle-line"></span>
+        <span class="menu-toggle-line"></span>
+        <span class="menu-toggle-line"></span>
+    </button>
+</nav>
         <div class="header-right">
             <span class="header-name">Márciah Castro</span>
             <a href="https://wa.me/5521969995252?text=Olá, Márciah! Quero agendar minha Sessão Raio-X. Cansei de ser trouxa!" target="_blank" class="btn btn-white header-cta">
@@ -3710,7 +3858,87 @@ videoWrappers.forEach(wrapper => {
     }
 }); 
 
+</script><script>
+// Menu Mobile
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+const navLinksArray = document.querySelectorAll('.nav-link');
+
+// Alterna menu mobile
+menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    navLinks.classList.toggle('mobile-open');
+    
+    // Fecha menu ao clicar fora
+    if (navLinks.classList.contains('mobile-open')) {
+        document.addEventListener('click', closeMenuOnClickOutside);
+    } else {
+        document.removeEventListener('click', closeMenuOnClickOutside);
+    }
+});
+
+// Fecha menu ao clicar fora
+function closeMenuOnClickOutside(e) {
+    if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+        menuToggle.classList.remove('active');
+        navLinks.classList.remove('mobile-open');
+        document.removeEventListener('click', closeMenuOnClickOutside);
+    }
+}
+
+// Atualiza link ativo ao scroll
+const sections = document.querySelectorAll('section');
+const navHeight = document.querySelector('.header').offsetHeight;
+
+function updateActiveLink() {
+    let current = '';
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - navHeight - 50;
+        const sectionHeight = section.clientHeight;
+        
+        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+            current = section.getAttribute('id');
+        }
+    });
+    
+    navLinksArray.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').substring(1) === current) {
+            link.classList.add('active');
+        }
+    });
+}
+
+// Fecha menu ao clicar em um link
+navLinksArray.forEach(link => {
+    link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        navLinks.classList.remove('mobile-open');
+        document.removeEventListener('click', closeMenuOnClickOutside);
+    });
+});
+
+// Ativa scroll suave
+navLinksArray.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        
+        window.scrollTo({
+            top: targetSection.offsetTop - navHeight + 10,
+            behavior: 'smooth'
+        });
+    });
+});
+
+// Atualiza link ativo no scroll
+window.addEventListener('scroll', updateActiveLink);
+window.addEventListener('load', updateActiveLink);
 </script>
+
+
 
 </body>
 </html>

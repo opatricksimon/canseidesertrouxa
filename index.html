@@ -9,7 +9,7 @@
     <!-- Open Graph -->
     <meta property="og:title" content="Márciah Castro | Cansei de Ser Trouxa">
     <meta property="og:description" content="Você não tem dedo podre. Você tem um padrão. Descubra como quebrar esse ciclo na Sessão Raio-X gratuita.">
-    <meta property="og:image" content="https://i.postimg.cc/8CX0fP4y/1767555177780_019b8a7f_0afa_7bea_8c48_5e8982cc1b45.png">
+    <meta property="og:image" content="https://i.postimg.cc/PqQ3jJ6P/1767670327303-019b915b-eafc-7368-9fc7-eea38aea7dcb.png">
     <meta property="og:type" content="website">
     
     <title>Márciah Castro | Cansei de Ser Trouxa - Terapia de Relacionamentos</title>
@@ -2275,6 +2275,372 @@ isolation: isolate;
     }
 }
 
+/* ========================================
+   CARROSSEL DE VÍDEO DEPOIMENTOS
+======================================== */
+.video-depoimentos {
+    padding: 100px 0;
+    background: var(--off-white);
+    overflow: hidden;
+}
+
+.video-depoimentos-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.video-depoimentos-tag {
+    display: inline-block;
+    background: rgba(155, 44, 84, 0.1);
+    color: var(--bordo);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.video-depoimentos-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 600;
+    color: var(--texto-escuro);
+    margin-bottom: 16px;
+}
+
+.video-depoimentos-subtitle {
+    font-size: 1.1rem;
+    color: var(--texto-medio);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Container do Carrossel */
+.carrossel-container {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 60px;
+}
+
+@media (max-width: 768px) {
+    .carrossel-container {
+        padding: 0 20px;
+    }
+}
+
+/* Track do Carrossel */
+.carrossel-track {
+    display: flex;
+    gap: 24px;
+    cursor: grab;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 20px 0;
+}
+
+.carrossel-track::-webkit-scrollbar {
+    display: none;
+}
+
+.carrossel-track:active {
+    cursor: grabbing;
+}
+
+/* Cada Slide (Card de Vídeo) */
+.video-slide {
+    flex: 0 0 280px;
+    scroll-snap-align: center;
+    background: var(--branco);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-normal);
+}
+
+.video-slide:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+@media (min-width: 768px) {
+    .video-slide {
+        flex: 0 0 320px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .video-slide {
+        flex: 0 0 340px;
+    }
+}
+
+/* Container do Vídeo com Thumbnail */
+.video-wrapper {
+    position: relative;
+    padding-top: 177.78%;
+    background: linear-gradient(135deg, var(--bordo-dark) 0%, var(--bordo) 100%);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+/* Fallback antes da thumbnail carregar */
+.video-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--bordo-dark) 0%, var(--bordo) 100%);
+    z-index: 0;
+}
+
+/* Thumbnail do Vídeo - CORRIGIDO */
+.video-thumbnail {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    z-index: 1;
+    transition: transform 0.5s ease, opacity 0.3s ease;
+}
+
+.video-wrapper:hover .video-thumbnail {
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+/* Overlay escuro sobre a thumbnail */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: background 0.3s ease;
+}
+
+.video-wrapper:hover .video-overlay {
+    background: rgba(0, 0, 0, 0.45);
+}
+
+/* Botão de Play */
+.video-play-btn {
+    width: 80px;
+    height: 80px;
+    background: var(--branco);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    transition: var(--transition-normal);
+    border: none;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.video-play-btn svg {
+    width: 32px;
+    height: 32px;
+    color: var(--bordo);
+    margin-left: 4px;
+}
+
+.video-wrapper:hover .video-play-btn {
+    transform: scale(1.1);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* Quando o vídeo está tocando */
+.video-wrapper.playing .video-thumbnail,
+.video-wrapper.playing .video-overlay,
+.video-wrapper.playing::before {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    opacity: 0;
+    z-index: 4;
+    transition: opacity 0.3s ease;
+}
+
+.video-wrapper.playing iframe {
+    opacity: 1;
+}
+
+/* Info do Depoimento */
+.video-info {
+    padding: 20px;
+}
+
+.video-nome {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--texto-escuro);
+    margin-bottom: 8px;
+}
+
+.video-depoimento-texto {
+    font-size: 0.9rem;
+    color: var(--texto-medio);
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Botões de Navegação */
+.carrossel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: var(--bordo);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: var(--transition-normal);
+    box-shadow: var(--shadow-md);
+}
+
+.carrossel-btn:hover {
+    background: var(--bordo-dark);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carrossel-btn svg {
+    width: 24px;
+    height: 24px;
+    color: var(--branco);
+}
+
+.carrossel-btn-prev {
+    left: 0;
+}
+
+.carrossel-btn-next {
+    right: 0;
+}
+
+@media (max-width: 768px) {
+    .carrossel-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .carrossel-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .carrossel-btn-prev {
+        left: 5px;
+    }
+    
+    .carrossel-btn-next {
+        right: 5px;
+    }
+    
+    .video-play-btn {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .video-play-btn svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* Indicadores (Dots) */
+.carrossel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.carrossel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(155, 44, 84, 0.2);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition-normal);
+}
+
+.carrossel-dot:hover {
+    background: rgba(155, 44, 84, 0.4);
+}
+
+.carrossel-dot.active {
+    background: var(--bordo);
+    transform: scale(1.2);
+}
+
+/* Instrução de Arraste */
+.carrossel-instrucao {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.85rem;
+    color: var(--texto-medio);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.carrossel-instrucao svg {
+    width: 20px;
+    height: 20px;
+    animation: swipe-hint 1.5s ease-in-out infinite;
+}
+
+@keyframes swipe-hint {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(10px);
+    }
+}
+
+@media (min-width: 1024px) {
+    .carrossel-instrucao {
+        display: none;
+    }
+}    
     </style>
 </head>
 <body>
@@ -2718,80 +3084,183 @@ isolation: isolate;
         </div>
     </section>
 
-    <!-- ========================================
-         SEÇÃO DEPOIMENTOS
-    ======================================== -->
-    <section class="depoimentos section-bordo" id="depoimentos">
-        <div class="container">
-            <div class="depoimentos-header fade-in">
-                <span class="depoimentos-tag">Transformações reais</span>
-                <h2 class="depoimentos-title">Mulheres que <span class="highlight">quebraram o padrão</span></h2>
-                <p class="depoimentos-subtitle">
-                    Elas também achavam que tinham dedo podre. Até entenderem que era padrão.
-                </p>
+<!-- ========================================
+     SEÇÃO DEPOIMENTOS EM VÍDEO
+======================================== -->
+<section class="video-depoimentos" id="videos">
+    <div class="container">
+        <div class="video-depoimentos-header fade-in">
+            <span class="video-depoimentos-tag">Histórias reais</span>
+            <h2 class="video-depoimentos-title">Elas <span class="highlight-bordo">viveram a transformação</span></h2>
+            <p class="video-depoimentos-subtitle">
+                Assista aos depoimentos de mulheres que quebraram seus padrões com a Márcia.
+            </p>
+        </div>
+    </div>
+    
+    <div class="carrossel-container">
+        <!-- Botão Anterior -->
+        <button class="carrossel-btn carrossel-btn-prev" aria-label="Vídeo anterior">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+            </svg>
+        </button>
+        
+        <!-- Track do Carrossel -->
+        <div class="carrossel-track" id="carrosselTrack">
+            
+            <!-- Vídeo 1 - Jenifer Silva -->
+            <div class="video-slide">
+                <div class="video-wrapper" data-video-id="1151782299">
+                    <img 
+                        src="https://vumbnail.com/1151782299_large.jpg"" 
+                        alt="Depoimento de Jenifer Silva" 
+                        class="video-thumbnail"
+                        loading="lazy"
+                    >
+                    <div class="video-overlay">
+                        <button class="video-play-btn" aria-label="Reproduzir vídeo">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h4 class="video-nome">Jenifer Silva</h4>
+                    <p class="video-depoimento-texto">
+                        "Eu amo muito a vida da Márcia porque ela mudou a minha mente... Ela é uma mulher incrível!"
+                    </p>
+                </div>
             </div>
             
-            <div class="depoimentos-grid">
-                <!-- Depoimento 1 -->
-                <div class="depoimento-card fade-in fade-in-delay-1">
-                    <div class="depoimento-aspas">"</div>
-                    <p class="depoimento-texto">
-                        Eu sempre me perguntava por que eu atraía os mesmos tipos de homem. 
-                        Na sessão com a Márciah, eu finalmente entendi. <strong>Não era azar, era um padrão 
-                        que eu repetia sem perceber.</strong> Hoje estou em um relacionamento saudável 
-                        pela primeira vez na vida.
-                    </p>
-                    <div class="depoimento-autor">
-                        <div class="depoimento-avatar">
-                            <span>R</span>
-                        </div>
-                        <div class="depoimento-info">
-                            <h4>Renata S.</h4>
-                            <p>38 anos • Rio de Janeiro</p>
-                        </div>
+            <!-- Vídeo 2 - Mariana Pereira -->
+            <div class="video-slide">
+                <div class="video-wrapper" data-video-id="1151782018">
+                    <img 
+                        src="https://vumbnail.com/1151782018.jpg" 
+                        alt="Depoimento de Mariana Pereira" 
+                        class="video-thumbnail"
+                        loading="lazy"
+                    >
+                    <div class="video-overlay">
+                        <button class="video-play-btn" aria-label="Reproduzir vídeo">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </button>
                     </div>
                 </div>
-                
-                <!-- Depoimento 2 -->
-                <div class="depoimento-card fade-in fade-in-delay-2">
-                    <div class="depoimento-aspas">"</div>
-                    <p class="depoimento-texto">
-                        A Márciah não passa pano, mas também não julga. Ela me fez enxergar 
-                        que eu estava me fazendo de trouxa porque tinha medo de ficar sozinha. 
-                        <strong>Hoje sei que estar sozinha é melhor do que estar mal acompanhada.</strong>
+                <div class="video-info">
+                    <h4 class="video-nome">Mariana Pereira</h4>
+                    <p class="video-depoimento-texto">
+                        "Já venho caminhando com a Márcia há uns 3 anos e sou uma pessoa completamente diferente de quando eu comecei."
                     </p>
-                    <div class="depoimento-autor">
-                        <div class="depoimento-avatar">
-                            <span>C</span>
-                        </div>
-                        <div class="depoimento-info">
-                            <h4>Carla M.</h4>
-                            <p>42 anos • São Paulo</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Depoimento 3 -->
-                <div class="depoimento-card fade-in fade-in-delay-3">
-                    <div class="depoimento-aspas">"</div>
-                    <p class="depoimento-texto">
-                        Achei que 50 minutos não iam mudar nada. Me enganei. Saí da sessão 
-                        com tanta clareza que parecia que alguém tinha acendido uma luz. 
-                        <strong>Finalmente entendi por que eu sempre perdoava o que não devia.</strong>
-                    </p>
-                    <div class="depoimento-autor">
-                        <div class="depoimento-avatar">
-                            <span>F</span>
-                        </div>
-                        <div class="depoimento-info">
-                            <h4>Fernanda L.</h4>
-                            <p>35 anos • Belo Horizonte</p>
-                        </div>
-                    </div>
                 </div>
             </div>
+            
+            <!-- Vídeo 3 - Caroline Martins -->
+            <div class="video-slide">
+                <div class="video-wrapper" data-video-id="1151785785">
+                    <img 
+                        src="https://vumbnail.com/1151785785.jpg" 
+                        alt="Depoimento de Caroline Martins" 
+                        class="video-thumbnail"
+                        loading="lazy"
+                    >
+                    <div class="video-overlay">
+                        <button class="video-play-btn" aria-label="Reproduzir vídeo">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h4 class="video-nome">Caroline Martins</h4>
+                    <p class="video-depoimento-texto">
+                        "Tem 6 meses que estou com a Márcia e essa jornada foi transformadora... As coisas começaram a acontecer."
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Vídeo 4 - Pamela -->
+            <div class="video-slide">
+                <div class="video-wrapper" data-video-id="1151785968">
+                    <img 
+                        src="https://vumbnail.com/1151785968.jpg" 
+                        alt="Depoimento de Pamela" 
+                        class="video-thumbnail"
+                        loading="lazy"
+                    >
+                    <div class="video-overlay">
+                        <button class="video-play-btn" aria-label="Reproduzir vídeo">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h4 class="video-nome">Pamela</h4>
+                    <p class="video-depoimento-texto">
+                        "A Márcia me resgatou. Antes eu sentia que não precisava de ninguém cuidando de mim, e através dela eu pude mudar isso."
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Vídeo 5 - Gabriele -->
+            <div class="video-slide">
+                <div class="video-wrapper" data-video-id="1151786138">
+                    <img 
+                        src="https://vumbnail.com/1151786138.jpg" 
+                        alt="Depoimento de Gabriele" 
+                        class="video-thumbnail"
+                        loading="lazy"
+                    >
+                    <div class="video-overlay">
+                        <button class="video-play-btn" aria-label="Reproduzir vídeo">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h4 class="video-nome">Gabriele</h4>
+                    <p class="video-depoimento-texto">
+                        "Antes eu era insegura, medrosa e dependente. Aceitava tudo só pra não ficar sozinha. Hoje sou determinada, muito determinada."
+                    </p>
+                </div>
+            </div>
+            
         </div>
-    </section>
+        
+        <!-- Botão Próximo -->
+        <button class="carrossel-btn carrossel-btn-next" aria-label="Próximo vídeo">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+            </svg>
+        </button>
+    </div>
+    
+    <!-- Indicadores -->
+    <div class="carrossel-dots" id="carrosselDots">
+        <button class="carrossel-dot active" data-index="0" aria-label="Vídeo 1"></button>
+        <button class="carrossel-dot" data-index="1" aria-label="Vídeo 2"></button>
+        <button class="carrossel-dot" data-index="2" aria-label="Vídeo 3"></button>
+        <button class="carrossel-dot" data-index="3" aria-label="Vídeo 4"></button>
+        <button class="carrossel-dot" data-index="4" aria-label="Vídeo 5"></button>
+    </div>
+    
+    <!-- Instrução Mobile -->
+    <p class="carrossel-instrucao">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+        </svg>
+        Arraste para ver mais depoimentos
+    </p>
+</section>
 
     <!-- ========================================
          SEÇÃO FAQ - COM CORREÇÕES DE PONTUAÇÃO
@@ -3193,7 +3662,102 @@ isolation: isolate;
             updateWhatsAppFloat();
             updateBackToTop();
         });
-    </script>
+
+// ========================================
+// CARROSSEL DE VÍDEOS
+// ========================================
+const carrosselTrack = document.getElementById('carrosselTrack');
+const carrosselDots = document.querySelectorAll('.carrossel-dot');
+const btnPrev = document.querySelector('.carrossel-btn-prev');
+const btnNext = document.querySelector('.carrossel-btn-next');
+
+if (carrosselTrack) {
+    const slides = carrosselTrack.querySelectorAll('.video-slide');
+    let slideWidth = slides[0]?.offsetWidth + 24;
+    let currentIndex = 0;
+
+    function updateDots() {
+        const scrollPosition = carrosselTrack.scrollLeft;
+        const newIndex = Math.round(scrollPosition / slideWidth);
+        
+        carrosselDots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === newIndex);
+        });
+        
+        currentIndex = newIndex;
+    }
+
+    function scrollToSlide(index) {
+        const targetScroll = index * slideWidth;
+        carrosselTrack.scrollTo({
+            left: targetScroll,
+            behavior: 'smooth'
+        });
+    }
+
+    btnPrev?.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            scrollToSlide(currentIndex - 1);
+        } else {
+            scrollToSlide(slides.length - 1);
+        }
+    });
+
+    btnNext?.addEventListener('click', () => {
+        if (currentIndex < slides.length - 1) {
+            scrollToSlide(currentIndex + 1);
+        } else {
+            scrollToSlide(0);
+        }
+    });
+
+    carrosselDots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            scrollToSlide(index);
+        });
+    });
+
+    carrosselTrack.addEventListener('scroll', throttle(updateDots, 100));
+
+    window.addEventListener('resize', throttle(() => {
+        slideWidth = slides[0]?.offsetWidth + 24;
+    }, 250));
+}
+
+// ========================================
+// PLAY DE VÍDEO AO CLICAR
+// ========================================
+const videoWrappers = document.querySelectorAll('.video-wrapper');
+
+videoWrappers.forEach(wrapper => {
+    const playBtn = wrapper.querySelector('.video-play-btn');
+    const videoId = wrapper.dataset.videoId;
+    
+    if (playBtn && videoId) {
+        playBtn.addEventListener('click', () => {
+            // Pausa outros vídeos
+            videoWrappers.forEach(otherWrapper => {
+                if (otherWrapper !== wrapper && otherWrapper.classList.contains('playing')) {
+                    const iframe = otherWrapper.querySelector('iframe');
+                    if (iframe) iframe.remove();
+                    otherWrapper.classList.remove('playing');
+                }
+            });
+            
+            // Cria iframe do Vimeo
+            const iframe = document.createElement('iframe');
+            iframe.src = `https://player.vimeo.com/video/${videoId}?autoplay=1&badge=0&autopause=0&player_id=0&app_id=58479`;
+            iframe.allow = 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media';
+            iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+            iframe.title = 'Depoimento';
+            
+            wrapper.appendChild(iframe);
+            wrapper.classList.add('playing');
+        });
+    }
+}); 
+
+</script>
 
 </body>
 </html>

@@ -17,17 +17,17 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://i.postimg.cc/pybrHSjm/download.png">
     
-    <!-- Fonts - Atualizadas conforme brandbook -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Dancing+Script:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         /* ========================================
-           VARIÁVEIS CSS - ATUALIZADAS CONFORME BRANDBOOK
+           VARIÁVEIS CSS
         ======================================== */
         :root {
-            /* Cores principais - Brandbook */
+            /* Cores principais */
             --bordo: #9b2c54;
             --bordo-light: #b03562;
             --bordo-dark: #761843;
@@ -42,7 +42,7 @@
             --texto-claro: rgba(255, 255, 255, 0.9);
             --texto-muted: rgba(255, 255, 255, 0.75);
             
-            /* Tipografia - Brandbook */
+            /* Tipografia */
             --font-display: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
             --font-script: 'Dancing Script', cursive;
             --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -159,6 +159,46 @@
         }
 
         /* ========================================
+           TEXTO COM SHINE/BRILHO ANIMADO
+        ======================================== */
+        .text-shine {
+            background: linear-gradient(
+                90deg,
+                var(--rosa) 0%,
+                var(--rosa-light) 25%,
+                var(--branco) 50%,
+                var(--rosa-light) 75%,
+                var(--rosa) 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: text-shine 3s linear infinite;
+        }
+
+        .text-shine-bordo {
+            background: linear-gradient(
+                90deg,
+                var(--bordo) 0%,
+                var(--bordo-light) 25%,
+                var(--rosa) 50%,
+                var(--bordo-light) 75%,
+                var(--bordo) 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: text-shine 3s linear infinite;
+        }
+
+        @keyframes text-shine {
+            0% { background-position: 200% center; }
+            100% { background-position: -200% center; }
+        }
+
+        /* ========================================
            BARRA DE PROGRESSO
         ======================================== */
         .progress-bar {
@@ -167,13 +207,20 @@
             left: 0;
             width: 0%;
             height: 4px;
-            background: linear-gradient(90deg, var(--rosa), var(--bordo));
+            background: linear-gradient(90deg, var(--rosa), var(--bordo), var(--rosa-light), var(--bordo));
+            background-size: 200% 100%;
             z-index: 9999;
             transition: width 0.1s ease;
+            animation: progress-shimmer 2s linear infinite;
+        }
+
+        @keyframes progress-shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
 
         /* ========================================
-           BOTÕES - ATUALIZADOS CONFORME BRANDBOOK
+           BOTÕES - COM SHINE E PULSE
         ======================================== */
         .btn {
             display: inline-flex;
@@ -189,8 +236,37 @@
             cursor: pointer;
             text-align: center;
             position: relative;
-overflow: hidden;
-isolation: isolate;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        /* Brilho passando por dentro do botão */
+        .btn::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            left: -120%;
+            width: 120%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255,255,255,0.35),
+                transparent
+            );
+            transform: skewX(-12deg);
+            transition: left 0.55s ease;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .btn:hover::before {
+            left: 120%;
+        }
+
+        /* Garante texto/ícones acima do brilho */
+        .btn > * {
+            position: relative;
+            z-index: 1;
         }
 
         .btn-primary {
@@ -256,38 +332,63 @@ isolation: isolate;
             font-size: 0.9rem;
         }
 
-        /* brilho passando por dentro */
-.btn::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    left:-120%;
-    width:120%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,0.28),
-        transparent
-    );
-    transform: skewX(-12deg);
-    transition: left .55s ease;
-    pointer-events:none;
-    z-index:0;
-}
+        /* ========================================
+           ANIMAÇÃO PULSAR - BOTÕES PRINCIPAIS
+        ======================================== */
+        .btn-attention {
+            animation: bounce-button 2s ease-in-out infinite;
+        }
 
-.btn:hover::before{
-    left:120%;
-}
+        @keyframes bounce-button {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            15% {
+                transform: translateY(-8px);
+            }
+            30% {
+                transform: translateY(0);
+            }
+            45% {
+                transform: translateY(-4px);
+            }
+            60% {
+                transform: translateY(0);
+            }
+        }
 
-/* garante que texto/ícones ficam acima do brilho */
-.btn > *{
-    position: relative;
-    z-index: 1;
-}
+        .btn-attention:hover {
+            animation: none;
+            transform: translateY(-4px) scale(1.02);
+        }
 
+        /* Pulinho mais sutil no mobile */
+        @media (max-width: 768px) {
+            @keyframes bounce-button {
+                0%, 100% { transform: translateY(0); }
+                15% { transform: translateY(-5px); }
+                30% { transform: translateY(0); }
+                45% { transform: translateY(-2px); }
+                60% { transform: translateY(0); }
+            }
+            
+            .btn-attention {
+                animation-duration: 2.5s;
+            }
+            
+            /* Brilho passa sozinho no mobile */
+            .btn::before {
+                animation: shine-mobile 3s ease-in-out infinite;
+            }
+        }
+
+        @keyframes shine-mobile {
+            0%, 100% { left: -120%; }
+            50% { left: 120%; }
+        }
 
         /* ========================================
-           HEADER FIXO - ATUALIZADO COM LOGO
+           HEADER FIXO
         ======================================== */
         .header {
             position: fixed;
@@ -312,173 +413,160 @@ isolation: isolate;
             justify-content: space-between;
         }
 
-        /* ========================================
-   MENU DE NAVEGAÇÃO HEADER
-======================================== */
+        /* Menu de navegação */
+        .header-nav {
+            margin-left: 40px;
+            position: relative;
+        }
 
-/* Container do menu */
-.header-nav {
-    margin-left: 40px;
-    position: relative;
-}
+        .nav-links {
+            display: flex;
+            gap: 6px;
+        }
 
-/* Lista de links - DESKTOP */
-.nav-links {
-    display: flex;
-    gap: 6px;
-}
+        @media (max-width: 1024px) {
+            .nav-links {
+                display: none;
+            }
+        }
 
-@media (max-width: 1024px) {
-    .nav-links {
-        display: none;
-    }
-}
+        .nav-link {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 50px;
+            transition: var(--transition-normal);
+            color: rgba(255, 255, 255, 0.85);
+            white-space: nowrap;
+            position: relative;
+        }
 
-/* Cada link do menu */
-.nav-link {
-    font-family: var(--font-sans);
-    font-size: 0.85rem;
-    font-weight: 500;
-    padding: 8px 16px;
-    border-radius: 50px;
-    transition: var(--transition-normal);
-    color: rgba(255, 255, 255, 0.85);
-    white-space: nowrap;
-    position: relative;
-}
+        .nav-link:hover {
+            color: var(--branco);
+            background: rgba(255, 255, 255, 0.1);
+        }
 
-.nav-link:hover {
-    color: var(--branco);
-    background: rgba(255, 255, 255, 0.1);
-}
+        .nav-link.active {
+            color: var(--branco);
+            background: rgba(255, 255, 255, 0.15);
+            font-weight: 600;
+        }
 
-/* Link ativo */
-.nav-link.active {
-    color: var(--branco);
-    background: rgba(255, 255, 255, 0.15);
-    font-weight: 600;
-}
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 16px;
+            right: 16px;
+            height: 2px;
+            background: var(--rosa);
+            border-radius: 2px;
+            opacity: 0;
+            transform: scaleX(0);
+            transition: var(--transition-normal);
+        }
 
-/* Indicador de scroll suave */
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 16px;
-    right: 16px;
-    height: 2px;
-    background: var(--rosa);
-    border-radius: 2px;
-    opacity: 0;
-    transform: scaleX(0);
-    transition: var(--transition-normal);
-}
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            opacity: 1;
+            transform: scaleX(1);
+        }
 
-.nav-link:hover::after,
-.nav-link.active::after {
-    opacity: 1;
-    transform: scaleX(1);
-}
+        /* Menu Hamburguer Mobile */
+        .menu-toggle {
+            display: none;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            cursor: pointer;
+            transition: var(--transition-normal);
+        }
 
-/* ========================================
-   MENU MOBILE (HAMBURGUER)
-======================================== */
+        .menu-toggle:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
 
-/* Botão hamburguer */
-.menu-toggle {
-    display: none;
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    cursor: pointer;
-    transition: var(--transition-normal);
-}
+        .menu-toggle-line {
+            width: 20px;
+            height: 2px;
+            background: var(--branco);
+            border-radius: 2px;
+            transition: var(--transition-normal);
+        }
 
-.menu-toggle:hover {
-    background: rgba(255, 255, 255, 0.15);
-}
+        @media (max-width: 1024px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .header-nav {
+                margin-left: 20px;
+            }
+        }
 
-.menu-toggle-line {
-    width: 20px;
-    height: 2px;
-    background: var(--branco);
-    border-radius: 2px;
-    transition: var(--transition-normal);
-}
+        /* Menu Mobile Expandido */
+        .nav-links.mobile-open {
+            display: flex;
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            right: 0;
+            background: rgba(155, 44, 84, 0.98);
+            backdrop-filter: blur(20px);
+            flex-direction: column;
+            padding: 30px;
+            gap: 0;
+            z-index: 999;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: slideDown 0.3s ease-out;
+        }
 
-/* Mostra hamburguer apenas no mobile */
-@media (max-width: 1024px) {
-    .menu-toggle {
-        display: flex;
-    }
-    
-    .header-nav {
-        margin-left: 20px;
-    }
-}
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-/* Menu Mobile Expandido */
-.nav-links.mobile-open {
-    display: flex;
-    position: fixed;
-    top: var(--header-height);
-    left: 0;
-    right: 0;
-    background: rgba(155, 44, 84, 0.98);
-    backdrop-filter: blur(20px);
-    flex-direction: column;
-    padding: 30px;
-    gap: 0;
-    z-index: 999;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    animation: slideDown 0.3s ease-out;
-}
+        .nav-links.mobile-open .nav-link {
+            padding: 18px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.1rem;
+            border-radius: 0;
+        }
 
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+        .nav-links.mobile-open .nav-link:last-child {
+            border-bottom: none;
+        }
 
-.nav-links.mobile-open .nav-link {
-    padding: 18px 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: 1.1rem;
-    border-radius: 0;
-}
+        .nav-links.mobile-open .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            padding-left: 25px;
+        }
 
-.nav-links.mobile-open .nav-link:last-child {
-    border-bottom: none;
-}
+        /* Animação do hamburguer para X */
+        .menu-toggle.active .menu-toggle-line:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
 
-.nav-links.mobile-open .nav-link:hover {
-    background: rgba(255, 255, 255, 0.1);
-    padding-left: 25px;
-}
+        .menu-toggle.active .menu-toggle-line:nth-child(2) {
+            opacity: 0;
+        }
 
-/* Animação do hamburguer para X */
-.menu-toggle.active .menu-toggle-line:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-.menu-toggle.active .menu-toggle-line:nth-child(2) {
-    opacity: 0;
-}
-
-.menu-toggle.active .menu-toggle-line:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-}
+        .menu-toggle.active .menu-toggle-line:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
 
         .header-logo {
             display: flex;
@@ -503,23 +591,6 @@ isolation: isolate;
             gap: 24px;
         }
 
-        .header-name {
-            font-family: var(--font-display);
-            font-size: 12px;
-            font-weight: 400;
-            color: var(--branco);
-            opacity: 0.8;
-            letter-spacing: 0.5px;
-            display: none;
-        }
-
-        @media (min-width: 768px) {
-            .header-name {
-                display: block;
-                font-size: 13px;
-            }
-        }
-
         .header-cta {
             display: none;
         }
@@ -532,186 +603,171 @@ isolation: isolate;
             }
         }
 
-/* ========================================
-   HERO - REPOSICIONADO CONFORME SOLICITAÇÃO
-======================================== */
-.hero {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: center; /* MUDOU: era flex-end */
-    justify-content: center;
-    overflow: hidden;
-    background: var(--bordo);
-}
+        /* ========================================
+           HERO - AJUSTADO PARA NÃO COBRIR O ROSTO
+        ======================================== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--bordo);
+        }
 
-.hero-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
 
-.hero-bg img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-}
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
 
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        to top,
-        rgba(87, 3, 41, 0.95) 0%,
-        rgba(155, 44, 84, 0.85) 25%,
-        rgba(155, 44, 84, 0.5) 50%,
-        rgba(0, 0, 0, 0.25) 70%,
-        rgba(0, 0, 0, 0.1) 100%
-    );
-    z-index: 2;
-}
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to top,
+                rgba(87, 3, 41, 0.95) 0%,
+                rgba(155, 44, 84, 0.85) 20%,
+                rgba(155, 44, 84, 0.5) 45%,
+                rgba(0, 0, 0, 0.25) 65%,
+                rgba(0, 0, 0, 0.1) 100%
+            );
+            z-index: 2;
+        }
 
-.hero-content {
-    position: relative;
-    z-index: 3;
-    text-align: center;
-    padding: 0 24px 40px;
-    max-width: 900px;
-    /* Desktop: empurra o conteúdo pra baixo */
-    padding-top: 35vh;
-}
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            padding: 0 24px 100px;
+            max-width: 900px;
+        }
 
-@media (max-width: 1024px) {
-    .hero-content {
-        padding-top: 30vh;
-    }
-}
+        @media (max-width: 768px) {
+            .hero-content {
+                padding: 0 20px 90px;
+            }
+        }
 
-@media (max-width: 768px) {
-    .hero-content {
-        padding-top: 25vh;
-        padding-bottom: 60px;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-}
+        @media (max-width: 480px) {
+            .hero-content {
+                padding: 0 16px 80px;
+            }
+        }
 
-@media (max-width: 480px) {
-    .hero-content {
-        padding-top: 20vh;
-        padding-bottom: 50px;
-        padding-left: 16px;
-        padding-right: 16px;
-    }
-}
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--rosa-light);
+            margin-bottom: 16px;
+            animation: fadeInDown 1s ease 0.2s both;
+        }
 
-.hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 10px 24px;
-    border-radius: 50px;
-    font-family: var(--font-display);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--rosa-light);
-    margin-bottom: 24px;
-    animation: fadeInDown 1s ease 0.2s both;
-}
+        @media (max-width: 480px) {
+            .hero-badge {
+                font-size: 0.6rem;
+                padding: 6px 14px;
+                letter-spacing: 1px;
+                margin-bottom: 12px;
+            }
+        }
 
-@media (max-width: 480px) {
-    .hero-badge {
-        font-size: 0.65rem;
-        padding: 8px 16px;
-        letter-spacing: 1px;
-    }
-}
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 6vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--branco);
+            margin-bottom: 12px;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
 
-.hero-title {
-    font-family: var(--font-display);
-    font-size: clamp(2.2rem, 7vw, 4.5rem);
-    font-weight: 700;
-    line-height: 1.1;
-    color: var(--branco);
-    margin-bottom: 24px;
-    animation: fadeInUp 1s ease 0.4s both;
-}
+        .hero-title .highlight {
+            display: block;
+        }
 
-.hero-title .highlight {
-    color: var(--rosa);
-    display: block;
-}
+        .hero-subtitle {
+            font-family: var(--font-sans);
+            font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+            color: var(--texto-muted);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
 
-.hero-subtitle {
-    font-family: var(--font-sans);
-    font-size: clamp(1rem, 2.5vw, 1.3rem);
-    color: var(--texto-muted);
-    line-height: 1.8;
-    margin-bottom: 32px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    animation: fadeInUp 1s ease 0.6s both;
-}
+        .hero-subtitle .line-break {
+            display: block;
+            margin-top: 4px;
+        }
 
-/* Quebra de linha forçada no subtítulo */
-.hero-subtitle .line-break {
-    display: block;
-    margin-top: 8px;
-}
+        .hero-cta {
+            animation: fadeInUp 1s ease 0.8s both;
+            margin-bottom: 12px;
+        }
 
-.hero-cta {
-    animation: fadeInUp 1s ease 0.8s both;
-}
+        .hero-cta-note {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.85);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+            animation: fadeInUp 1s ease 1s both;
+        }
 
-.hero-cta-note {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 16px;
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.88);
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
-    animation: fadeInUp 1s ease 1s both;
-}
+        .hero-cta-note svg {
+            width: 14px;
+            height: 14px;
+            color: var(--rosa-light);
+        }
 
-.hero-cta-note svg {
-    width: 16px;
-    height: 16px;
-    color: var(--rosa-light);
-}
+        .hero-scroll {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            animation: bounce 2s infinite;
+            opacity: 0.6;
+        }
 
-.hero-scroll {
-    position: absolute;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 3;
-    animation: bounce 2s infinite;
-}
-
-.hero-scroll svg {
-    width: 24px;
-    height: 24px;
-    color: var(--rosa);
-    opacity: 0.7;
-}
+        .hero-scroll svg {
+            width: 20px;
+            height: 20px;
+            color: var(--rosa);
+        }
 
         /* ========================================
-           SEÇÃO CASE - NOVA SEÇÃO
+           SEÇÃO CASE
         ======================================== */
         .case {
             padding: 80px 0;
@@ -839,7 +895,7 @@ isolation: isolate;
         }
 
         /* ========================================
-           SEÇÃO DORES - VOCÊ SE IDENTIFICA?
+           SEÇÃO DORES
         ======================================== */
         .dores {
             background: var(--off-white);
@@ -1021,18 +1077,10 @@ isolation: isolate;
                 padding: 70px 0;
             }
             
-            .hero-content {
-                padding: 0 16px 50px;
-            }
-            
             .btn {
                 padding: 14px 24px;
                 font-size: 0.9rem;
-                position: relative;
-overflow: hidden;
-isolation: isolate;
             }
-            
             
             .dor-item {
                 padding: 20px;
@@ -1591,21 +1639,22 @@ isolation: isolate;
         }
 
         /* ========================================
-           SEÇÃO DEPOIMENTOS
+           SEÇÃO MINHA HISTÓRIA
         ======================================== */
-        .depoimentos {
-            padding: 120px 0;
+        .minha-historia {
+            padding: 100px 0;
+            background: var(--branco);
         }
 
-        .depoimentos-header {
+        .historia-header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
 
-        .depoimentos-tag {
+        .historia-tag {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--rosa-light);
+            background: rgba(155, 44, 84, 0.1);
+            color: var(--bordo);
             padding: 8px 20px;
             border-radius: 50px;
             font-family: var(--font-display);
@@ -1613,114 +1662,440 @@ isolation: isolate;
             font-weight: 600;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
-        .depoimentos-title {
-            font-family: var(--font-display);
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 600;
-            color: var(--branco);
             margin-bottom: 16px;
         }
 
-        .depoimentos-subtitle {
-            font-size: 1.1rem;
-            color: var(--texto-muted);
-            max-width: 550px;
+        .historia-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 600;
+            color: var(--texto-escuro);
+            line-height: 1.2;
+        }
+
+        .historia-title .script-text {
+            font-family: var(--font-script);
+            color: var(--bordo);
+            font-size: 1.1em;
+        }
+
+        .historia-content {
+            max-width: 900px;
             margin: 0 auto;
         }
 
-        .depoimentos-grid {
+        .historia-quote {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(155, 44, 84, 0.05) 0%, rgba(230, 166, 178, 0.1) 100%);
+            border-radius: 24px;
+            border-left: 4px solid var(--bordo);
+        }
+
+        .quote-text {
+            font-family: var(--font-display);
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-style: italic;
+            color: var(--texto-escuro);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .quote-conclusion {
+            font-family: var(--font-sans);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--bordo);
+        }
+
+        .historia-fotos {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
+            gap: 24px;
         }
 
-        @media (min-width: 768px) {
-            .depoimentos-grid {
-                grid-template-columns: repeat(3, 1fr);
+        @media (min-width: 600px) {
+            .historia-fotos {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
             }
         }
 
-        .depoimento-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .historia-foto {
+            position: relative;
             border-radius: 20px;
-            padding: 32px 28px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
             transition: var(--transition-normal);
+        }
+
+        .historia-foto:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .historia-foto img {
+            width: 100%;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .foto-label {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            background: var(--branco);
+            color: var(--bordo);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-family: var(--font-script);
+            font-size: 1.1rem;
+            font-weight: 600;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* ========================================
+           CARROSSEL DE VÍDEO DEPOIMENTOS
+        ======================================== */
+        .video-depoimentos {
+            padding: 100px 0;
+            background: var(--off-white);
+            overflow: hidden;
+        }
+
+        .video-depoimentos-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .video-depoimentos-tag {
+            display: inline-block;
+            background: rgba(155, 44, 84, 0.1);
+            color: var(--bordo);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .video-depoimentos-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 600;
+            color: var(--texto-escuro);
+            margin-bottom: 16px;
+        }
+
+        .video-depoimentos-subtitle {
+            font-size: 1.1rem;
+            color: var(--texto-medio);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Container do Carrossel */
+        .carrossel-container {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 60px;
+        }
+
+        @media (max-width: 768px) {
+            .carrossel-container {
+                padding: 0 20px;
+            }
+        }
+
+        /* Track do Carrossel */
+        .carrossel-track {
+            display: flex;
+            gap: 24px;
+            cursor: grab;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding: 20px 0;
+        }
+
+        .carrossel-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .carrossel-track:active {
+            cursor: grabbing;
+        }
+
+        /* Cada Slide (Card de Vídeo) */
+        .video-slide {
+            flex: 0 0 280px;
+            scroll-snap-align: center;
+            background: var(--branco);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-normal);
+        }
+
+        .video-slide:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        @media (min-width: 768px) {
+            .video-slide {
+                flex: 0 0 320px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .video-slide {
+                flex: 0 0 340px;
+            }
+        }
+
+        /* Video Wrapper com Overlay de Play */
+        .video-wrapper {
+            position: relative;
+            padding-top: 126.67%;
+            background: linear-gradient(135deg, var(--bordo-dark) 0%, var(--bordo) 100%);
+            overflow: hidden;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-wrapper.playing iframe {
+            opacity: 1;
+        }
+
+        /* Thumbnail Placeholder */
+        .video-thumbnail {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--bordo-dark) 0%, var(--bordo) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-wrapper.playing .video-thumbnail {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Botão Play Estilizado (inspirado no SJ Details) */
+        .video-play-btn {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
         }
 
-        .depoimento-card:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--rosa);
-            transform: translateY(-5px);
-        }
-
-        .depoimento-aspas {
-            font-family: var(--font-display);
-            font-size: 5rem;
-            color: var(--rosa);
-            opacity: 0.3;
-            line-height: 1;
+        .video-play-btn::before {
+            content: "";
             position: absolute;
-            top: 10px;
-            left: 20px;
+            inset: -14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(155, 44, 84, 0.25), transparent 60%);
+            opacity: 0.85;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
         }
 
-        .depoimento-texto {
-            font-size: 0.95rem;
-            color: var(--texto-claro);
-            line-height: 1.8;
-            margin-bottom: 24px;
+        .video-play-btn:hover {
+            transform: scale(1.1);
+            background: rgba(155, 44, 84, 0.25);
+            border-color: rgba(230, 166, 178, 0.5);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(155, 44, 84, 0.2);
+        }
+
+        .video-play-btn:hover::before {
+            opacity: 1;
+        }
+
+        .play-icon {
+            width: 0;
+            height: 0;
+            border-left: 20px solid var(--branco);
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            transform: translateX(3px);
+            filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
             position: relative;
             z-index: 1;
         }
 
-        .depoimento-texto strong {
-            color: var(--rosa-light);
+        /* Info do Depoimento */
+        .video-info {
+            padding: 20px;
         }
 
-        .depoimento-autor {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        .video-nome {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--texto-escuro);
+            margin-bottom: 8px;
         }
 
-        .depoimento-avatar {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--rosa) 0%, var(--bordo) 100%);
+        .video-depoimento-texto {
+            font-size: 0.9rem;
+            color: var(--texto-medio);
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Botões de Navegação */
+        .carrossel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: var(--bordo);
+            border: none;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
+            cursor: pointer;
+            z-index: 10;
+            transition: var(--transition-normal);
+            box-shadow: var(--shadow-md);
         }
 
-        .depoimento-avatar span {
-            font-family: var(--font-display);
-            font-size: 1.3rem;
-            font-weight: 600;
+        .carrossel-btn:hover {
+            background: var(--bordo-dark);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carrossel-btn svg {
+            width: 24px;
+            height: 24px;
             color: var(--branco);
         }
 
-        .depoimento-info h4 {
-            font-family: var(--font-sans);
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--branco);
-            margin-bottom: 4px;
+        .carrossel-btn-prev {
+            left: 0;
         }
 
-        .depoimento-info p {
+        .carrossel-btn-next {
+            right: 0;
+        }
+
+        @media (max-width: 768px) {
+            .carrossel-btn {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .carrossel-btn svg {
+                width: 20px;
+                height: 20px;
+            }
+            
+            .carrossel-btn-prev {
+                left: 5px;
+            }
+            
+            .carrossel-btn-next {
+                right: 5px;
+            }
+        }
+
+        /* Indicadores (Dots) */
+        .carrossel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .carrossel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(155, 44, 84, 0.2);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-normal);
+        }
+
+        .carrossel-dot:hover {
+            background: rgba(155, 44, 84, 0.4);
+        }
+
+        .carrossel-dot.active {
+            background: var(--bordo);
+            transform: scale(1.2);
+        }
+
+        /* Instrução de Arraste */
+        .carrossel-instrucao {
+            text-align: center;
+            margin-top: 20px;
             font-size: 0.85rem;
-            color: var(--texto-muted);
+            color: var(--texto-medio);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .carrossel-instrucao svg {
+            width: 20px;
+            height: 20px;
+            animation: swipe-hint 1.5s ease-in-out infinite;
+        }
+
+        @keyframes swipe-hint {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(10px);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .carrossel-instrucao {
+                display: none;
+            }
         }
 
         /* ========================================
@@ -2079,6 +2454,12 @@ isolation: isolate;
             opacity: 0;
             visibility: hidden;
             transform: scale(0.8);
+            animation: pulse-glow-whatsapp 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow-whatsapp {
+            0%, 100% { box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 6px 35px rgba(37, 211, 102, 0.6), 0 0 50px rgba(37, 211, 102, 0.2); }
         }
 
         .whatsapp-float.visible {
@@ -2203,13 +2584,8 @@ isolation: isolate;
                 padding: 100px 0;
             }
 
-            .depoimentos,
             .faq {
                 padding: 80px 0;
-            }
-
-            .depoimento-card {
-                padding: 28px 24px;
             }
 
             .faq-question {
@@ -2220,582 +2596,75 @@ isolation: isolate;
             .faq-answer p {
                 padding: 0 20px 20px;
             }
+
+            .minha-historia {
+                padding: 70px 0;
+            }
+            
+            .historia-quote {
+                padding: 28px 20px;
+            }
+            
+            .historia-foto img {
+                aspect-ratio: 3/4;
+            }
         }
 
-/* ========================================
-   SEÇÃO MINHA HISTÓRIA
-======================================== */
-.minha-historia {
-    padding: 100px 0;
-    background: var(--branco);
-}
-
-.historia-header {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.historia-tag {
-    display: inline-block;
-    background: rgba(155, 44, 84, 0.1);
-    color: var(--bordo);
-    padding: 8px 20px;
-    border-radius: 50px;
-    font-family: var(--font-display);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-}
-
-.historia-title {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 600;
-    color: var(--texto-escuro);
-    line-height: 1.2;
-}
-
-.historia-title .script-text {
-    font-family: var(--font-script);
-    color: var(--bordo);
-    font-size: 1.1em;
-}
-
-.historia-content {
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.historia-quote {
-    text-align: center;
-    margin-bottom: 50px;
-    padding: 40px;
-    background: linear-gradient(135deg, rgba(155, 44, 84, 0.05) 0%, rgba(230, 166, 178, 0.1) 100%);
-    border-radius: 24px;
-    border-left: 4px solid var(--bordo);
-}
-
-.quote-text {
-    font-family: var(--font-display);
-    font-size: clamp(1.2rem, 3vw, 1.5rem);
-    font-style: italic;
-    color: var(--texto-escuro);
-    line-height: 1.8;
-    margin-bottom: 20px;
-}
-
-.quote-conclusion {
-    font-family: var(--font-sans);
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--bordo);
-}
-
-.historia-fotos {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 24px;
-}
-
-.historia-foto {
-    position: relative;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: var(--shadow-md);
-    transition: var(--transition-normal);
-}
-
-.historia-foto:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-lg);
-}
-
-.historia-foto img {
-    width: 100%;
-    aspect-ratio: 4/5;
-    object-fit: cover;
-    object-position: center;
-}
-
-.foto-label {
-    position: absolute;
-    bottom: 16px;
-    left: 16px;
-    background: var(--branco);
-    color: var(--bordo);
-    padding: 8px 20px;
-    border-radius: 50px;
-    font-family: var(--font-script);
-    font-size: 1.1rem;
-    font-weight: 600;
-    box-shadow: var(--shadow-sm);
-}
-
-/* ========================================
-   ANIMAÇÃO PULINHO - BOTÕES PRINCIPAIS
-======================================== */
-.btn-attention {
-    animation: bounce-button 2s ease-in-out infinite;
-}
-
-@keyframes bounce-button {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    15% {
-        transform: translateY(-8px);
-    }
-    30% {
-        transform: translateY(0);
-    }
-    45% {
-        transform: translateY(-4px);
-    }
-    60% {
-        transform: translateY(0);
-    }
-}
-
-/* Para o hover nos botões com animação */
-.btn-attention:hover {
-    animation: none;
-    transform: translateY(-4px) scale(1.02);
-}
-
-/* ========================================
-   RESPONSIVO - MINHA HISTÓRIA
-======================================== */
-@media (min-width: 600px) {
-    .historia-fotos {
-        grid-template-columns: 1fr 1fr;
-        gap: 32px;
-    }
-}
-
-@media (max-width: 480px) {
-    .minha-historia {
-        padding: 70px 0;
-    }
-    
-    .historia-quote {
-        padding: 28px 20px;
-    }
-    
-    .historia-foto img {
-        aspect-ratio: 3/4;
-    }
-}
-
-/* ========================================
-   RESPONSIVO MOBILE - ANIMAÇÕES
-======================================== */
-@media (max-width: 768px) {
-    /* Pulinho mais sutil no mobile */
-    @keyframes bounce-button {
-        0%, 100% {
-            transform: translateY(0);
+        /* ========================================
+           ACESSIBILIDADE - REDUZIR ANIMAÇÕES
+        ======================================== */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+            }
         }
-        15% {
-            transform: translateY(-5px);
-        }
-        30% {
-            transform: translateY(0);
-        }
-        45% {
-            transform: translateY(-2px);
-        }
-        60% {
-            transform: translateY(0);
-        }
-    }
-    
-    /* Animação mais lenta no mobile */
-    .btn-attention {
-        animation-duration: 2.5s;
-    }
-    
-    /* Brilho passa sozinho no mobile (não tem hover) */
-    .btn::before {
-        animation: shine-mobile 3s ease-in-out infinite;
-    }
-}
-
-@keyframes shine-mobile {
-    0%, 100% {
-        left: -120%;
-    }
-    50% {
-        left: 120%;
-    }
-}
-
-/* ========================================
-   ACESSIBILIDADE - REDUZIR ANIMAÇÕES
-======================================== */
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation: none !important;
-        transition: none !important;
-    }
-}
-
-/* ========================================
-   CARROSSEL DE VÍDEO DEPOIMENTOS
-======================================== */
-.video-depoimentos {
-    padding: 100px 0;
-    background: var(--off-white);
-    overflow: hidden;
-}
-
-.video-depoimentos-header {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.video-depoimentos-tag {
-    display: inline-block;
-    background: rgba(155, 44, 84, 0.1);
-    color: var(--bordo);
-    padding: 8px 20px;
-    border-radius: 50px;
-    font-family: var(--font-display);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-}
-
-.video-depoimentos-title {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 600;
-    color: var(--texto-escuro);
-    margin-bottom: 16px;
-}
-
-.video-depoimentos-subtitle {
-    font-size: 1.1rem;
-    color: var(--texto-medio);
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-/* Container do Carrossel */
-.carrossel-container {
-    position: relative;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 60px;
-}
-
-@media (max-width: 768px) {
-    .carrossel-container {
-        padding: 0 20px;
-    }
-}
-
-/* Track do Carrossel */
-.carrossel-track {
-    display: flex;
-    gap: 24px;
-    cursor: grab;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    padding: 20px 0;
-}
-
-.carrossel-track::-webkit-scrollbar {
-    display: none;
-}
-
-.carrossel-track:active {
-    cursor: grabbing;
-}
-
-/* Cada Slide (Card de Vídeo) */
-.video-slide {
-    flex: 0 0 280px;
-    scroll-snap-align: center;
-    background: var(--branco);
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: var(--shadow-md);
-    transition: var(--transition-normal);
-}
-
-.video-slide:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-lg);
-}
-
-@media (min-width: 768px) {
-    .video-slide {
-        flex: 0 0 320px;
-    }
-}
-
-@media (min-width: 1024px) {
-    .video-slide {
-        flex: 0 0 340px;
-    }
-}
-
-/* ========================================
-   FAIXA SUPERIOR DO VIMEO - REGULÁVEL
-======================================== */
-
-.video-wrapper {
-    position: relative;
-    padding-top: 177.78%;
-    background: linear-gradient(135deg, var(--bordo-dark) 0%, var(--bordo) 100%);
-    overflow: hidden;
-    border-radius: 20px 20px 0 0; /* 👈 NOVO */
-}
-
-.video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-    z-index: 1;
-}
-
-/* 👇 ESSA É A FAIXA NOVA */
-.video-wrapper::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 65px;        /* 👈 REGULA ALTURA AQUI */
-    background: #f7f7f7; /* 👈 COR DO FUNDO DA SEÇÃO */
-    z-index: 20;
-    pointer-events: none;
-    border-radius: 20px 20px 0 0;
-}
-
-/* ========================================
-   FAIXA DO VIMEO - AJUSTE MOBILE
-======================================== */
-
-@media (max-width: 768px) {
-    .video-wrapper::before {
-        height: 65px;        /* 👈 ALTURA NO MOBILE */
-        border-radius: 16px 16px 0 0;
-    }
-    
-    .video-wrapper {
-        border-radius: 16px 16px 0 0;
-    }
-}
-
-@media (max-width: 480px) {
-    .video-wrapper::before {
-        height: 65px;        /* 👈 ALTURA EM CELULAR PEQUENO */
-        border-radius: 12px 12px 0 0;
-    }
-    
-    .video-wrapper {
-        border-radius: 12px 12px 0 0;
-    }
-}
-
-/* Info do Depoimento */
-.video-info {
-    padding: 20px;
-}
-
-.video-nome {
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--texto-escuro);
-    margin-bottom: 8px;
-}
-
-.video-depoimento-texto {
-    font-size: 0.9rem;
-    color: var(--texto-medio);
-    line-height: 1.6;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-/* Botões de Navegação */
-.carrossel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
-    background: var(--bordo);
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 10;
-    transition: var(--transition-normal);
-    box-shadow: var(--shadow-md);
-}
-
-.carrossel-btn:hover {
-    background: var(--bordo-dark);
-    transform: translateY(-50%) scale(1.1);
-}
-
-.carrossel-btn svg {
-    width: 24px;
-    height: 24px;
-    color: var(--branco);
-}
-
-.carrossel-btn-prev {
-    left: 0;
-}
-
-.carrossel-btn-next {
-    right: 0;
-}
-
-@media (max-width: 768px) {
-    .carrossel-btn {
-        width: 40px;
-        height: 40px;
-    }
-    
-    .carrossel-btn svg {
-        width: 20px;
-        height: 20px;
-    }
-    
-    .carrossel-btn-prev {
-        left: 5px;
-    }
-    
-    .carrossel-btn-next {
-        right: 5px;
-    }
-}
-
-/* Indicadores (Dots) */
-.carrossel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 30px;
-}
-
-.carrossel-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: rgba(155, 44, 84, 0.2);
-    border: none;
-    cursor: pointer;
-    transition: var(--transition-normal);
-}
-
-.carrossel-dot:hover {
-    background: rgba(155, 44, 84, 0.4);
-}
-
-.carrossel-dot.active {
-    background: var(--bordo);
-    transform: scale(1.2);
-}
-
-/* Instrução de Arraste */
-.carrossel-instrucao {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 0.85rem;
-    color: var(--texto-medio);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-}
-
-.carrossel-instrucao svg {
-    width: 20px;
-    height: 20px;
-    animation: swipe-hint 1.5s ease-in-out infinite;
-}
-
-@keyframes swipe-hint {
-    0%, 100% {
-        transform: translateX(0);
-    }
-    50% {
-        transform: translateX(10px);
-    }
-}
-
-@media (min-width: 1024px) {
-    .carrossel-instrucao {
-        display: none;
-    }
-    
-}    
-
-</style>
+    </style>
 </head>
 <body>
 
 <!-- Barra de Progresso -->
 <div class="progress-bar" id="progressBar"></div>
 
-<!-- Header - ATUALIZADO COM LOGO -->
+<!-- Header -->
 <header class="header" id="header">
     <div class="container header-inner">
-<a href="#" class="header-logo">
-    <img src="https://i.postimg.cc/X7Pc94CW/Captura-de-tela-2026-01-06-001253-removebg-preview.png" alt="Márcia Castro - Logo">
-</a>
-<!-- Menu de Navegação -->
-<nav class="header-nav">
-    <ul class="nav-links">
-        <li><a href="#inicio" class="nav-link">Início</a></li>
-        <li><a href="#historia" class="nav-link">Minha História</a></li>
-        <li><a href="#dores" class="nav-link">Você se Identifica?</a></li>
-        <li><a href="#sessao" class="nav-link">Sessão Raio-X</a></li>
-        <li><a href="#sobre" class="nav-link">Sobre Mim</a></li>
-        <li><a href="#para-quem" class="nav-link">Pra Quem É</a></li>
-        <li><a href="#videos" class="nav-link">Depoimentos</a></li>
-    </ul>
-    
-    <!-- Menu Hamburguer (Mobile) -->
-    <button class="menu-toggle" aria-label="Abrir menu">
-        <span class="menu-toggle-line"></span>
-        <span class="menu-toggle-line"></span>
-        <span class="menu-toggle-line"></span>
-    </button>
-</nav>
+        <a href="#" class="header-logo">
+            <img src="https://i.postimg.cc/X7Pc94CW/Captura-de-tela-2026-01-06-001253-removebg-preview.png" alt="Márcia Castro - Logo">
+        </a>
+        
+        <!-- Menu de Navegação -->
+        <nav class="header-nav">
+            <ul class="nav-links">
+                <li><a href="#inicio" class="nav-link">Início</a></li>
+                <li><a href="#historia" class="nav-link">Minha História</a></li>
+                <li><a href="#dores" class="nav-link">Você se Identifica?</a></li>
+                <li><a href="#sessao" class="nav-link">Sessão Raio-X</a></li>
+                <li><a href="#sobre" class="nav-link">Sobre Mim</a></li>
+                <li><a href="#para-quem" class="nav-link">Pra Quem É</a></li>
+                <li><a href="#videos" class="nav-link">Depoimentos</a></li>
+            </ul>
+            
+            <!-- Menu Hamburguer (Mobile) -->
+            <button class="menu-toggle" aria-label="Abrir menu">
+                <span class="menu-toggle-line"></span>
+                <span class="menu-toggle-line"></span>
+                <span class="menu-toggle-line"></span>
+            </button>
+        </nav>
+        
         <div class="header-right">
-            <span class="header-name">Márciah Castro</span>
             <a href="https://wa.me/5521969995252?text=Olá, Márciah! Quero agendar minha Sessão Raio-X. Cansei de ser trouxa!" target="_blank" class="btn btn-white header-cta">
-                Agendar Sessão Raio-X
+                <span>Agendar Sessão</span>
             </a>
         </div>
     </div>
 </header>
 
 <!-- ========================================
-     HERO - REPOSICIONADO
+     HERO - AJUSTADO
 ======================================== -->
 <section class="hero" id="inicio">
     <div class="hero-bg">
@@ -2808,16 +2677,15 @@ isolation: isolate;
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
             </svg>
-            Movimento Cansei de Ser Trouxa
+            <span>Movimento Cansei de Ser Trouxa</span>
         </span>
         
         <h1 class="hero-title">
-            Cansei de ser <span class="highlight">TROUXA.</span>
+            Cansei de ser <span class="highlight text-shine">TROUXA.</span>
         </h1>
         
         <p class="hero-subtitle">
-            Você não tem dedo podre.
-            <span class="line-break">Você tem um <strong>padrão</strong> que não sabe como quebrar.</span>
+            Você não tem dedo podre. Você tem um <strong>padrão</strong> que não sabe como quebrar.
         </p>
         
         <div class="hero-cta">
@@ -2825,7 +2693,7 @@ isolation: isolate;
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                 </svg>
-                Quero minha Sessão Raio-X GRATUITA
+                <span>Quero minha Sessão Raio-X GRATUITA</span>
             </a>
         </div>
         
@@ -2833,7 +2701,7 @@ isolation: isolate;
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
-            50 minutos de conversa profunda • 100% online
+            <span>50 minutos de conversa profunda • 100% online</span>
         </p>
     </div>
     
@@ -2845,13 +2713,13 @@ isolation: isolate;
 </section>
 
 <!-- ========================================
-     SEÇÃO MINHA HISTÓRIA - APÓS O HERO
+     SEÇÃO MINHA HISTÓRIA
 ======================================== -->
 <section class="minha-historia" id="historia">
     <div class="container">
         <div class="historia-header fade-in">
             <span class="historia-tag">Minha história</span>
-            <h2 class="historia-title">40 anos com o <span class="script-text">mesmo amor.</span></h2>
+            <h2 class="historia-title">40 anos com o <span class="script-text text-shine-bordo">mesmo amor.</span></h2>
         </div>
         
         <div class="historia-content">
@@ -2880,7 +2748,7 @@ isolation: isolate;
 </section>
 
 <!-- ========================================
-     SEÇÃO DORES - VOCÊ SE IDENTIFICA?
+     SEÇÃO DORES
 ======================================== -->
 <section class="dores" id="dores">
     <div class="container">
@@ -2947,7 +2815,7 @@ isolation: isolate;
             <h2 class="verdade-title">
                 Não é azar. <br>
                 Não é dedo podre. <br>
-                <span class="highlight">É padrão.</span>
+                <span class="highlight text-shine">É padrão.</span>
             </h2>
             <p class="verdade-text">
                 Você aprendeu a amar de um jeito que te machuca. 
@@ -2958,7 +2826,7 @@ isolation: isolate;
             </p>
             <div class="verdade-cta">
                 <a href="https://wa.me/5521969995252?text=Olá, Márciah! Quero agendar minha Sessão Raio-X. Cansei de ser trouxa!" target="_blank" class="btn btn-white btn-attention">
-                    Quero descobrir meu padrão
+                    <span>Quero descobrir meu padrão</span>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                     </svg>
@@ -2975,7 +2843,7 @@ isolation: isolate;
     <div class="container">
         <div class="raio-x-header fade-in">
             <span class="raio-x-tag">Seu primeiro passo</span>
-            <h2 class="raio-x-title">O que é a <span class="highlight-bordo script-text">Sessão Raio-X?</span></h2>
+            <h2 class="raio-x-title">O que é a <span class="highlight-bordo script-text text-shine-bordo">Sessão Raio-X?</span></h2>
             <p class="raio-x-subtitle">
                 Uma conversa profunda de 50 minutos, onde você vai finalmente entender 
                 por que repete os mesmos erros — e como sair desse ciclo.

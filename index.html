@@ -27,7 +27,6 @@
            VARIÁVEIS CSS
         ======================================== */
         :root {
-            /* Cores principais */
             --bordo: #9b2c54;
             --bordo-light: #b03562;
             --bordo-dark: #761843;
@@ -42,21 +41,17 @@
             --texto-claro: rgba(255, 255, 255, 0.9);
             --texto-muted: rgba(255, 255, 255, 0.75);
             
-            /* Tipografia */
             --font-display: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
             --font-script: 'Dancing Script', cursive;
             --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             
-            /* Tamanhos */
             --container-max: 1200px;
             --header-height: 80px;
             
-            /* Transições */
             --transition-fast: 0.2s ease;
             --transition-normal: 0.3s ease;
             --transition-slow: 0.5s ease;
             
-            /* Sombras */
             --shadow-sm: 0 2px 8px rgba(155, 44, 84, 0.08);
             --shadow-md: 0 4px 20px rgba(155, 44, 84, 0.12);
             --shadow-lg: 0 8px 40px rgba(155, 44, 84, 0.16);
@@ -65,9 +60,7 @@
         /* ========================================
            RESET & BASE
         ======================================== */
-        *,
-        *::before,
-        *::after {
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -88,28 +81,10 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: var(--transition-fast);
-        }
-
-        ul, ol {
-            list-style: none;
-        }
-
-        button {
-            font-family: inherit;
-            cursor: pointer;
-            border: none;
-            background: none;
-        }
+        img { max-width: 100%; height: auto; display: block; }
+        a { text-decoration: none; color: inherit; transition: var(--transition-fast); }
+        ul, ol { list-style: none; }
+        button { font-family: inherit; cursor: pointer; border: none; background: none; }
 
         /* ========================================
            UTILITÁRIOS
@@ -121,42 +96,17 @@
             padding: 0 24px;
         }
 
-        .section {
-            padding: 100px 0;
-        }
-
-        .section-light {
-            background: var(--off-white);
-        }
-
-        .section-white {
-            background: var(--branco);
-        }
-
+        .section { padding: 100px 0; }
+        .section-light { background: var(--off-white); }
+        .section-white { background: var(--branco); }
         .section-bordo {
             background: linear-gradient(135deg, var(--bordo) 0%, var(--bordo-dark) 100%);
             color: var(--branco);
         }
 
-        .section-rosa {
-            background: linear-gradient(135deg, var(--rosa-light) 0%, var(--rosa) 100%);
-        }
-
-        .highlight {
-            color: var(--rosa);
-        }
-
-        .highlight-bordo {
-            color: var(--bordo);
-        }
-
-        .italic {
-            font-style: italic;
-        }
-
-        .script-text {
-            font-family: var(--font-script);
-        }
+        .highlight { color: var(--rosa); }
+        .highlight-bordo { color: var(--bordo); }
+        .script-text { font-family: var(--font-script); }
 
         /* ========================================
            TEXTO COM SHINE/BRILHO ANIMADO
@@ -240,34 +190,21 @@
             isolation: isolate;
         }
 
-        /* Brilho passando por dentro do botão */
         .btn::before {
             content: "";
             position: absolute;
             inset: 0;
             left: -120%;
             width: 120%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255,255,255,0.35),
-                transparent
-            );
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
             transform: skewX(-12deg);
             transition: left 0.55s ease;
             pointer-events: none;
             z-index: 0;
         }
 
-        .btn:hover::before {
-            left: 120%;
-        }
-
-        /* Garante texto/ícones acima do brilho */
-        .btn > * {
-            position: relative;
-            z-index: 1;
-        }
+        .btn:hover::before { left: 120%; }
+        .btn > * { position: relative; z-index: 1; }
 
         .btn-primary {
             background: var(--bordo);
@@ -316,45 +253,21 @@
             background: var(--rosa-light);
         }
 
-        .btn svg {
-            width: 20px;
-            height: 20px;
-            flex-shrink: 0;
-        }
+        .btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+        .btn-lg { padding: 18px 36px; font-size: 1.1rem; }
+        .btn-sm { padding: 10px 20px; font-size: 0.9rem; }
 
-        .btn-lg {
-            padding: 18px 36px;
-            font-size: 1.1rem;
-        }
-
-        .btn-sm {
-            padding: 10px 20px;
-            font-size: 0.9rem;
-        }
-
-        /* ========================================
-           ANIMAÇÃO PULSAR - BOTÕES PRINCIPAIS
-        ======================================== */
+        /* ANIMAÇÃO PULSAR */
         .btn-attention {
             animation: bounce-button 2s ease-in-out infinite;
         }
 
         @keyframes bounce-button {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            15% {
-                transform: translateY(-8px);
-            }
-            30% {
-                transform: translateY(0);
-            }
-            45% {
-                transform: translateY(-4px);
-            }
-            60% {
-                transform: translateY(0);
-            }
+            0%, 100% { transform: translateY(0); }
+            15% { transform: translateY(-8px); }
+            30% { transform: translateY(0); }
+            45% { transform: translateY(-4px); }
+            60% { transform: translateY(0); }
         }
 
         .btn-attention:hover {
@@ -362,7 +275,6 @@
             transform: translateY(-4px) scale(1.02);
         }
 
-        /* Pulinho mais sutil no mobile */
         @media (max-width: 768px) {
             @keyframes bounce-button {
                 0%, 100% { transform: translateY(0); }
@@ -372,14 +284,8 @@
                 60% { transform: translateY(0); }
             }
             
-            .btn-attention {
-                animation-duration: 2.5s;
-            }
-            
-            /* Brilho passa sozinho no mobile */
-            .btn::before {
-                animation: shine-mobile 3s ease-in-out infinite;
-            }
+            .btn-attention { animation-duration: 2.5s; }
+            .btn::before { animation: shine-mobile 3s ease-in-out infinite; }
         }
 
         @keyframes shine-mobile {
@@ -413,7 +319,6 @@
             justify-content: space-between;
         }
 
-        /* Menu de navegação */
         .header-nav {
             margin-left: 40px;
             position: relative;
@@ -425,9 +330,7 @@
         }
 
         @media (max-width: 1024px) {
-            .nav-links {
-                display: none;
-            }
+            .nav-links { display: none; }
         }
 
         .nav-link {
@@ -473,7 +376,6 @@
             transform: scaleX(1);
         }
 
-        /* Menu Hamburguer Mobile */
         .menu-toggle {
             display: none;
             width: 40px;
@@ -489,9 +391,7 @@
             transition: var(--transition-normal);
         }
 
-        .menu-toggle:hover {
-            background: rgba(255, 255, 255, 0.15);
-        }
+        .menu-toggle:hover { background: rgba(255, 255, 255, 0.15); }
 
         .menu-toggle-line {
             width: 20px;
@@ -502,16 +402,10 @@
         }
 
         @media (max-width: 1024px) {
-            .menu-toggle {
-                display: flex;
-            }
-            
-            .header-nav {
-                margin-left: 20px;
-            }
+            .menu-toggle { display: flex; }
+            .header-nav { margin-left: 20px; }
         }
 
-        /* Menu Mobile Expandido */
         .nav-links.mobile-open {
             display: flex;
             position: fixed;
@@ -529,14 +423,8 @@
         }
 
         @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .nav-links.mobile-open .nav-link {
@@ -546,33 +434,21 @@
             border-radius: 0;
         }
 
-        .nav-links.mobile-open .nav-link:last-child {
-            border-bottom: none;
-        }
-
+        .nav-links.mobile-open .nav-link:last-child { border-bottom: none; }
         .nav-links.mobile-open .nav-link:hover {
             background: rgba(255, 255, 255, 0.1);
             padding-left: 25px;
         }
 
-        /* Animação do hamburguer para X */
         .menu-toggle.active .menu-toggle-line:nth-child(1) {
             transform: rotate(45deg) translate(5px, 5px);
         }
-
-        .menu-toggle.active .menu-toggle-line:nth-child(2) {
-            opacity: 0;
-        }
-
+        .menu-toggle.active .menu-toggle-line:nth-child(2) { opacity: 0; }
         .menu-toggle.active .menu-toggle-line:nth-child(3) {
             transform: rotate(-45deg) translate(5px, -5px);
         }
 
-        .header-logo {
-            display: flex;
-            align-items: center;
-        }
-
+        .header-logo { display: flex; align-items: center; }
         .header-logo img {
             height: 48px;
             width: auto;
@@ -580,9 +456,7 @@
         }
 
         @media (min-width: 768px) {
-            .header-logo img {
-                height: 56px;
-            }
+            .header-logo img { height: 56px; }
         }
 
         .header-right {
@@ -591,9 +465,7 @@
             gap: 24px;
         }
 
-        .header-cta {
-            display: none;
-        }
+        .header-cta { display: none; }
 
         @media (min-width: 768px) {
             .header-cta {
@@ -641,10 +513,10 @@
             background: linear-gradient(
                 to top,
                 rgba(87, 3, 41, 0.95) 0%,
-                rgba(155, 44, 84, 0.85) 20%,
-                rgba(155, 44, 84, 0.5) 45%,
-                rgba(0, 0, 0, 0.25) 65%,
-                rgba(0, 0, 0, 0.1) 100%
+                rgba(155, 44, 84, 0.80) 15%,
+                rgba(155, 44, 84, 0.45) 40%,
+                rgba(0, 0, 0, 0.20) 60%,
+                rgba(0, 0, 0, 0.05) 100%
             );
             z-index: 2;
         }
@@ -653,20 +525,16 @@
             position: relative;
             z-index: 3;
             text-align: center;
-            padding: 0 24px 100px;
+            padding: 0 24px 60px;
             max-width: 900px;
         }
 
         @media (max-width: 768px) {
-            .hero-content {
-                padding: 0 20px 90px;
-            }
+            .hero-content { padding: 0 20px 50px; }
         }
 
         @media (max-width: 480px) {
-            .hero-content {
-                padding: 0 16px 80px;
-            }
+            .hero-content { padding: 0 16px 45px; }
         }
 
         .hero-badge {
@@ -676,110 +544,141 @@
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 8px 20px;
+            padding: 6px 16px;
             border-radius: 50px;
             font-family: var(--font-display);
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 600;
-            letter-spacing: 1.5px;
+            letter-spacing: 1.2px;
             text-transform: uppercase;
             color: var(--rosa-light);
-            margin-bottom: 16px;
+            margin-bottom: 10px;
             animation: fadeInDown 1s ease 0.2s both;
         }
 
+        .hero-badge svg { width: 14px; height: 14px; }
+
         @media (max-width: 480px) {
             .hero-badge {
-                font-size: 0.6rem;
-                padding: 6px 14px;
-                letter-spacing: 1px;
-                margin-bottom: 12px;
+                font-size: 0.55rem;
+                padding: 5px 12px;
+                letter-spacing: 0.8px;
+                margin-bottom: 8px;
             }
+            .hero-badge svg { width: 12px; height: 12px; }
         }
 
         .hero-title {
             font-family: var(--font-display);
-            font-size: clamp(2rem, 6vw, 4rem);
+            font-size: clamp(1.8rem, 5.5vw, 3.5rem);
             font-weight: 700;
             line-height: 1.1;
             color: var(--branco);
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             animation: fadeInUp 1s ease 0.4s both;
         }
 
-        .hero-title .highlight {
-            display: block;
-        }
+        .hero-title .highlight { display: block; }
 
         .hero-subtitle {
             font-family: var(--font-sans);
-            font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+            font-size: clamp(0.9rem, 2vw, 1.05rem);
             color: var(--texto-muted);
-            line-height: 1.6;
-            margin-bottom: 20px;
-            max-width: 550px;
+            line-height: 1.5;
+            margin-bottom: 14px;
+            max-width: 500px;
             margin-left: auto;
             margin-right: auto;
             animation: fadeInUp 1s ease 0.6s both;
         }
 
-        .hero-subtitle .line-break {
-            display: block;
-            margin-top: 4px;
-        }
-
         .hero-cta {
             animation: fadeInUp 1s ease 0.8s both;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
 
         .hero-cta-note {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.85);
+            gap: 6px;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.80);
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
             animation: fadeInUp 1s ease 1s both;
         }
 
         .hero-cta-note svg {
-            width: 14px;
-            height: 14px;
+            width: 12px;
+            height: 12px;
             color: var(--rosa-light);
         }
 
         .hero-scroll {
             position: absolute;
-            bottom: 20px;
+            bottom: 12px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 3;
             animation: bounce 2s infinite;
-            opacity: 0.6;
+            opacity: 0.5;
         }
 
         .hero-scroll svg {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             color: var(--rosa);
         }
 
         /* ========================================
-           SEÇÃO CASE
+           ANIMAÇÕES BASE
         ======================================== */
-        .case {
-            padding: 80px 0;
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-delay-1 { transition-delay: 0.1s; }
+        .fade-in-delay-2 { transition-delay: 0.2s; }
+        .fade-in-delay-3 { transition-delay: 0.3s; }
+        .fade-in-delay-4 { transition-delay: 0.4s; }
+
+        /* ========================================
+           SEÇÃO MINHA HISTÓRIA
+        ======================================== */
+        .minha-historia {
+            padding: 100px 0;
             background: var(--branco);
         }
 
-        .case-header {
+        .historia-header {
             text-align: center;
-            margin-bottom: 48px;
+            margin-bottom: 50px;
         }
 
-        .case-tag {
+        .historia-tag {
             display: inline-block;
             background: rgba(155, 44, 84, 0.1);
             color: var(--bordo);
@@ -793,35 +692,63 @@
             margin-bottom: 16px;
         }
 
-        .case-title {
+        .historia-title {
             font-family: var(--font-display);
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 600;
             color: var(--texto-escuro);
             line-height: 1.2;
         }
 
-        .case-title .script-text {
-            color: var(--bordo);
+        .historia-title .script-text {
+            font-family: var(--font-script);
             font-size: 1.1em;
         }
 
-        .case-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 32px;
+        .historia-content {
             max-width: 900px;
-            margin: 0 auto 40px;
+            margin: 0 auto;
         }
 
-        @media (min-width: 768px) {
-            .case-grid {
+        .historia-quote {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(155, 44, 84, 0.05) 0%, rgba(230, 166, 178, 0.1) 100%);
+            border-radius: 24px;
+            border-left: 4px solid var(--bordo);
+        }
+
+        .quote-text {
+            font-family: var(--font-display);
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-style: italic;
+            color: var(--texto-escuro);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .quote-conclusion {
+            font-family: var(--font-sans);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--bordo);
+        }
+
+        .historia-fotos {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        @media (min-width: 600px) {
+            .historia-fotos {
                 grid-template-columns: 1fr 1fr;
-                gap: 40px;
+                gap: 32px;
             }
         }
 
-        .case-item {
+        .historia-foto {
             position: relative;
             border-radius: 20px;
             overflow: hidden;
@@ -829,69 +756,30 @@
             transition: var(--transition-normal);
         }
 
-        .case-item:hover {
+        .historia-foto:hover {
             transform: translateY(-8px);
             box-shadow: var(--shadow-lg);
         }
 
-        .case-item img {
+        .historia-foto img {
             width: 100%;
             aspect-ratio: 4/5;
             object-fit: cover;
             object-position: center;
         }
 
-        .case-label {
+        .foto-label {
             position: absolute;
-            top: 16px;
+            bottom: 16px;
             left: 16px;
             background: var(--branco);
             color: var(--bordo);
             padding: 8px 20px;
             border-radius: 50px;
-            font-family: var(--font-display);
-            font-size: 0.8rem;
+            font-family: var(--font-script);
+            font-size: 1.1rem;
             font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
             box-shadow: var(--shadow-sm);
-        }
-
-        .case-item-depois .case-label {
-            background: var(--bordo);
-            color: var(--branco);
-        }
-
-        .case-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
-            padding: 60px 20px 20px;
-            color: var(--branco);
-        }
-
-        .case-caption p {
-            font-family: var(--font-sans);
-            font-size: 0.9rem;
-            line-height: 1.5;
-            max-width: 280px;
-        }
-
-        .case-cta {
-            text-align: center;
-            margin-bottom: 24px;
-        }
-
-        .case-footer {
-            text-align: center;
-        }
-
-        .case-permission {
-            font-size: 0.75rem;
-            color: var(--texto-medio);
-            font-style: italic;
         }
 
         /* ========================================
@@ -1013,89 +901,6 @@
         }
 
         /* ========================================
-           ANIMAÇÕES
-        ======================================== */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            40% {
-                transform: translateX(-50%) translateY(-12px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-6px);
-            }
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .fade-in-delay-1 { transition-delay: 0.1s; }
-        .fade-in-delay-2 { transition-delay: 0.2s; }
-        .fade-in-delay-3 { transition-delay: 0.3s; }
-        .fade-in-delay-4 { transition-delay: 0.4s; }
-
-        /* ========================================
-           RESPONSIVO MOBILE
-        ======================================== */
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 20px;
-            }
-            
-            .section {
-                padding: 70px 0;
-            }
-            
-            .btn {
-                padding: 14px 24px;
-                font-size: 0.9rem;
-            }
-            
-            .dor-item {
-                padding: 20px;
-            }
-
-            .case {
-                padding: 60px 0;
-            }
-
-            .case-item img {
-                aspect-ratio: 3/4;
-            }
-        }
-
-        /* ========================================
            SEÇÃO A VERDADE
         ======================================== */
         .verdade {
@@ -1138,20 +943,13 @@
             margin-bottom: 20px;
         }
 
-        .verdade-text strong {
-            color: var(--branco);
-        }
-
-        .verdade-cta {
-            margin-top: 50px;
-        }
+        .verdade-text strong { color: var(--branco); }
+        .verdade-cta { margin-top: 50px; }
 
         /* ========================================
            SEÇÃO SESSÃO RAIO-X
         ======================================== */
-        .raio-x {
-            padding: 120px 0;
-        }
+        .raio-x { padding: 120px 0; }
 
         .raio-x-header {
             text-align: center;
@@ -1304,16 +1102,12 @@
             color: var(--texto-medio);
         }
 
-        .raio-x-cta {
-            text-align: center;
-        }
+        .raio-x-cta { text-align: center; }
 
         /* ========================================
            SEÇÃO SOBRE
         ======================================== */
-        .sobre {
-            padding: 120px 0;
-        }
+        .sobre { padding: 120px 0; }
 
         .sobre-grid {
             display: grid;
@@ -1387,14 +1181,10 @@
             font-weight: 600;
         }
 
-        .sobre-content {
-            text-align: center;
-        }
+        .sobre-content { text-align: center; }
 
         @media (min-width: 900px) {
-            .sobre-content {
-                text-align: left;
-            }
+            .sobre-content { text-align: left; }
         }
 
         .sobre-tag {
@@ -1422,7 +1212,6 @@
 
         .sobre-title .script-text {
             font-family: var(--font-script);
-            color: var(--bordo);
             font-size: 1.1em;
         }
 
@@ -1433,13 +1222,8 @@
             margin-bottom: 20px;
         }
 
-        .sobre-text strong {
-            color: var(--bordo);
-        }
-
-        .sobre-text em {
-            color: var(--texto-escuro);
-        }
+        .sobre-text strong { color: var(--bordo); }
+        .sobre-text em { color: var(--texto-escuro); }
 
         .sobre-highlight {
             background: linear-gradient(135deg, rgba(155, 44, 84, 0.08) 0%, rgba(230, 166, 178, 0.15) 100%);
@@ -1458,9 +1242,7 @@
             margin: 0;
         }
 
-        .sobre-social {
-            margin-top: 30px;
-        }
+        .sobre-social { margin-top: 30px; }
 
         .social-link {
             display: inline-flex;
@@ -1480,17 +1262,12 @@
             color: var(--branco);
         }
 
-        .social-link svg {
-            width: 20px;
-            height: 20px;
-        }
+        .social-link svg { width: 20px; height: 20px; }
 
         /* ========================================
            SEÇÃO PRA QUEM É
         ======================================== */
-        .para-quem {
-            padding: 120px 0;
-        }
+        .para-quem { padding: 120px 0; }
 
         .para-quem-header {
             text-align: center;
@@ -1513,9 +1290,7 @@
         }
 
         @media (min-width: 768px) {
-            .para-quem-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+            .para-quem-grid { grid-template-columns: 1fr 1fr; }
         }
 
         .para-quem-card {
@@ -1526,25 +1301,13 @@
             transition: var(--transition-normal);
         }
 
-        .para-quem-card:hover {
-            transform: translateY(-5px);
-        }
+        .para-quem-card:hover { transform: translateY(-5px); }
 
-        .para-quem-sim {
-            border-color: rgba(100, 180, 100, 0.3);
-        }
+        .para-quem-sim { border-color: rgba(100, 180, 100, 0.3); }
+        .para-quem-sim:hover { box-shadow: 0 15px 40px rgba(100, 180, 100, 0.15); }
 
-        .para-quem-sim:hover {
-            box-shadow: 0 15px 40px rgba(100, 180, 100, 0.15);
-        }
-
-        .para-quem-nao {
-            border-color: rgba(200, 100, 100, 0.3);
-        }
-
-        .para-quem-nao:hover {
-            box-shadow: 0 15px 40px rgba(200, 100, 100, 0.15);
-        }
+        .para-quem-nao { border-color: rgba(200, 100, 100, 0.3); }
+        .para-quem-nao:hover { box-shadow: 0 15px 40px rgba(200, 100, 100, 0.15); }
 
         .para-quem-card-header {
             display: flex;
@@ -1593,32 +1356,26 @@
             gap: 14px;
         }
 
-        .check-icon {
+        .check-icon, .x-icon {
             flex-shrink: 0;
             width: 24px;
             height: 24px;
-            background: rgba(100, 180, 100, 0.15);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #4a9f4a;
             font-size: 12px;
             font-weight: bold;
         }
 
+        .check-icon {
+            background: rgba(100, 180, 100, 0.15);
+            color: #4a9f4a;
+        }
+
         .x-icon {
-            flex-shrink: 0;
-            width: 24px;
-            height: 24px;
             background: rgba(200, 100, 100, 0.15);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             color: #c86464;
-            font-size: 12px;
-            font-weight: bold;
         }
 
         .para-quem-lista p {
@@ -1627,133 +1384,13 @@
             line-height: 1.6;
         }
 
-        .para-quem-cta {
-            text-align: center;
-        }
+        .para-quem-cta { text-align: center; }
 
         .para-quem-cta-text {
             font-family: var(--font-display);
             font-size: 1.3rem;
             color: var(--texto-escuro);
             margin-bottom: 25px;
-        }
-
-        /* ========================================
-           SEÇÃO MINHA HISTÓRIA
-        ======================================== */
-        .minha-historia {
-            padding: 100px 0;
-            background: var(--branco);
-        }
-
-        .historia-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .historia-tag {
-            display: inline-block;
-            background: rgba(155, 44, 84, 0.1);
-            color: var(--bordo);
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-family: var(--font-display);
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-bottom: 16px;
-        }
-
-        .historia-title {
-            font-family: var(--font-display);
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 600;
-            color: var(--texto-escuro);
-            line-height: 1.2;
-        }
-
-        .historia-title .script-text {
-            font-family: var(--font-script);
-            color: var(--bordo);
-            font-size: 1.1em;
-        }
-
-        .historia-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .historia-quote {
-            text-align: center;
-            margin-bottom: 50px;
-            padding: 40px;
-            background: linear-gradient(135deg, rgba(155, 44, 84, 0.05) 0%, rgba(230, 166, 178, 0.1) 100%);
-            border-radius: 24px;
-            border-left: 4px solid var(--bordo);
-        }
-
-        .quote-text {
-            font-family: var(--font-display);
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
-            font-style: italic;
-            color: var(--texto-escuro);
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .quote-conclusion {
-            font-family: var(--font-sans);
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--bordo);
-        }
-
-        .historia-fotos {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 24px;
-        }
-
-        @media (min-width: 600px) {
-            .historia-fotos {
-                grid-template-columns: 1fr 1fr;
-                gap: 32px;
-            }
-        }
-
-        .historia-foto {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition-normal);
-        }
-
-        .historia-foto:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .historia-foto img {
-            width: 100%;
-            aspect-ratio: 4/5;
-            object-fit: cover;
-            object-position: center;
-        }
-
-        .foto-label {
-            position: absolute;
-            bottom: 16px;
-            left: 16px;
-            background: var(--branco);
-            color: var(--bordo);
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-family: var(--font-script);
-            font-size: 1.1rem;
-            font-weight: 600;
-            box-shadow: var(--shadow-sm);
         }
 
         /* ========================================
@@ -1799,7 +1436,6 @@
             margin: 0 auto;
         }
 
-        /* Container do Carrossel */
         .carrossel-container {
             position: relative;
             max-width: 1400px;
@@ -1808,12 +1444,9 @@
         }
 
         @media (max-width: 768px) {
-            .carrossel-container {
-                padding: 0 20px;
-            }
+            .carrossel-container { padding: 0 20px; }
         }
 
-        /* Track do Carrossel */
         .carrossel-track {
             display: flex;
             gap: 24px;
@@ -1826,15 +1459,9 @@
             padding: 20px 0;
         }
 
-        .carrossel-track::-webkit-scrollbar {
-            display: none;
-        }
+        .carrossel-track::-webkit-scrollbar { display: none; }
+        .carrossel-track:active { cursor: grabbing; }
 
-        .carrossel-track:active {
-            cursor: grabbing;
-        }
-
-        /* Cada Slide (Card de Vídeo) */
         .video-slide {
             flex: 0 0 280px;
             scroll-snap-align: center;
@@ -1850,17 +1477,8 @@
             box-shadow: var(--shadow-lg);
         }
 
-        @media (min-width: 768px) {
-            .video-slide {
-                flex: 0 0 320px;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .video-slide {
-                flex: 0 0 340px;
-            }
-        }
+        @media (min-width: 768px) { .video-slide { flex: 0 0 320px; } }
+        @media (min-width: 1024px) { .video-slide { flex: 0 0 340px; } }
 
         /* Video Wrapper com Overlay de Play */
         .video-wrapper {
@@ -1882,11 +1500,8 @@
             transition: opacity 0.3s ease;
         }
 
-        .video-wrapper.playing iframe {
-            opacity: 1;
-        }
+        .video-wrapper.playing iframe { opacity: 1; }
 
-        /* Thumbnail Placeholder */
         .video-thumbnail {
             position: absolute;
             top: 0;
@@ -1932,6 +1547,12 @@
             opacity: 0.85;
             pointer-events: none;
             transition: opacity 0.3s ease;
+            animation: pulse-play 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-play {
+            0%, 100% { transform: scale(1); opacity: 0.85; }
+            50% { transform: scale(1.1); opacity: 1; }
         }
 
         .video-play-btn:hover {
@@ -1941,9 +1562,7 @@
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(155, 44, 84, 0.2);
         }
 
-        .video-play-btn:hover::before {
-            opacity: 1;
-        }
+        .video-play-btn:hover::before { opacity: 1; }
 
         .play-icon {
             width: 0;
@@ -1957,10 +1576,7 @@
             z-index: 1;
         }
 
-        /* Info do Depoimento */
-        .video-info {
-            padding: 20px;
-        }
+        .video-info { padding: 20px; }
 
         .video-nome {
             font-family: var(--font-display);
@@ -1980,7 +1596,6 @@
             overflow: hidden;
         }
 
-        /* Botões de Navegação */
         .carrossel-btn {
             position: absolute;
             top: 50%;
@@ -2010,35 +1625,16 @@
             color: var(--branco);
         }
 
-        .carrossel-btn-prev {
-            left: 0;
-        }
-
-        .carrossel-btn-next {
-            right: 0;
-        }
+        .carrossel-btn-prev { left: 0; }
+        .carrossel-btn-next { right: 0; }
 
         @media (max-width: 768px) {
-            .carrossel-btn {
-                width: 40px;
-                height: 40px;
-            }
-            
-            .carrossel-btn svg {
-                width: 20px;
-                height: 20px;
-            }
-            
-            .carrossel-btn-prev {
-                left: 5px;
-            }
-            
-            .carrossel-btn-next {
-                right: 5px;
-            }
+            .carrossel-btn { width: 40px; height: 40px; }
+            .carrossel-btn svg { width: 20px; height: 20px; }
+            .carrossel-btn-prev { left: 5px; }
+            .carrossel-btn-next { right: 5px; }
         }
 
-        /* Indicadores (Dots) */
         .carrossel-dots {
             display: flex;
             justify-content: center;
@@ -2056,16 +1652,13 @@
             transition: var(--transition-normal);
         }
 
-        .carrossel-dot:hover {
-            background: rgba(155, 44, 84, 0.4);
-        }
+        .carrossel-dot:hover { background: rgba(155, 44, 84, 0.4); }
 
         .carrossel-dot.active {
             background: var(--bordo);
             transform: scale(1.2);
         }
 
-        /* Instrução de Arraste */
         .carrossel-instrucao {
             text-align: center;
             margin-top: 20px;
@@ -2084,26 +1677,18 @@
         }
 
         @keyframes swipe-hint {
-            0%, 100% {
-                transform: translateX(0);
-            }
-            50% {
-                transform: translateX(10px);
-            }
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
         }
 
         @media (min-width: 1024px) {
-            .carrossel-instrucao {
-                display: none;
-            }
+            .carrossel-instrucao { display: none; }
         }
 
         /* ========================================
            SEÇÃO FAQ
         ======================================== */
-        .faq {
-            padding: 120px 0;
-        }
+        .faq { padding: 120px 0; }
 
         .faq-header {
             text-align: center;
@@ -2145,9 +1730,7 @@
             transition: var(--transition-normal);
         }
 
-        .faq-item:hover {
-            border-color: var(--rosa);
-        }
+        .faq-item:hover { border-color: var(--rosa); }
 
         .faq-item.active {
             border-color: var(--bordo);
@@ -2170,13 +1753,8 @@
             transition: var(--transition-fast);
         }
 
-        .faq-question:hover {
-            color: var(--bordo);
-        }
-
-        .faq-question span {
-            flex: 1;
-        }
+        .faq-question:hover { color: var(--bordo); }
+        .faq-question span { flex: 1; }
 
         .faq-icon {
             width: 36px;
@@ -2197,10 +1775,7 @@
             transition: var(--transition-normal);
         }
 
-        .faq-item.active .faq-icon {
-            background: var(--bordo);
-        }
-
+        .faq-item.active .faq-icon { background: var(--bordo); }
         .faq-item.active .faq-icon svg {
             color: var(--branco);
             transform: rotate(180deg);
@@ -2212,9 +1787,7 @@
             transition: max-height 0.4s ease, padding 0.4s ease;
         }
 
-        .faq-item.active .faq-answer {
-            max-height: 400px;
-        }
+        .faq-item.active .faq-answer { max-height: 400px; }
 
         .faq-answer p {
             padding: 0 24px 24px;
@@ -2281,9 +1854,7 @@
             margin-bottom: 40px;
         }
 
-        .cta-final-btn {
-            margin-bottom: 24px;
-        }
+        .cta-final-btn { margin-bottom: 24px; }
 
         .cta-final-note {
             display: inline-flex;
@@ -2332,20 +1903,11 @@
         }
 
         @media (min-width: 768px) {
-            .footer-brand {
-                align-items: flex-start;
-            }
+            .footer-brand { align-items: flex-start; }
         }
 
-        .footer-logo {
-            display: block;
-            margin-bottom: 16px;
-        }
-
-        .footer-logo img {
-            height: 48px;
-            width: auto;
-        }
+        .footer-logo { display: block; margin-bottom: 16px; }
+        .footer-logo img { height: 48px; width: auto; }
 
         .footer-tagline {
             font-size: 0.9rem;
@@ -2369,9 +1931,7 @@
         }
 
         @media (min-width: 768px) {
-            .footer-social-links {
-                justify-content: flex-end;
-            }
+            .footer-social-links { justify-content: flex-end; }
         }
 
         .footer-social-link {
@@ -2393,10 +1953,7 @@
             transform: translateY(-3px);
         }
 
-        .footer-social-link svg {
-            width: 22px;
-            height: 22px;
-        }
+        .footer-social-link svg { width: 22px; height: 22px; }
 
         .footer-bottom {
             padding-top: 30px;
@@ -2429,9 +1986,7 @@
             font-weight: 500;
         }
 
-        .footer-credit a:hover {
-            text-decoration: underline;
-        }
+        .footer-credit a:hover { text-decoration: underline; }
 
         /* ========================================
            WHATSAPP FLUTUANTE
@@ -2473,10 +2028,7 @@
             box-shadow: 0 10px 35px rgba(37, 211, 102, 0.5);
         }
 
-        .whatsapp-float svg {
-            width: 34px;
-            height: 34px;
-        }
+        .whatsapp-float svg { width: 34px; height: 34px; }
 
         .whatsapp-tooltip {
             position: absolute;
@@ -2554,69 +2106,31 @@
         }
 
         /* ========================================
-           RESPONSIVO MOBILE - AJUSTES FINAIS
+           RESPONSIVO
         ======================================== */
         @media (max-width: 480px) {
-            .whatsapp-float {
-                width: 58px;
-                height: 58px;
-                bottom: 20px;
-                right: 20px;
-            }
+            .container { padding: 0 20px; }
+            .section { padding: 70px 0; }
+            .btn { padding: 14px 24px; font-size: 0.9rem; }
+            .dor-item { padding: 20px; }
 
-            .whatsapp-float svg {
-                width: 30px;
-                height: 30px;
-            }
+            .whatsapp-float { width: 58px; height: 58px; bottom: 20px; right: 20px; }
+            .whatsapp-float svg { width: 30px; height: 30px; }
+            .whatsapp-tooltip { display: none; }
 
-            .whatsapp-tooltip {
-                display: none;
-            }
+            .back-to-top { width: 46px; height: 46px; bottom: 90px; right: 22px; }
+            .cta-final { padding: 100px 0; }
+            .faq { padding: 80px 0; }
+            .faq-question { padding: 20px; font-size: 0.95rem; }
+            .faq-answer p { padding: 0 20px 20px; }
 
-            .back-to-top {
-                width: 46px;
-                height: 46px;
-                bottom: 90px;
-                right: 22px;
-            }
-
-            .cta-final {
-                padding: 100px 0;
-            }
-
-            .faq {
-                padding: 80px 0;
-            }
-
-            .faq-question {
-                padding: 20px;
-                font-size: 0.95rem;
-            }
-
-            .faq-answer p {
-                padding: 0 20px 20px;
-            }
-
-            .minha-historia {
-                padding: 70px 0;
-            }
-            
-            .historia-quote {
-                padding: 28px 20px;
-            }
-            
-            .historia-foto img {
-                aspect-ratio: 3/4;
-            }
+            .minha-historia { padding: 70px 0; }
+            .historia-quote { padding: 28px 20px; }
+            .historia-foto img { aspect-ratio: 3/4; }
         }
 
-        /* ========================================
-           ACESSIBILIDADE - REDUZIR ANIMAÇÕES
-        ======================================== */
         @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
+            *, *::before, *::after {
                 animation: none !important;
                 transition: none !important;
             }
@@ -2635,7 +2149,6 @@
             <img src="https://i.postimg.cc/X7Pc94CW/Captura-de-tela-2026-01-06-001253-removebg-preview.png" alt="Márcia Castro - Logo">
         </a>
         
-        <!-- Menu de Navegação -->
         <nav class="header-nav">
             <ul class="nav-links">
                 <li><a href="#inicio" class="nav-link">Início</a></li>
@@ -2647,7 +2160,6 @@
                 <li><a href="#videos" class="nav-link">Depoimentos</a></li>
             </ul>
             
-            <!-- Menu Hamburguer (Mobile) -->
             <button class="menu-toggle" aria-label="Abrir menu">
                 <span class="menu-toggle-line"></span>
                 <span class="menu-toggle-line"></span>
@@ -2663,9 +2175,7 @@
     </div>
 </header>
 
-<!-- ========================================
-     HERO - AJUSTADO
-======================================== -->
+<!-- HERO -->
 <section class="hero" id="inicio">
     <div class="hero-bg">
         <img src="https://i.postimg.cc/PqQ3jJ6P/1767670327303-019b915b-eafc-7368-9fc7-eea38aea7dcb.png" alt="Márciah Castro - Terapeuta de Relacionamentos">
@@ -2712,9 +2222,7 @@
     </div>
 </section>
 
-<!-- ========================================
-     SEÇÃO MINHA HISTÓRIA
-======================================== -->
+<!-- MINHA HISTÓRIA -->
 <section class="minha-historia" id="historia">
     <div class="container">
         <div class="historia-header fade-in">
@@ -2747,9 +2255,7 @@
     </div>
 </section>
 
-<!-- ========================================
-     SEÇÃO DORES
-======================================== -->
+<!-- DORES -->
 <section class="dores" id="dores">
     <div class="container">
         <div class="dores-header fade-in">
@@ -2805,9 +2311,7 @@
     </div>
 </section>
 
-<!-- ========================================
-     SEÇÃO A VERDADE
-======================================== -->
+<!-- A VERDADE -->
 <section class="verdade section-bordo">
     <div class="container">
         <div class="verdade-content fade-in">
@@ -2836,9 +2340,7 @@
     </div>
 </section>
 
-<!-- ========================================
-     SEÇÃO SESSÃO RAIO-X
-======================================== -->
+<!-- SESSÃO RAIO-X -->
 <section class="raio-x section-light" id="sessao">
     <div class="container">
         <div class="raio-x-header fade-in">
@@ -2928,15 +2430,13 @@
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                 </svg>
-                Agendar Minha Sessão Raio-X GRATUITA
+                <span>Agendar Minha Sessão Raio-X GRATUITA</span>
             </a>
         </div>
     </div>
 </section>
 
-<!-- ========================================
-     SEÇÃO SOBRE A MÁRCIAH
-======================================== -->
+<!-- SOBRE -->
 <section class="sobre section-white" id="sobre">
     <div class="container">
         <div class="sobre-grid">
@@ -2952,7 +2452,7 @@
             
             <div class="sobre-content fade-in">
                 <span class="sobre-tag">Quem vai te guiar</span>
-                <h2 class="sobre-title">Prazer, sou a <span class="script-text">Márciah Castro</span></h2>
+                <h2 class="sobre-title">Prazer, sou a <span class="script-text text-shine-bordo">Márciah Castro</span></h2>
                 
                 <p class="sobre-text">
                     Sou terapeuta de relacionamentos afetivos e criadora do movimento 
@@ -2981,231 +2481,167 @@
                     <a href="https://instagram.com/marciacastro_terapeuta" target="_blank" class="social-link">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                            </svg>
-                            Te espero lá
-                        </a>
-                    </div>
+                        </svg>
+                        Te espero lá
+                    </a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- ========================================
-         SEÇÃO PRA QUEM É / NÃO É
-    ======================================== -->
-    <section class="para-quem section-light" id="para-quem">
-        <div class="container">
-            <div class="para-quem-header fade-in">
-                <h2 class="para-quem-title">A Sessão Raio-X é <span class="highlight-bordo">pra você?</span></h2>
+<!-- PRA QUEM É -->
+<section class="para-quem section-light" id="para-quem">
+    <div class="container">
+        <div class="para-quem-header fade-in">
+            <h2 class="para-quem-title">A Sessão Raio-X é <span class="highlight-bordo text-shine-bordo">pra você?</span></h2>
+        </div>
+        
+        <div class="para-quem-grid">
+            <div class="para-quem-card para-quem-sim fade-in">
+                <div class="para-quem-card-header">
+                    <span class="para-quem-icon sim">✓</span>
+                    <h3>É pra você se...</h3>
+                </div>
+                <ul class="para-quem-lista">
+                    <li><span class="check-icon">✓</span><p>Você está cansada de repetir os mesmos erros afetivos.</p></li>
+                    <li><span class="check-icon">✓</span><p>Quer entender de verdade por que isso acontece com você.</p></li>
+                    <li><span class="check-icon">✓</span><p>Está pronta pra se colocar em primeiro lugar.</p></li>
+                    <li><span class="check-icon">✓</span><p>Quer aprender a impor limites sem culpa.</p></li>
+                    <li><span class="check-icon">✓</span><p>Busca uma mudança real, não só desabafo.</p></li>
+                    <li><span class="check-icon">✓</span><p>Está disposta a se olhar de verdade, mesmo que doa.</p></li>
+                </ul>
             </div>
             
-            <div class="para-quem-grid">
-                <!-- PRA QUEM É -->
-                <div class="para-quem-card para-quem-sim fade-in">
-                    <div class="para-quem-card-header">
-                        <span class="para-quem-icon sim">✓</span>
-                        <h3>É pra você se...</h3>
-                    </div>
-                    <ul class="para-quem-lista">
-                        <li>
-                            <span class="check-icon">✓</span>
-                            <p>Você está cansada de repetir os mesmos erros afetivos.</p>
-                        </li>
-                        <li>
-                            <span class="check-icon">✓</span>
-                            <p>Quer entender de verdade por que isso acontece com você.</p>
-                        </li>
-                        <li>
-                            <span class="check-icon">✓</span>
-                            <p>Está pronta pra se colocar em primeiro lugar.</p>
-                        </li>
-                        <li>
-                            <span class="check-icon">✓</span>
-                            <p>Quer aprender a impor limites sem culpa.</p>
-                        </li>
-                        <li>
-                            <span class="check-icon">✓</span>
-                            <p>Busca uma mudança real, não só desabafo.</p>
-                        </li>
-                        <li>
-                            <span class="check-icon">✓</span>
-                            <p>Está disposta a se olhar de verdade, mesmo que doa.</p>
-                        </li>
-                    </ul>
+            <div class="para-quem-card para-quem-nao fade-in">
+                <div class="para-quem-card-header">
+                    <span class="para-quem-icon nao">✕</span>
+                    <h3>Não é pra você se...</h3>
                 </div>
-                
-                <!-- PRA QUEM NÃO É -->
-                <div class="para-quem-card para-quem-nao fade-in">
-                    <div class="para-quem-card-header">
-                        <span class="para-quem-icon nao">✕</span>
-                        <h3>Não é pra você se...</h3>
-                    </div>
-                    <ul class="para-quem-lista">
-                        <li>
-                            <span class="x-icon">✕</span>
-                            <p>Quer continuar passando pano pra quem te desvaloriza.</p>
-                        </li>
-                        <li>
-                            <span class="x-icon">✕</span>
-                            <p>Busca alguém que só diga o que você quer ouvir.</p>
-                        </li>
-                        <li>
-                            <span class="x-icon">✕</span>
-                            <p>Não está disposta a mudar nada em você.</p>
-                        </li>
-                        <li>
-                            <span class="x-icon">✕</span>
-                            <p>Quer fórmula mágica sem esforço.</p>
-                        </li>
-                        <li>
-                            <span class="x-icon">✕</span>
-                            <p>Ainda acha que "ele vai mudar".</p>
-                        </li>
-                        <li>
-                            <span class="x-icon">✕</span>
-                            <p>Prefere culpar os outros do que assumir responsabilidade.</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="para-quem-cta fade-in">
-                <p class="para-quem-cta-text">
-                    Se você se viu no lado esquerdo, você está no lugar certo.
-                </p>
-                <a href="https://wa.me/5521969995252?text=Olá, Márciah! Quero agendar minha Sessão Raio-X. Cansei de ser trouxa!" target="_blank" class="btn btn-bordo">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                    </svg>
-                    Quero minha Sessão Raio-X
-                </a>
+                <ul class="para-quem-lista">
+                    <li><span class="x-icon">✕</span><p>Quer continuar passando pano pra quem te desvaloriza.</p></li>
+                    <li><span class="x-icon">✕</span><p>Busca alguém que só diga o que você quer ouvir.</p></li>
+                    <li><span class="x-icon">✕</span><p>Não está disposta a mudar nada em você.</p></li>
+                    <li><span class="x-icon">✕</span><p>Quer fórmula mágica sem esforço.</p></li>
+                    <li><span class="x-icon">✕</span><p>Ainda acha que "ele vai mudar".</p></li>
+                    <li><span class="x-icon">✕</span><p>Prefere culpar os outros do que assumir responsabilidade.</p></li>
+                </ul>
             </div>
         </div>
-    </section>
+        
+        <div class="para-quem-cta fade-in">
+            <p class="para-quem-cta-text">Se você se viu no lado esquerdo, você está no lugar certo.</p>
+            <a href="https://wa.me/5521969995252?text=Olá, Márciah! Quero agendar minha Sessão Raio-X. Cansei de ser trouxa!" target="_blank" class="btn btn-bordo btn-attention">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                <span>Quero minha Sessão Raio-X</span>
+            </a>
+        </div>
+    </div>
+</section>
 
-<!-- ========================================
-     SEÇÃO DEPOIMENTOS EM VÍDEO
-======================================== -->
+<!-- DEPOIMENTOS EM VÍDEO -->
 <section class="video-depoimentos" id="videos">
     <div class="container">
         <div class="video-depoimentos-header fade-in">
             <span class="video-depoimentos-tag">Histórias reais</span>
-            <h2 class="video-depoimentos-title">Elas <span class="highlight-bordo">viveram a transformação</span></h2>
-            <p class="video-depoimentos-subtitle">
-                Assista aos depoimentos de mulheres que quebraram seus padrões com a Márcia.
-            </p>
+            <h2 class="video-depoimentos-title">Elas <span class="highlight-bordo text-shine-bordo">viveram a transformação</span></h2>
+            <p class="video-depoimentos-subtitle">Assista aos depoimentos de mulheres que quebraram seus padrões com a Márcia.</p>
         </div>
     </div>
     
     <div class="carrossel-container">
-        <!-- Botão Anterior -->
         <button class="carrossel-btn carrossel-btn-prev" aria-label="Vídeo anterior">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
             </svg>
         </button>
         
-        <!-- Track do Carrossel -->
         <div class="carrossel-track" id="carrosselTrack">
             
-            <!-- Vídeo 1 - Jenifer Silva -->
+            <!-- Vídeo 1 - Jenifer -->
             <div class="video-slide">
-                <div class="video-wrapper">
-                    <iframe 
-                        src="https://player.vimeo.com/video/1151782299?badge=0&autopause=0&player_id=0&app_id=58479" 
-                        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        title="Depoimento Jenifer Silva"
-                        loading="lazy">
-                    </iframe>
+                <div class="video-wrapper" data-video-id="1160563642">
+                    <div class="video-thumbnail">
+                        <button class="video-play-btn" aria-label="Reproduzir vídeo">
+                            <span class="play-icon"></span>
+                        </button>
+                    </div>
+                    <iframe src="" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" title="Depoimento Jenifer" loading="lazy"></iframe>
                 </div>
                 <div class="video-info">
                     <h4 class="video-nome">Jenifer Silva</h4>
-                    <p class="video-depoimento-texto">
-                        "Eu amo muito a vida da Márcia porque ela mudou a minha mente... Ela é uma mulher incrível!"
-                    </p>
+                    <p class="video-depoimento-texto">"Eu amo muito a vida da Márcia porque ela mudou a minha mente... Ela é uma mulher incrível!"</p>
                 </div>
             </div>
             
-            <!-- Vídeo 2 - Mariana Pereira -->
+            <!-- Vídeo 2 - Mariana -->
             <div class="video-slide">
-                <div class="video-wrapper">
-                    <iframe 
-                        src="https://player.vimeo.com/video/1151782018?badge=0&autopause=0&player_id=0&app_id=58479" 
-                        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        title="Depoimento Mariana Pereira"
-                        loading="lazy">
-                    </iframe>
+                <div class="video-wrapper" data-video-id="1160563681">
+                    <div class="video-thumbnail">
+                        <button class="video-play-btn" aria-label="Reproduzir vídeo">
+                            <span class="play-icon"></span>
+                        </button>
+                    </div>
+                    <iframe src="" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" title="Depoimento Mariana" loading="lazy"></iframe>
                 </div>
                 <div class="video-info">
                     <h4 class="video-nome">Mariana Pereira</h4>
-                    <p class="video-depoimento-texto">
-                        "Já venho caminhando com a Márcia há uns 3 anos e sou uma pessoa completamente diferente de quando eu comecei."
-                    </p>
+                    <p class="video-depoimento-texto">"Já venho caminhando com a Márcia há uns 3 anos e sou uma pessoa completamente diferente de quando eu comecei."</p>
                 </div>
             </div>
             
-            <!-- Vídeo 3 - Caroline Martins -->
+            <!-- Vídeo 3 - Caroline -->
             <div class="video-slide">
-                <div class="video-wrapper">
-                    <iframe 
-                        src="https://player.vimeo.com/video/1151785785?badge=0&autopause=0&player_id=0&app_id=58479" 
-                        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        title="Depoimento Caroline Martins"
-                        loading="lazy">
-                    </iframe>
+                <div class="video-wrapper" data-video-id="1160563668">
+                    <div class="video-thumbnail">
+                        <button class="video-play-btn" aria-label="Reproduzir vídeo">
+                            <span class="play-icon"></span>
+                        </button>
+                    </div>
+                    <iframe src="" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" title="Depoimento Caroline" loading="lazy"></iframe>
                 </div>
                 <div class="video-info">
                     <h4 class="video-nome">Caroline Martins</h4>
-                    <p class="video-depoimento-texto">
-                        "Tem 6 meses que estou com a Márcia e essa jornada foi transformadora... As coisas começaram a acontecer."
-                    </p>
+                    <p class="video-depoimento-texto">"Tem 6 meses que estou com a Márcia e essa jornada foi transformadora... As coisas começaram a acontecer."</p>
                 </div>
             </div>
             
-            <!-- Vídeo 4 - Pamela -->
+            <!-- Vídeo 4 - Gabriele -->
             <div class="video-slide">
-                <div class="video-wrapper">
-                    <iframe 
-                        src="https://player.vimeo.com/video/1151785968?badge=0&autopause=0&player_id=0&app_id=58479" 
-                        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        title="Depoimento Pamela"
-                        loading="lazy">
-                    </iframe>
-                </div>
-                <div class="video-info">
-                    <h4 class="video-nome">Pamela</h4>
-                    <p class="video-depoimento-texto">
-                        "A Márcia me resgatou. Antes eu sentia que não precisava de ninguém cuidando de mim, e através dela eu pude mudar isso."
-                    </p>
-                </div>
-            </div>
-            
-            <!-- Vídeo 5 - Gabriele -->
-            <div class="video-slide">
-                <div class="video-wrapper">
-                    <iframe 
-                        src="https://player.vimeo.com/video/1151786138?badge=0&autopause=0&player_id=0&app_id=58479" 
-                        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        title="Depoimento Gabriele"
-                        loading="lazy">
-                    </iframe>
+                <div class="video-wrapper" data-video-id="1160563588">
+                    <div class="video-thumbnail">
+                        <button class="video-play-btn" aria-label="Reproduzir vídeo">
+                            <span class="play-icon"></span>
+                        </button>
+                    </div>
+                    <iframe src="" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" title="Depoimento Gabriele" loading="lazy"></iframe>
                 </div>
                 <div class="video-info">
                     <h4 class="video-nome">Gabriele</h4>
-                    <p class="video-depoimento-texto">
-                        "Antes eu era insegura, medrosa e dependente. Aceitava tudo só pra não ficar sozinha. Hoje sou determinada, muito determinada."
-                    </p>
+                    <p class="video-depoimento-texto">"Antes eu era insegura, medrosa e dependente. Aceitava tudo só pra não ficar sozinha. Hoje sou determinada, muito determinada."</p>
+                </div>
+            </div>
+            
+            <!-- Vídeo 5 - Pâmela -->
+            <div class="video-slide">
+                <div class="video-wrapper" data-video-id="1160563613">
+                    <div class="video-thumbnail">
+                        <button class="video-play-btn" aria-label="Reproduzir vídeo">
+                            <span class="play-icon"></span>
+                        </button>
+                    </div>
+                    <iframe src="" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" title="Depoimento Pâmela" loading="lazy"></iframe>
+                </div>
+                <div class="video-info">
+                    <h4 class="video-nome">Pâmela</h4>
+                    <p class="video-depoimento-texto">"A Márcia me resgatou. Antes eu sentia que não precisava de ninguém cuidando de mim, e através dela eu pude mudar isso."</p>
                 </div>
             </div>
             
         </div>
         
-        <!-- Botão Próximo -->
         <button class="carrossel-btn carrossel-btn-next" aria-label="Próximo vídeo">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
@@ -3213,7 +2649,6 @@
         </button>
     </div>
     
-    <!-- Indicadores -->
     <div class="carrossel-dots" id="carrosselDots">
         <button class="carrossel-dot active" data-index="0" aria-label="Vídeo 1"></button>
         <button class="carrossel-dot" data-index="1" aria-label="Vídeo 2"></button>
@@ -3222,7 +2657,6 @@
         <button class="carrossel-dot" data-index="4" aria-label="Vídeo 5"></button>
     </div>
     
-    <!-- Instrução Mobile -->
     <p class="carrossel-instrucao">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
@@ -3231,50 +2665,40 @@
     </p>
 </section>
 
-    <!-- ========================================
-         SEÇÃO FAQ - COM CORREÇÕES DE PONTUAÇÃO
-    ======================================== -->
-    <section class="faq section-white" id="faq">
-        <div class="container">
-            <div class="faq-header fade-in">
-                <span class="faq-tag">Tire suas dúvidas</span>
-                <h2 class="faq-title">Perguntas <span class="highlight-bordo">Frequentes</span></h2>
+<!-- FAQ -->
+<section class="faq section-white" id="faq">
+    <div class="container">
+        <div class="faq-header fade-in">
+            <span class="faq-tag">Tire suas dúvidas</span>
+            <h2 class="faq-title">Perguntas <span class="highlight-bordo text-shine-bordo">Frequentes</span></h2>
+        </div>
+        
+        <div class="faq-grid">
+            <div class="faq-item fade-in">
+                <button class="faq-question">
+                    <span>Como funciona a Sessão Raio-X?</span>
+                    <div class="faq-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </div>
+                </button>
+                <div class="faq-answer">
+                    <p>É uma conversa de 50 minutos por videochamada (Google Meet). Nela, vamos identificar juntas, qual é o padrão afetivo que você repete, entender de onde ele vem, e você sai com um plano claro de como começar a mudar.</p>
+                </div>
             </div>
             
-            <div class="faq-grid">
-                <!-- FAQ 1 - CORRIGIDO -->
-                <div class="faq-item fade-in">
-                    <button class="faq-question">
-                        <span>Como funciona a Sessão Raio-X?</span>
-                        <div class="faq-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-                            </svg>
-                        </div>
-                    </button>
-                    <div class="faq-answer">
-                        <p>
-                            É uma conversa de 50 minutos por videochamada (Google Meet). Nela, vamos 
-                            identificar juntas, qual é o padrão afetivo que você repete, entender de onde 
-                            ele vem, e você sai com um plano claro de como começar a mudar.
-                        </p>
+            <div class="faq-item fade-in">
+                <button class="faq-question">
+                    <span>A sessão é realmente gratuita?</span>
+                    <div class="faq-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                        </svg>
                     </div>
-                </div>
-                
-                <!-- FAQ 2 -->
-                <div class="faq-item fade-in">
-                    <button class="faq-question">
-                        <span>A sessão é realmente gratuita?</span>
-                        <div class="faq-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-                            </svg>
-                        </div>
-                    </button>
-                    <div class="faq-answer">
-                        <p>
-                            Sim, 100% gratuita. Sem pegadinha, sem cartão de crédito, sem compromisso. 
-                            É uma sessão completa onde você vai ter clareza real sobre seu padrão. 
+                </button>
+                <div class="faq-answer">
+                    <p>Sim, 100% gratuita. Sem pegadinha, sem cartão de crédito, sem compromisso. É uma sessão completa onde você vai ter clareza  real sobre seu padrão. 
                             Se depois você quiser continuar comigo, conversamos. Mas a sessão em si 
                             já entrega muito valor sozinha.
                         </p>

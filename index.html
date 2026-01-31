@@ -1521,6 +1521,24 @@
             pointer-events: none;
         }
 
+        /* Overlay de controle do vídeo */
+.video-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.30));
+    z-index: 3;
+    transition: opacity 0.3s ease;
+}
+
+.video-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
         /* Botão Play Estilizado (inspirado no SJ Details) */
         .video-play-btn {
             width: 80px;
@@ -2563,12 +2581,12 @@
             <!-- Vídeo 1 - Jenifer -->
             <div class="video-slide">
                 <div class="video-wrapper" data-video-id="1160563642">
-                    <div class="video-thumbnail">
-                        <button class="video-play-btn" aria-label="Reproduzir vídeo">
-                            <span class="play-icon"></span>
-                        </button>
-                    </div>
-                    <iframe src="" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" title="Depoimento Jenifer" loading="lazy"></iframe>
+                    <div class="video-overlay" role="button" tabindex="0" aria-label="Reproduzir/pausar vídeo" data-target="vimeo1">
+    <div class="video-play-btn">
+        <span class="play-icon"></span>
+    </div>
+</div>
+                    <iframe id="vimeo1" src="https://player.vimeo.com/video/1160563690?badge=0&autopause=0&controls=0&title=0&byline=0&portrait=0&dnt=1&keyboard=0&muted=1" allow="autoplay; fullscreen; picture-in-picture"></iframe>
                 </div>
                 <div class="video-info">
                     <h4 class="video-nome">Jenifer Silva</h4>
@@ -2579,12 +2597,12 @@
             <!-- Vídeo 2 - Mariana -->
             <div class="video-slide">
                 <div class="video-wrapper" data-video-id="1160563681">
-                    <div class="video-thumbnail">
-                        <button class="video-play-btn" aria-label="Reproduzir vídeo">
-                            <span class="play-icon"></span>
-                        </button>
-                    </div>
-                    <iframe src="" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" title="Depoimento Mariana" loading="lazy"></iframe>
+                    <div class="video-overlay" role="button" tabindex="0" aria-label="Reproduzir/pausar vídeo" data-target="vimeo1">
+    <div class="video-play-btn">
+        <span class="play-icon"></span>
+    </div>
+</div>
+                    <iframe id="vimeo1" src="https://player.vimeo.com/video/1160563690?badge=0&autopause=0&controls=0&title=0&byline=0&portrait=0&dnt=1&keyboard=0&muted=1" allow="autoplay; fullscreen; picture-in-picture""></iframe>
                 </div>
                 <div class="video-info">
                     <h4 class="video-nome">Mariana Pereira</h4>
@@ -2595,12 +2613,12 @@
             <!-- Vídeo 3 - Caroline -->
             <div class="video-slide">
                 <div class="video-wrapper" data-video-id="1160563668">
-                    <div class="video-thumbnail">
-                        <button class="video-play-btn" aria-label="Reproduzir vídeo">
-                            <span class="play-icon"></span>
-                        </button>
-                    </div>
-                    <iframe src="" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" title="Depoimento Caroline" loading="lazy"></iframe>
+                    <div class="video-overlay" role="button" tabindex="0" aria-label="Reproduzir/pausar vídeo" data-target="vimeo1">
+    <div class="video-play-btn">
+        <span class="play-icon"></span>
+    </div>
+</div>
+                    <iframe id="vimeo1" src="https://player.vimeo.com/video/1160563690?badge=0&autopause=0&controls=0&title=0&byline=0&portrait=0&dnt=1&keyboard=0&muted=1" allow="autoplay; fullscreen; picture-in-picture"></iframe>
                 </div>
                 <div class="video-info">
                     <h4 class="video-nome">Caroline Martins</h4>
@@ -2611,12 +2629,12 @@
             <!-- Vídeo 4 - Gabriele -->
             <div class="video-slide">
                 <div class="video-wrapper" data-video-id="1160563588">
-                    <div class="video-thumbnail">
-                        <button class="video-play-btn" aria-label="Reproduzir vídeo">
-                            <span class="play-icon"></span>
-                        </button>
-                    </div>
-                    <iframe src="" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" title="Depoimento Gabriele" loading="lazy"></iframe>
+                    <div class="video-overlay" role="button" tabindex="0" aria-label="Reproduzir/pausar vídeo" data-target="vimeo1">
+    <div class="video-play-btn">
+        <span class="play-icon"></span>
+    </div>
+</div>
+                   <iframe id="vimeo1" src="https://player.vimeo.com/video/1160563690?badge=0&autopause=0&controls=0&title=0&byline=0&portrait=0&dnt=1&keyboard=0&muted=1" allow="autoplay; fullscreen; picture-in-picture"></iframe>
                 </div>
                 <div class="video-info">
                     <h4 class="video-nome">Gabriele</h4>
@@ -2627,12 +2645,12 @@
             <!-- Vídeo 5 - Pâmela -->
             <div class="video-slide">
                 <div class="video-wrapper" data-video-id="1160563613">
-                    <div class="video-thumbnail">
-                        <button class="video-play-btn" aria-label="Reproduzir vídeo">
-                            <span class="play-icon"></span>
-                        </button>
-                    </div>
-                    <iframe src="" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" title="Depoimento Pâmela" loading="lazy"></iframe>
+                    <div class="video-overlay" role="button" tabindex="0" aria-label="Reproduzir/pausar vídeo" data-target="vimeo1">
+    <div class="video-play-btn">
+        <span class="play-icon"></span>
+    </div>
+</div>
+                    <iframe id="vimeo1" src="https://player.vimeo.com/video/1160563690?badge=0&autopause=0&controls=0&title=0&byline=0&portrait=0&dnt=1&keyboard=0&muted=1" allow="autoplay; fullscreen; picture-in-picture"></iframe>
                 </div>
                 <div class="video-info">
                     <h4 class="video-nome">Pâmela</h4>
@@ -3076,33 +3094,92 @@
     }
 
     // ========================================
-    // PLAY DE VÍDEO AO CLICAR (estilo SJ Details)
-    // ========================================
-    const videoWrappers = document.querySelectorAll('.video-wrapper');
+// CONTROLE DE VÍDEO VIMEO (estilo SJ Details)
+// ========================================
+const iframes = ["vimeo1","vimeo2","vimeo3","vimeo4","vimeo5"]
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
 
-    videoWrappers.forEach(wrapper => {
-        const playBtn = wrapper.querySelector('.video-play-btn');
-        const videoId = wrapper.dataset.videoId;
-        const iframe = wrapper.querySelector('iframe');
-        
-        if (playBtn && videoId) {
-            playBtn.addEventListener('click', () => {
-                // Pausa outros vídeos
-                videoWrappers.forEach(otherWrapper => {
-                    if (otherWrapper !== wrapper && otherWrapper.classList.contains('playing')) {
-                        const otherIframe = otherWrapper.querySelector('iframe');
-                        if (otherIframe) {
-                            otherIframe.src = '';
-                        }
-                        otherWrapper.classList.remove('playing');
-                    }
-                });
-                
-                // Carrega e toca o vídeo clicado
-                if (!wrapper.classList.contains('playing')) {
-                    iframe.src = `https://player.vimeo.com/video/${videoId}?autoplay=1&badge=0&autopause=0&player_id=0&app_id=58479`;
-                    wrapper.classList.add('playing');
-                }
+const players = iframes.map(iframe => new Vimeo.Player(iframe));
+const overlays = Array.from(document.querySelectorAll(".video-overlay"));
+
+function setOverlayState(overlay, isPlaying) {
+    if (!overlay) return;
+    if (isPlaying) {
+        overlay.classList.add('hidden');
+    } else {
+        overlay.classList.remove('hidden');
+    }
+}
+
+async function pauseAll(exceptIndex = -1) {
+    for (let i = 0; i < players.length; i++) {
+        if (i === exceptIndex) continue;
+        try { await players[i].pause(); } catch(e) {}
+        const ov = overlays.find(o => o.dataset.target === iframes[i].id);
+        setOverlayState(ov, false);
+    }
+}
+
+async function togglePlayById(targetId) {
+    const idx = iframes.findIndex(f => f.id === targetId);
+    if (idx < 0) return;
+
+    const player = players[idx];
+    const overlay = overlays.find(o => o.dataset.target === targetId);
+
+    try {
+        const paused = await player.getPaused();
+
+        if (paused) {
+            await pauseAll(idx);
+            try { await player.setMuted(false); } catch(e) {}
+            try { await player.setVolume(1); } catch(e) {}
+            await player.play();
+            setOverlayState(overlay, true);
+        } else {
+            await player.pause();
+            setOverlayState(overlay, false);
+        }
+    } catch(e) {
+        console.warn("Vimeo toggle error:", e);
+    }
+}
+
+// Click nos overlays
+overlays.forEach(overlay => {
+    overlay.addEventListener("click", () => togglePlayById(overlay.dataset.target));
+    overlay.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            togglePlayById(overlay.dataset.target);
+        }
+    });
+});
+
+// Quando o vídeo termina, mostra o overlay de novo
+players.forEach((player, idx) => {
+    player.on("ended", () => {
+        const ov = overlays.find(o => o.dataset.target === iframes[idx].id);
+        setOverlayState(ov, false);
+    });
+    // Inicializa mutado
+    (async () => {
+        try { await player.pause(); } catch(e) {}
+        try { await player.setMuted(true); } catch(e) {}
+    })();
+});
+
+// PAUSA AO ROLAR - IntersectionObserver
+const carrosselTrackVideos = document.getElementById('carrosselTrack');
+if (carrosselTrackVideos && "IntersectionObserver" in window) {
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { 
+            if (!entry.isIntersecting) pauseAll(-1); 
+        });
+    }, { threshold: 0.2 });
+    obs.observe(carrosselTrackVideos);
+}
             });
         }
     });
@@ -3172,6 +3249,6 @@
     window.addEventListener('scroll', updateActiveLink);
     window.addEventListener('load', updateActiveLink);
 </script>
-
+<script src="https://player.vimeo.com/api/player.js"></script>
 </body>
 </html>

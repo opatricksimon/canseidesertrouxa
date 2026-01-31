@@ -1481,24 +1481,23 @@
         @media (min-width: 1024px) { .video-slide { flex: 0 0 340px; } }
 
         /* Video Wrapper com Overlay de Play */
-        .video-wrapper {
-            position: relative;
-            padding-top: 126.67%;
-            background: linear-gradient(135deg, var(--bordo-dark) 0%, var(--bordo) 100%);
-            overflow: hidden;
-        }
+        /* Video Wrapper com Overlay de Play */
+.video-wrapper {
+    position: relative;
+    padding-top: 126.67%;
+    background: #000;
+    overflow: hidden;
+}
 
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            z-index: 1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    z-index: 1;
+}
 
            /* Overlay de controle do vídeo */
 .video-overlay {

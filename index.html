@@ -2133,6 +2133,158 @@
                 transition: none !important;
             }
         }
+
+        /* ========================================
+   SEÇÃO FORMULÁRIO (NOVO)
+======================================== */
+.form-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--branco);
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(155, 44, 84, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Faixa decorativa no topo do card */
+.form-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, var(--bordo), var(--rosa), var(--bordo));
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.form-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--rosa-dark);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.form-title {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    color: var(--texto-escuro);
+    line-height: 1.2;
+    margin-bottom: 12px;
+}
+
+.form-subtitle {
+    font-size: 0.95rem;
+    color: var(--texto-medio);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--texto-escuro);
+    margin-left: 4px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 16px 20px;
+    border-radius: 12px;
+    border: 2px solid var(--off-white-dark);
+    background: var(--off-white);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--texto-escuro);
+    transition: var(--transition-normal);
+    outline: none;
+}
+
+.form-input:focus {
+    border-color: var(--rosa);
+    background: var(--branco);
+    box-shadow: 0 4px 12px rgba(230, 166, 178, 0.15);
+}
+
+.form-input::placeholder {
+    color: #aaa;
+}
+
+.btn-full {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.form-security {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #999;
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.form-security svg {
+    width: 12px;
+    height: 12px;
+}
+
+/* Estado de Sucesso */
+.form-success {
+    text-align: center;
+    padding: 20px 0;
+    animation: fadeInUp 0.5s ease;
+}
+
+.success-icon {
+    width: 60px;
+    height: 60px;
+    background: #4a9f4a;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    margin: 0 auto 20px;
+    box-shadow: 0 10px 20px rgba(74, 159, 74, 0.3);
+}
+
+.form-success h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--texto-escuro);
+    margin-bottom: 8px;
+}
+
+/* Responsivo */
+@media (max-width: 480px) {
+    .form-wrapper { padding: 30px 20px; }
+    .form-title { font-size: 1.5rem; }
+}
     </style>
 </head>
 <body>
@@ -2791,6 +2943,55 @@
     </div>
 </section>
 
+    <!-- FORMULÁRIO DE APLICAÇÃO -->
+<section class="formulario section-light" id="aplicacao">
+    <div class="container">
+        <div class="form-wrapper fade-in">
+            <div class="form-header">
+                <span class="form-tag">Vagas Limitadas</span>
+                <h2 class="form-title">Aplique para a <span class="highlight-bordo">Sessão Raio-X</span></h2>
+                <p class="form-subtitle">Preencha seus dados abaixo. Se aprovada, entrarei em contato pelo WhatsApp para agendar seu horário.</p>
+            </div>
+
+            <!-- SUBSTITUA A URL NO 'ACTION' PELA URL QUE VOCÊ COPIOU DO GOOGLE -->
+            <form id="contactForm" class="contact-form" method="POST" action="https://script.google.com/macros/s/AKfycby_klV3u_6v98qNlN9j7pyMiHjOITvbzXrTiHI5YCwLdLzaLtfp9N-ovFbMWhblS8BdfQ/exec">
+                
+                <div class="form-group">
+                    <label for="Nome">Seu Nome</label>
+                    <input type="text" id="Nome" name="Nome" placeholder="Como gosta de ser chamada?" required class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label for="WhatsApp">Seu WhatsApp (com DDD)</label>
+                    <input type="tel" id="WhatsApp" name="WhatsApp" placeholder="(21) 99999-9999" required class="form-input">
+                </div>
+
+                <button type="submit" class="btn btn-bordo btn-lg btn-attention btn-full">
+                    <span>Enviar Aplicação</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                </button>
+                
+                <p class="form-security">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                    </svg>
+                    Seus dados estão 100% seguros e não serão compartilhados.
+                </p>
+            </form>
+            
+            <!-- Mensagem de Sucesso (Oculta inicialmente) -->
+            <div id="formSuccess" class="form-success" style="display: none;">
+                <div class="success-icon">✓</div>
+                <h3>Aplicação Recebida!</h3>
+                <p>Obrigada, <span id="userNameDisplay"></span>! Vou analisar seu perfil e te chamo no WhatsApp em breve.</p>
+            </div>
+        </div>
+    </div>
+</section>
+    
+
 <!-- FOOTER -->
 <footer class="footer">
     <div class="container">
@@ -3009,6 +3210,57 @@
         updateWhatsAppFloat();
         updateBackToTop();
     });
+
+        // ========================================
+    // ENVIO DO FORMULÁRIO PARA GOOGLE SHEETS
+    // ========================================
+    const form = document.getElementById('contactForm');
+    const formSuccess = document.getElementById('formSuccess');
+    const userNameDisplay = document.getElementById('userNameDisplay');
+
+    if (form) {
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            const btn = form.querySelector('button');
+            const originalBtnContent = btn.innerHTML;
+            const inputNome = form.querySelector('input[name="Nome"]');
+            
+            // 1. Muda botão para "Enviando..."
+            btn.disabled = true;
+            btn.innerHTML = `<span>Enviando...</span>`;
+            
+            // 2. Captura os dados
+            const formData = new FormData(form);
+            
+            // 3. Envia para o Script do Google
+            fetch(form.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                // 4. Sucesso!
+                
+                // Opcional: Redirecionar para WhatsApp direto após salvar
+                // Se quiser isso, descomente a linha abaixo e remova a parte de exibir formSuccess
+                // window.location.href = `https://wa.me/5521969995252?text=Olá, sou a ${inputNome.value}, acabei de preencher a aplicação no site!`;
+
+                // Ou: Exibir mensagem de sucesso na tela (Padrão)
+                form.style.display = 'none';
+                if(inputNome) userNameDisplay.textContent = inputNome.value;
+                formSuccess.style.display = 'block';
+                
+                // Dispara confete ou scroll suave se quiser
+                formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            })
+            .catch(error => {
+                console.error('Erro!', error.message);
+                alert('Ocorreu um erro ao enviar. Por favor, tente novamente ou chame no WhatsApp.');
+                btn.disabled = false;
+                btn.innerHTML = originalBtnContent;
+            });
+        });
+    }
 
     // ========================================
     // CARROSSEL DE VÍDEOS

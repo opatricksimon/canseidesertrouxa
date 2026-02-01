@@ -2134,61 +2134,106 @@
             }
         }
 
-        /* ========================================
-   SEÇÃO FORMULÁRIO (NOVO)
+/* ========================================
+   MODAL DE FORMULÁRIO
 ======================================== */
-.form-wrapper {
-    max-width: 600px;
-    margin: 0 auto;
-    background: var(--branco);
-    padding: 40px;
-    border-radius: 24px;
-    box-shadow: var(--shadow-lg);
-    border: 1px solid rgba(155, 44, 84, 0.1);
-    position: relative;
-    overflow: hidden;
-}
-
-/* Faixa decorativa no topo do card */
-.form-wrapper::before {
-    content: '';
-    position: absolute;
+.modal-overlay {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 6px;
-    background: linear-gradient(90deg, var(--bordo), var(--rosa), var(--bordo));
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
-.form-header {
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-content {
+    background: var(--branco);
+    border-radius: 24px;
+    max-width: 480px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from { opacity: 0; transform: scale(0.9) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-normal);
+    z-index: 10;
+    color: var(--branco);
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.modal-close svg { width: 20px; height: 20px; }
+
+.modal-header {
+    background: linear-gradient(135deg, var(--bordo) 0%, var(--bordo-dark) 100%);
+    color: var(--branco);
+    padding: 40px 30px 30px;
     text-align: center;
-    margin-bottom: 32px;
+    border-radius: 24px 24px 0 0;
 }
 
-.form-tag {
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--rosa-dark);
+.modal-tag {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-    display: block;
+    margin-bottom: 16px;
 }
 
-.form-title {
+.modal-title {
     font-family: var(--font-display);
-    font-size: 1.8rem;
-    color: var(--texto-escuro);
-    line-height: 1.2;
-    margin-bottom: 12px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 10px;
 }
 
-.form-subtitle {
-    font-size: 0.95rem;
-    color: var(--texto-medio);
+.modal-subtitle {
+    font-size: 0.9rem;
+    opacity: 0.9;
 }
 
-.contact-form {
+.modal-body { padding: 30px; }
+
+.modal-form {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -2197,7 +2242,6 @@
 .form-group {
     display: flex;
     flex-direction: column;
-    text-align: left;
     gap: 8px;
 }
 
@@ -2205,7 +2249,6 @@
     font-size: 0.9rem;
     font-weight: 600;
     color: var(--texto-escuro);
-    margin-left: 4px;
 }
 
 .form-input {
@@ -2227,68 +2270,122 @@
     box-shadow: 0 4px 12px rgba(230, 166, 178, 0.15);
 }
 
-.form-input::placeholder {
-    color: #aaa;
-}
+.form-input::placeholder { color: #aaa; }
 
-.btn-full {
-    width: 100%;
-    margin-top: 10px;
-}
+.btn-full { width: 100%; }
 
 .form-security {
     text-align: center;
     font-size: 0.75rem;
     color: #999;
-    margin-top: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 6px;
 }
 
-.form-security svg {
-    width: 12px;
-    height: 12px;
+.form-security svg { width: 12px; height: 12px; }
+
+.modal-success {
+    text-align: center;
+    padding: 50px 30px;
+    display: none;
 }
 
-/* Estado de Sucesso */
-.form-success {
-    text-align: center;
-    padding: 20px 0;
-    animation: fadeInUp 0.5s ease;
-}
+.modal-success.active { display: block; }
+
+.modal-form-container.hidden { display: none; }
 
 .success-icon {
-    width: 60px;
-    height: 60px;
-    background: #4a9f4a;
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #4a9f4a, #3d8b3d);
     color: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 30px;
-    margin: 0 auto 20px;
-    box-shadow: 0 10px 20px rgba(74, 159, 74, 0.3);
+    font-size: 36px;
+    margin: 0 auto 24px;
+    box-shadow: 0 10px 30px rgba(74, 159, 74, 0.3);
 }
 
-.form-success h3 {
+.modal-success h3 {
     font-family: var(--font-display);
     font-size: 1.5rem;
     color: var(--texto-escuro);
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 }
 
-/* Responsivo */
+.modal-success p {
+    color: var(--texto-medio);
+    line-height: 1.6;
+}
+
+body.modal-open { overflow: hidden; }
+
 @media (max-width: 480px) {
-    .form-wrapper { padding: 30px 20px; }
-    .form-title { font-size: 1.5rem; }
+    .modal-content { margin: 10px; }
+    .modal-header { padding: 30px 20px 25px; }
+    .modal-body { padding: 25px 20px; }
+    .modal-title { font-size: 1.3rem; }
 }
     </style>
 </head>
 <body>
-
+<!-- MODAL DE FORMULÁRIO -->
+<div class="modal-overlay" id="leadModal">
+    <div class="modal-content">
+        <button class="modal-close" id="modalClose" aria-label="Fechar">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+        </button>
+        
+        <div class="modal-form-container" id="modalFormContainer">
+            <div class="modal-header">
+                <span class="modal-tag">Quase lá!</span>
+                <h3 class="modal-title">Preencha seus dados para agendar</h3>
+                <p class="modal-subtitle">Em seguida você será direcionada para o WhatsApp da Márciah.</p>
+            </div>
+            
+            <div class="modal-body">
+                <form id="leadForm" class="modal-form" method="POST" action="https://script.google.com/macros/s/AKfycby_klV3u_6v98qNlN9j7pyMiHjOITvbzXrTiHI5YCwLdLzaLtfp9N-ovFbMWhblS8BdfQ/exec">
+                    <div class="form-group">
+                        <label for="nome">Seu Nome</label>
+                        <input type="text" id="nome" name="Nome" placeholder="Como você gosta de ser chamada?" required class="form-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="whatsapp">Seu WhatsApp (com DDD)</label>
+                        <input type="tel" id="whatsapp" name="WhatsApp" placeholder="(21) 99999-9999" required class="form-input">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-bordo btn-lg btn-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="20" height="20">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                        </svg>
+                        <span>Continuar para o WhatsApp</span>
+                    </button>
+                    
+                    <p class="form-security">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                        </svg>
+                        Seus dados estão 100% seguros
+                    </p>
+                </form>
+            </div>
+        </div>
+        
+        <div class="modal-success" id="modalSuccess">
+            <div class="success-icon">✓</div>
+            <h3>Dados Recebidos!</h3>
+            <p>Obrigada, <span id="userName"></span>! Redirecionando para o WhatsApp...</p>
+        </div>
+    </div>
+</div>
+    
 <!-- Barra de Progresso -->
 <div class="progress-bar" id="progressBar"></div>
 
@@ -2318,7 +2415,7 @@
         </nav>
         
         <div class="header-right">
-            <a href="https://wa.me/5521969995252?text=Olá, Márciah! Quero agendar minha Sessão Raio-X. Cansei de ser trouxa!" target="_blank" class="btn btn-white header-cta">
+            <button type="button" class="btn btn-white btn-lg btn-attention open-modal-btn">
                 <span>Agendar Sessão</span>
             </a>
         </div>
@@ -2349,7 +2446,7 @@
         </p>
         
         <div class="hero-cta">
-            <a href="https://wa.me/5521969995252?text=Olá, Márciah! Quero agendar minha Sessão Raio-X. Cansei de ser trouxa!" target="_blank" class="btn btn-white btn-lg btn-attention">
+            <button type="button" class="btn btn-white btn-lg btn-attention open-modal-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                 </svg>
@@ -2479,7 +2576,7 @@
                 A boa notícia? <strong>Padrão se enxerga. E padrão se quebra.</strong>
             </p>
             <div class="verdade-cta">
-                <a href="https://wa.me/5521969995252?text=Olá, Márciah! Quero agendar minha Sessão Raio-X. Cansei de ser trouxa!" target="_blank" class="btn btn-white btn-attention">
+                <button type="button" class="btn btn-white btn-lg btn-attention open-modal-btn">
                     <span>Quero descobrir meu padrão</span>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -2576,7 +2673,7 @@
         </div>
         
         <div class="raio-x-cta fade-in">
-            <a href="https://wa.me/5521969995252?text=Olá, Márciah! Quero agendar minha Sessão Raio-X. Cansei de ser trouxa!" target="_blank" class="btn btn-bordo btn-lg btn-attention">
+            <button type="button" class="btn btn-white btn-lg btn-attention open-modal-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                 </svg>
@@ -2681,7 +2778,7 @@
         
         <div class="para-quem-cta fade-in">
             <p class="para-quem-cta-text">Se você se viu no lado esquerdo, você está no lugar certo.</p>
-            <a href="https://wa.me/5521969995252?text=Olá, Márciah! Quero agendar minha Sessão Raio-X. Cansei de ser trouxa!" target="_blank" class="btn btn-bordo btn-attention">
+            <button type="button" class="btn btn-white btn-lg btn-attention open-modal-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                 </svg>
@@ -2926,7 +3023,7 @@
                 — e como parar.
             </p>
             <div class="cta-final-btn">
-                <a href="https://wa.me/5521969995252?text=Olá, Márciah! Quero agendar minha Sessão Raio-X. Cansei de ser trouxa!" target="_blank" class="btn btn-white btn-lg btn-attention">
+                <button type="button" class="btn btn-white btn-lg btn-attention open-modal-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                     </svg>
@@ -2943,54 +3040,7 @@
     </div>
 </section>
 
-    <!-- FORMULÁRIO DE APLICAÇÃO -->
-<section class="formulario section-light" id="aplicacao">
-    <div class="container">
-        <div class="form-wrapper fade-in">
-            <div class="form-header">
-                <span class="form-tag">Vagas Limitadas</span>
-                <h2 class="form-title">Aplique para a <span class="highlight-bordo">Sessão Raio-X</span></h2>
-                <p class="form-subtitle">Preencha seus dados abaixo. Se aprovada, entrarei em contato pelo WhatsApp para agendar seu horário.</p>
-            </div>
 
-            <!-- SUBSTITUA A URL NO 'ACTION' PELA URL QUE VOCÊ COPIOU DO GOOGLE -->
-            <form id="contactForm" class="contact-form" method="POST" action="https://script.google.com/macros/s/AKfycby_klV3u_6v98qNlN9j7pyMiHjOITvbzXrTiHI5YCwLdLzaLtfp9N-ovFbMWhblS8BdfQ/exec">
-                
-                <div class="form-group">
-                    <label for="Nome">Seu Nome</label>
-                    <input type="text" id="Nome" name="Nome" placeholder="Como gosta de ser chamada?" required class="form-input">
-                </div>
-
-                <div class="form-group">
-                    <label for="WhatsApp">Seu WhatsApp (com DDD)</label>
-                    <input type="tel" id="WhatsApp" name="WhatsApp" placeholder="(21) 99999-9999" required class="form-input">
-                </div>
-
-                <button type="submit" class="btn btn-bordo btn-lg btn-attention btn-full">
-                    <span>Enviar Aplicação</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-                </button>
-                
-                <p class="form-security">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
-                    </svg>
-                    Seus dados estão 100% seguros e não serão compartilhados.
-                </p>
-            </form>
-            
-            <!-- Mensagem de Sucesso (Oculta inicialmente) -->
-            <div id="formSuccess" class="form-success" style="display: none;">
-                <div class="success-icon">✓</div>
-                <h3>Aplicação Recebida!</h3>
-                <p>Obrigada, <span id="userNameDisplay"></span>! Vou analisar seu perfil e te chamo no WhatsApp em breve.</p>
-            </div>
-        </div>
-    </div>
-</section>
-    
 
 <!-- FOOTER -->
 <footer class="footer">
@@ -3024,7 +3074,7 @@
                             <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                         </svg>
                     </a>
-                    <a href="https://wa.me/5521969995252?text=Olá, Márciah! Quero agendar minha Sessão Raio-X. Cansei de ser trouxa!" target="_blank" class="footer-social-link" aria-label="WhatsApp">
+                    <button type="button" class="btn btn-white btn-lg btn-attention open-modal-btn">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                         </svg>
@@ -3041,7 +3091,7 @@
 </footer>
 
 <!-- WHATSAPP FLUTUANTE -->
-<a href="https://wa.me/5521969995252?text=Olá, Márciah! Quero agendar minha Sessão Raio-X. Cansei de ser trouxa!" target="_blank" class="whatsapp-float" id="whatsappFloat" aria-label="Fale pelo WhatsApp">
+<button type="button" class="btn btn-white btn-lg btn-attention open-modal-btn">
     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
     </svg>
@@ -3211,57 +3261,90 @@
         updateBackToTop();
     });
 
-        // ========================================
-    // ENVIO DO FORMULÁRIO PARA GOOGLE SHEETS
-    // ========================================
-    const form = document.getElementById('contactForm');
-    const formSuccess = document.getElementById('formSuccess');
-    const userNameDisplay = document.getElementById('userNameDisplay');
+// ========================================
+// MODAL DE LEAD + ENVIO GOOGLE SHEETS
+// ========================================
+const modal = document.getElementById('leadModal');
+const modalClose = document.getElementById('modalClose');
+const modalForm = document.getElementById('leadForm');
+const modalFormContainer = document.getElementById('modalFormContainer');
+const modalSuccess = document.getElementById('modalSuccess');
+const userName = document.getElementById('userName');
+const openModalBtns = document.querySelectorAll('.open-modal-btn');
 
-    if (form) {
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            
-            const btn = form.querySelector('button');
-            const originalBtnContent = btn.innerHTML;
-            const inputNome = form.querySelector('input[name="Nome"]');
-            
-            // 1. Muda botão para "Enviando..."
-            btn.disabled = true;
-            btn.innerHTML = `<span>Enviando...</span>`;
-            
-            // 2. Captura os dados
-            const formData = new FormData(form);
-            
-            // 3. Envia para o Script do Google
-            fetch(form.action, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                // 4. Sucesso!
-                
-                // Opcional: Redirecionar para WhatsApp direto após salvar
-                // Se quiser isso, descomente a linha abaixo e remova a parte de exibir formSuccess
-                // window.location.href = `https://wa.me/5521969995252?text=Olá, sou a ${inputNome.value}, acabei de preencher a aplicação no site!`;
+// Abrir modal
+openModalBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.classList.add('active');
+        document.body.classList.add('modal-open');
+    });
+});
 
-                // Ou: Exibir mensagem de sucesso na tela (Padrão)
-                form.style.display = 'none';
-                if(inputNome) userNameDisplay.textContent = inputNome.value;
-                formSuccess.style.display = 'block';
+// Fechar modal
+function closeModal() {
+    modal.classList.remove('active');
+    document.body.classList.remove('modal-open');
+}
+
+modalClose.addEventListener('click', closeModal);
+
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+});
+
+// Envio do formulário
+if (modalForm) {
+    modalForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const btn = modalForm.querySelector('button[type="submit"]');
+        const nomeInput = modalForm.querySelector('input[name="Nome"]');
+        const nome = nomeInput.value.trim();
+        
+        btn.disabled = true;
+        btn.innerHTML = '<span>Enviando...</span>';
+        
+        const formData = new FormData(modalForm);
+        
+        fetch(modalForm.action, {
+            method: 'POST',
+            body: formData
+        })
+        .then(() => {
+            // Sucesso - mostra mensagem e redireciona
+            modalFormContainer.classList.add('hidden');
+            userName.textContent = nome;
+            modalSuccess.classList.add('active');
+            
+            // Redireciona pro WhatsApp após 2 segundos
+            setTimeout(() => {
+                const msg = encodeURIComponent(`Olá, Márciah! Sou a ${nome}, acabei de preencher o formulário no site. Quero agendar minha Sessão Raio-X!`);
+                window.open(`https://wa.me/5521969995252?text=${msg}`, '_blank');
+                closeModal();
                 
-                // Dispara confete ou scroll suave se quiser
-                formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            })
-            .catch(error => {
-                console.error('Erro!', error.message);
-                alert('Ocorreu um erro ao enviar. Por favor, tente novamente ou chame no WhatsApp.');
-                btn.disabled = false;
-                btn.innerHTML = originalBtnContent;
-            });
+                // Reset do formulário para próximo uso
+                setTimeout(() => {
+                    modalForm.reset();
+                    modalFormContainer.classList.remove('hidden');
+                    modalSuccess.classList.remove('active');
+                    btn.disabled = false;
+                    btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg><span>Continuar para o WhatsApp</span>`;
+                }, 500);
+            }, 2000);
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Erro ao enviar. Tente novamente.');
+            btn.disabled = false;
+            btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg><span>Continuar para o WhatsApp</span>`;
         });
-    }
-
+    });
+}
     // ========================================
     // CARROSSEL DE VÍDEOS
     // ========================================

@@ -465,15 +465,19 @@
             gap: 24px;
         }
 
-        .header-cta { display: none; }
+        .header-cta {
+    display: none;
+    white-space: nowrap; !important;
+}
 
-        @media (min-width: 768px) {
-            .header-cta {
-                display: inline-flex;
-                padding: 10px 20px;
-                font-size: 0.85rem;
-            }
-        }
+@media (min-width: 768px) {
+    .header-cta {
+        display: inline-flex;
+        padding: 10px 20px;
+        font-size: 0.85rem;
+        white-space: nowrap;
+    }
+}
 
         /* ========================================
            HERO - AJUSTADO PARA NÃO COBRIR O ROSTO
